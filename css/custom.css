@@ -1,0 +1,58 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+.icon-block {
+  padding: 0 15px;
+}
+
+.icon-block .material-icons {
+	font-size: inherit;
+}
+
+#departure_pickup, #departure_return, #alarm_pickup, #alarm_return { border-bottom: 0px; }
+
+#staggered-test li {
+  display:inline-block;
+  float: Left;
+  width: 50%;
+  padding-left: 10px; }
+
+.swal2-confirm {
+  margin-bottom: 10px
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+   
+
+.g-recaptcha > div > div{
+ margin: 15px auto !important;
+ text-align: center;
+ width: auto !important;
+ height: auto !important;
+}
+
+.gc-reset{
+  transform:scale(0.95) !important;
+  -webkit-transform:scale(0.95) !important;
+  transform-origin:0 0 !important;
+  -webkit-transform-origin:0 0 !important;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
