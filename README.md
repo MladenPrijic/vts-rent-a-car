@@ -2,6 +2,7 @@
 Project for the VTS Hackathon 2016
 
 Naziv Tima: //noComment
+
 Članovi:
 
 - Damir Dulić
@@ -25,5 +26,4 @@ Korisćeni Open Source Projekti:
 - http://materializecss.com;
 - http://felicegattuso.com/projects/datedropper;
 - http://felicegattuso.com/projects/timedropper;
-- http://chancejs.com/;
-- 
+- https://limonte.github.io/sweetalert2/
