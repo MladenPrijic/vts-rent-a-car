@@ -26,4 +26,5 @@ Korisćeni Open Source Projekti:
 - http://materializecss.com;
 - http://felicegattuso.com/projects/datedropper;
 - http://felicegattuso.com/projects/timedropper;
-- https://limonte.github.io/sweetalert2/
+- https://limonte.github.io/sweetalert2;
+- http://chancejs.com;
