@@ -35,7 +35,10 @@ body {
 main {
   flex: 1 0 auto;
 }
-   
+
+#footer {
+  display: none;
+}
 
 .g-recaptcha > div > div{
  margin: 15px auto !important;

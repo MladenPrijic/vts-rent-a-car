@@ -62,6 +62,7 @@ function init(){
 		$(document).ready(function(){
 		$('.tooltipped').tooltip({delay: 50});
 		});
+		document.getElementById("footer").style.display = "block";
 	}
 	ajax.send("some");
 

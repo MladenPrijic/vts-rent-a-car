@@ -6,7 +6,7 @@
   }); // end of document ready
 })(jQuery); // end of jQuery name space
 
-// Material Design OnLoad stuff 
+// Material Design OnLoad stuff
 $(document).ready(function(){
   // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
   $('.modal-trigger').leanModal();
@@ -42,9 +42,10 @@ function info(car_num) {
     var city_return=document.getElementById('city_return').value;
 
 
-    if (pdate == '--' || rdate == '--' || city_pickup == 'choose' || city_return=='choose') {
+    if (pdate == '--' || rdate == '--' || city_pickup == 'choose' || city_return=='choose' || pdate > rdate) {
     if (pdate == '--') { Materialize.toast("Please Select a Departure Date", 3000 ); }
     if (rdate == '--') { Materialize.toast("Please Select a Return Date", 3000 ); }
+    if (pdate > rdate) { Materialize.toast("Return Date can't be before Departure Date", 3000 ); }
     if(city_pickup == 'choose' || city_return=='choose'){
     if(city_pickup=='choose'){Materialize.toast("Please Select a city for pickup", 3000 );}
     if(city_return=='choose'){Materialize.toast("Please Select a city for return", 3000 );} } }
