@@ -58,11 +58,9 @@ function init(){
 
 
 		}
-    Materialize.showStaggeredList("#staggered-test");
-		$(document).ready(function(){
-		$('.tooltipped').tooltip({delay: 50});
-		});
-		document.getElementById("footer").style.display = "block";
+
+  ajaxmaterialize(); //loads the scrips needed for materialize to run correctly; trying to force the DRY programming rule; located inside init.js
+
 	}
 	ajax.send("some");
 

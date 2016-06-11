@@ -34,7 +34,7 @@ if(isset($_SESSION["id_user"])){
 
   <!-- CSS  -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" type="text/css" href="css/materialize.css" media="screen,projection"/>
+  <link rel="stylesheet" type="text/css" href="css/materialize.min.css" media="screen,projection"/>
   <link rel="stylesheet" type="text/css" href="css/custom.css" media="screen,projection"/>
   <link rel="stylesheet" type="text/css" href="css/datedropper.css">
   <link rel="stylesheet" type="text/css" href="css/timedropper.css">
@@ -44,12 +44,12 @@ if(isset($_SESSION["id_user"])){
 
 
   <!-- JavaScript Before -->
-  <script type="text/javascript" src="js/materialize.min.js"></script>
-  <script type="text/javascript" src="js/datedropper.js"></script>
-  <script type="text/javascript" src="js/timedropper.js"></script>
+  <script type="text/javascript" src="js/plugins/materialize.min.js"></script>
+  <script type="text/javascript" src="js/plugins/datedropper.js"></script>
+  <script type="text/javascript" src="js/plugins/timedropper.js"></script>
+  <script type="text/javascript" src="js/plugins/sweetalert2.js"></script>
   <script type="text/javascript" src="js/register.js"/> </script>
-	<script type="text/javascript" src="js/login.js"/> </script>
-  <script type="text/javascript" src="js/sweetalert2.js"></script>
+  <script type="text/javascript" src="js/login.js"/> </script>
 
 </head>
 
@@ -282,8 +282,10 @@ if(isset($_SESSION["id_user"])){
   <button class="material-scrolltop" type="button"></button>
 
   <!-- material-scrolltop plugin -->
-  <script src="js/material-scrolltop.js"></script>
-  <script src="js/random_javas.js"></script>
+  <script src="js/plugins/material-scrolltop.js"></script>
+
+  <!-- onload random cars -->
+  <script src="js/random_onload.js"></script>
 
   <!-- Initialize material-scrolltop -->
   <script>$('body').materialScrollTop();</script>

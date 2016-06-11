@@ -17,6 +17,14 @@ $('select').material_select();
 });
 
 
+function ajaxmaterialize() {
+  Materialize.showStaggeredList("#staggered-test");
+  $(document).ready(function(){
+  $('.tooltipped').tooltip({delay: 50});
+  });
+  document.getElementById("footer").style.display = "block";
+}
+
 function info(car_num) {
 
     var id_car = car_num;
