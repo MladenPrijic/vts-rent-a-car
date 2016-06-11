@@ -33,50 +33,37 @@ if(isset($_SESSION["id_user"])){
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
   <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" type="text/css" href="css/materialize.min.css" media="screen,projection"/>
+  <link rel="stylesheet" type="text/css" href="css/custom.css" media="screen,projection"/>
   <link rel="stylesheet" type="text/css" href="css/datedropper.css">
   <link rel="stylesheet" type="text/css" href="css/timedropper.css">
   <link rel="stylesheet" type="text/css" href="css/material-scrolltop.css">
+  <link rel="stylesheet" type="text/css" href="css/sweetalert2.css">
 
-  <style>
 
-  #departure_pickup, #departure_return, #alarm_pickup, #alarm_return { border-bottom: 0px; }
 
-  #staggered-test li {
-    display:inline-block;
-    float: Left;
-    width: 50%;
-    padding-left: 10px; }
+  <!-- JavaScript Before -->
+  <script type="text/javascript" src="js/plugins/materialize.min.js"></script>
+  <script type="text/javascript" src="js/plugins/datedropper.js"></script>
+  <script type="text/javascript" src="js/plugins/timedropper.js"></script>
+  <script type="text/javascript" src="js/plugins/sweetalert2.js"></script>
+  <script type="text/javascript" src="js/register.js"/> </script>
 
-  </style>
 
-  <style>
-  input[type=number]::-webkit-inner-spin-button,
-  input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0; }
-  </style>
-
-  <!-- JavaScript  -->
-  <script type="text/javascript" src="js/materialize.min.js"></script>
-  <script src="js/register.js"/> </script>
-	<script src="js/login.js"/> </script>
 </head>
 
 <body onload="info()">
-  <div style="display: none" class="progress" id="preloader">
-    <div class="indeterminate"></div>
-</div>
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Admin Dashboard</a>
+		  <!-- Desktop Navigation -->
       <ul class="right hide-on-med-and-down">
         <li><a class="waves-effect waves-light btn modal-trigger" href="#insert_car">Insert Car</a></li>
         <li><a class="waves-effect waves-light btn modal-trigger" href="#profile" id="bprofile" onclick="Materialize.toast('Press UPDATE to update your profile.', 4000)">Profile</a></li>
         <li><a class="waves-effect waves-light btn" href="logout.php">Logout</a></li>  <!--force logout -->
       </ul>
 
+      <!-- Mobile Navigation -->
       <ul id="nav-mobile" class="side-nav">
         <li><a class="waves-effect waves-light btn modal-trigger" href="#insert_car">Insert Car</a></li>
         <li><a class="waves-effect waves-light btn modal-trigger" href="#profile">Profile</a></li>
@@ -85,8 +72,8 @@ if(isset($_SESSION["id_user"])){
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
-<!-- Modal Structure -->
-<div id="profile" class="modal">
+
+<div id="profile" class="modal"> <!-- Profile Modal -->
   <div class="modal-content">
   <h4>Profile</h4>
   <span id="error"></span>
@@ -147,19 +134,19 @@ if(isset($_SESSION["id_user"])){
         </div>
       </div>
     </form>
-</div>
+  </div>
   </div>
   <div class="modal-footer">
     <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
     <button class="btn waves-effect waves-light" type="submit" name="action" onclick="update()">Update
     <i class="material-icons right">send</i>
-  </button>
+    </button>
   </div>
 </div> <!-- END OF PROFILE -->
 
-<!-- Modal Structure -->
-<div id="insert_car" class="modal">
-  <div class="modal-content">
+
+<div id="insert_car" class="modal"> <!-- Insert Car Modal -->
+<div class="modal-content">
   <h4>Add a car</h4>
   <span id="error"></span>
   <div class="row">
@@ -233,12 +220,12 @@ if(isset($_SESSION["id_user"])){
       </div>
     </form>
 </div>
-  </div>
+</div>
   <div class="modal-footer">
     <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
     <button class="btn waves-effect waves-light" type="submit" name="action" onclick="insert_car()">Insert
     <i class="material-icons right">send</i>
-  </button>
+    </button>
   </div>
 </div> <!-- END OF INSER-CARS -->
 
@@ -246,15 +233,12 @@ if(isset($_SESSION["id_user"])){
 
 <div class="container">
   <div class="section">
-
-  <!--   Icon Section   -->
+  <!-- Car Select Section -->
   <div class="row">
-
-    <div class="col l12 m12 s12">
-              <div class="center">
-        <h5 class="center">Cars</h5><br />
+      <div class="col l12 m12 s12">
+       <div class="center">
+          <h5 class="center">Cars</h5><br />
         <div class="center">
-
           <div class="input-field col l12 m12 s12">
             <select id="cars">
               <option value="all">All</option>
@@ -262,35 +246,30 @@ if(isset($_SESSION["id_user"])){
               <option value="free">Free</option>
             </select>
           </div>
-
-     </div>
+       </div>
+      </div>
     </div>
-
+  </div>
   </div>
 
-  </div>
-</div>
+
+<div class="section"> <!-- Opening Car Section -->
+
+  <!-- Cars Load With This -->
+  <ul class="staggered-list" id="staggered-test"></ul>
+
+</div> <!-- Closing Car Section -->
+</div> <!-- Closing Main Container -->
 
 
-<div class="section">
-
-  <ul class="staggered-list" id="staggered-test">
-
-  </ul>
-</div>
-
-</div>
-
-<div class="row">
-</div>
-<footer class="page-footer orange">
+<footer class="page-footer orange" id="footer">
   <div class="container">
     <div class="row">
-      <div class="col s10">
+      <div class="col s12">
         <p class="grey-text text-lighten-4">We are just 2 students doing a project.</p>
       </div>
+    </div>
   </div>
-</div>
   <div class="footer-copyright">
     <div class="container">
     Made by <b>//noComment</b>
@@ -298,173 +277,83 @@ if(isset($_SESSION["id_user"])){
   </div>
 </footer>
 
+  <!-- JavaScript After -->
+  <script src="js/getData.js"></script>
   <script src="js/init.js"></script>
-  <script>
-  $(document).ready(function(){
-    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-    $('.modal-trigger').leanModal();
-  });
-  $(document).ready(function() {
-  $('select').material_select();
-  });
 
-
-  $(document).ready(function(){
-  $('.tooltipped').tooltip({delay: 50});
-  });
-  </script>
-  <script>
-   /* var options = [
-     {selector: '#staggered-test', offset: 0, callback: function() {
-      Materialize.toast("Welcome", 1500 );
-    } },
-    {selector: '#staggered-test', offset: 0, callback: function() {
-      Materialize.showStaggeredList("#staggered-test");
-    } },
-  ];
-  Materialize.scrollFire(options); */
-
-   //console.log(name);
-
-  window.onload = function loadall(){
-    Materialize.toast("Welcome "+ arr[0], 2000 );
-    Materialize.showStaggeredList("#staggered-test");
-  };
-
-  </script>
-
+  <!-- Datedropper and Timedropper Scripts -->
+  <script>$( "#departure_pickup" ).dateDropper();</script>
+  <script>$( "#departure_return" ).dateDropper();</script>
+  <script>$( "#alarm_pickup" ).timeDropper();</script>
+  <script>$( "#alarm_return" ).timeDropper();</script>
 
   <!-- material-scrolltop button -->
   <button class="material-scrolltop" type="button"></button>
 
   <!-- material-scrolltop plugin -->
-  <script src="js/material-scrolltop.js"></script>
+  <script src="js/plugins/material-scrolltop.js"></script>
 
-  <!-- Initialize material-scrolltop with (minimal) -->
-  <script>
-      $('body').materialScrollTop();
-  </script>
+  <!-- onload random cars -->
+  <script src="js/random_onload.js"></script>
 
+  <!-- Initialize material-scrolltop -->
+  <script>$('body').materialScrollTop();</script>
 
 </body>
 </html>
-<script type="text/javascript">
 
-    document.getElementById("bprofile").addEventListener('click',function(){myFunction()});
-    // document.getElementById("sh_date").addEventListener('click',function(){loadData(2,'show_date')});
+  <script type="text/javascript">
+  // AJAX for Profile Update
+  document.getElementById("bprofile").addEventListener('click',myFunction); //event listener for the profile button
 
-    var xmlhttp = new XMLHttpRequest();
-    var url = "get_ajax.php";
+  var xmlhttp = new XMLHttpRequest();
+  var url = "main_get_ajax.php";
 
-    xmlhttp.onreadystatechange=function() {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            myFunction(xmlhttp.responseText);
-        }
-    };
-    xmlhttp.open("GET", url, true);
-    xmlhttp.send();
+  xmlhttp.onreadystatechange=function() {
+      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          myFunction(xmlhttp.responseText); } };
 
-    function myFunction(response) {
-        arr = JSON.parse(response);
+  xmlhttp.open("GET", url, true);
+  xmlhttp.send();
 
-        document.getElementById("fName").value = arr[0];
-        document.getElementById("lName").value = arr[1];
-        document.getElementById("username").value = arr[2];
-        document.getElementById("phone").value = arr[3];
-        document.getElementById("email").value = arr[4];
-        document.getElementById("street").value = arr[5];
-        document.getElementById("city").value = arr[6];
-        document.getElementById("zip").value = arr[7];
-        document.getElementById("country").value = arr[8];
+  function myFunction(response) {
+    arr = JSON.parse(response);
 
-        $(document).ready(function() {
-        Materialize.updateTextFields();
-        });
+    document.getElementById("fName").value = arr[0];
+    document.getElementById("lName").value = arr[1];
+    document.getElementById("username").value = arr[2];
+    document.getElementById("phone").value = arr[3];
+    document.getElementById("email").value = arr[4];
+    document.getElementById("street").value = arr[5];
+    document.getElementById("city").value = arr[6];
+    document.getElementById("zip").value = arr[7];
+    document.getElementById("country").value = arr[8];
 
-}
-
-function info(car_num) {
-
-    var id_car = car_num;
-    var pdate = document.getElementById('departure_pickup').value;
-
-    var pdate_year = pdate.slice(6, 10);
-    var pdate_month = pdate.slice(3, 5);
-    var pdate_day = pdate.slice(0, 2);
-    var pdate = pdate_year + "-" + pdate_month + "-" + pdate_day;
-
-    var ptime = document.getElementById('alarm_pickup').value;
-
-    var rdate = document.getElementById('departure_return').value;
-
-    var rdate_year = rdate.slice(6, 10);
-    var rdate_month = rdate.slice(3, 5);
-    var rdate_day = rdate.slice(0, 2);
-    var rdate = rdate_year + "-" + rdate_month + "-" + rdate_day;
-
-    var rtime = document.getElementById('alarm_return').value;
-
-    var city_pickup=document.getElementById('city_pickup').value;
-    var city_return=document.getElementById('city_return').value;
+    $(document).ready(function() {
+    Materialize.updateTextFields();
+    }); }
 
 
-    if (pdate == '--' || rdate == '--' || city_pickup == 'choose' || city_return=='choose') {
-      if (pdate == '--') { Materialize.toast("Please Select a Departure Date", 3000 ); }
-      if (rdate == '--') { Materialize.toast("Please Select a Return Date", 3000 ); }
-      if(city_pickup == 'choose' || city_return=='choose'){
-      if(city_pickup=='choose'){Materialize.toast("Please Select a city for pickup", 3000 );}
-      if(city_return=='choose'){Materialize.toast("Please Select a city for return", 3000 );}
-      }
-    } else {
-    pdate += " " + ptime + ":00"
-    rdate += " " + rtime + ":00"
-    console.log("City for pickup: " +city_pickup );
-    console.log("City for return: " +city_return );
-    console.log("Pickup Date: "+pdate);
-    console.log("Return Date: "+rdate);
-    swal({
-      title: 'Are you sure?',
-      text: "Your order will be captured!",
-      type: 'question',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, I am sure!',
-      cancelButtonText: 'No, cancel!',
-      confirmButtonClass: 'btn btn-success',
-      cancelButtonClass: 'btn btn-danger',
-      buttonsStyling: true,
-      allowOutsideClick: false,
-      allowEscapeKey: false
-    }).then(function(isConfirm) {
-      if (isConfirm === true) {
-        var ajax=ajaxObj("POST","php_includes/rent.php");
-        ajax.onreadystatechange=function(){
-          if (ajaxReturn(ajax) === true) {
-            console.log(ajax.returnText);
-          }
-        }
-        ajax.send("id_car="+id_car+"&pickupCity="+city_pickup+"&returnCity="+city_return+"&pickupDate="+pdate+"&returnDate="+rdate);
-        swal(
-          'Confirmed!',
-          'Your order has been accepted ＼（＾ ＾）／',
-          'success'
-        );
-      } else if (isConfirm === false) {
-        swal(
-          'Cancelled',
-          'Your order has been Cancelled .·´¯`(>▂<)´¯`·.',
-          'error'
-        );
-      } else {
-        // Esc, close button or outside click
-        // isConfirm is undefined
-      }
-    });
+  function ajaxObj( meth, url ) {
+    var x = new XMLHttpRequest();
+    x.open( meth, url, true );
+    x.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  return x; }
 
-  }
+  function ajaxReturn(x) {
+    if(x.readyState == 4 && x.status == 200){
+      return true; } }
 
-}
+  function _(x) {
+    return document.getElementById(x); }
 
+  </script>
 
-</script>
+  <script>
+  //onload listener
+  window.onload = function loadall(){
+    init();
+    Materialize.toast("Welcome Admin", 2000 );
+  //  Materialize.showStaggeredList("#staggered-test"); //not needed, loaded with each ajax instead
+  };
+  </script>

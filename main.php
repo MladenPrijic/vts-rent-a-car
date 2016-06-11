@@ -49,14 +49,10 @@ if(isset($_SESSION["id_user"])){
   <script type="text/javascript" src="js/plugins/timedropper.js"></script>
   <script type="text/javascript" src="js/plugins/sweetalert2.js"></script>
   <script type="text/javascript" src="js/register.js"/> </script>
-  <script type="text/javascript" src="js/login.js"/> </script>
 
 </head>
 
 <body onload="init()"> <!-- Loading the init function located inside init.js -->
-  <div style="display: none" class="progress" id="preloader">
-    <div class="indeterminate"></div>
-  </div>
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Dashboard</a>
       <!-- Desktop Navigation -->
@@ -298,7 +294,7 @@ if(isset($_SESSION["id_user"])){
   document.getElementById("bprofile").addEventListener('click',myFunction); //event listener for the profile button
 
   var xmlhttp = new XMLHttpRequest();
-  var url = "get_ajax.php";
+  var url = "main_get_ajax.php";
 
   xmlhttp.onreadystatechange=function() {
       if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {

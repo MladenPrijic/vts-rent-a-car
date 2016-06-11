@@ -24,7 +24,7 @@ if(isset($_POST["login_username"]) && isset($_POST["login_password"])){
 	$username=mysqli_real_escape_string($connect,$_POST["login_username"]);
 	$password=$_POST["login_password"];
 	$salt1="oug}|{05=>";
-    $salt2="y5-7|}h('{";
+  $salt2="y5-7|}h('{";
 	$pass=md5(md5($salt1) .md5($password) .md5($salt2));
 
 	$sql="SELECT * FROM user WHERE username='$username' LIMIT 1";

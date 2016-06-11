@@ -35,7 +35,7 @@ function check_username(){
 
 	if(username != ""){
 
-		var ajax=ajaxObj("POST","register.php");
+		var ajax=ajaxObj("POST","index_register.php");
 		ajax.onreadystatechange=function(){
 			if(ajaxReturn(ajax) == true )
 	 			{
@@ -80,7 +80,7 @@ function signup(){
 	}
 	else{
 
-		var ajax=ajaxObj("POST","register.php");
+		var ajax=ajaxObj("POST","index_register.php");
 
 		ajax.onreadystatechange=function(){
 			if(ajaxReturn(ajax)== true){
@@ -122,7 +122,7 @@ function update(){
 	}
 	else{
 
-		var ajax=ajaxObj("POST","update.php");
+		var ajax=ajaxObj("POST","main_update.php");
 
 		ajax.onreadystatechange=function(){
 			if(ajaxReturn(ajax)== true){

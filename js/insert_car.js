@@ -40,7 +40,7 @@ function insert_car(){
 	}
 	else{
 
-		var ajax=ajaxObj("POST","insert_car.php");
+		var ajax=ajaxObj("POST","admin_insert.php");
 
 		ajax.onreadystatechange=function(){
 			if(ajaxReturn(ajax)== true){
@@ -82,7 +82,7 @@ function update(){
 	}
 	else{
 
-		var ajax=ajaxObj("POST","update.php");
+		var ajax=ajaxObj("POST","main_update.php");
 
 		ajax.onreadystatechange=function(){
 			if(ajaxReturn(ajax)== true){
