@@ -23,6 +23,7 @@ function ajaxmaterialize() {
   $('.tooltipped').tooltip({delay: 50});
   });
   document.getElementById("footer").style.display = "block";
+  //preloader.off();
 }
 
 function info(car_num) {

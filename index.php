@@ -39,6 +39,7 @@ if(isset($_SESSION["id_user"])){
   <link rel="stylesheet" type="text/css" href="css/custom.css" media="screen,projection"/>
   <link rel="stylesheet" type="text/css" href="css/material-scrolltop.css">
   <link rel="stylesheet" type="text/css" href="css/sweetalert2.css">
+	<link rel="stylesheet" type="text/css" href="css/materialPreloader.min.css">
 
 </head>
 <body>
@@ -48,8 +49,26 @@ if(isset($_SESSION["id_user"])){
   <script type="text/javascript" src="js/plugins/materialize.min.js"></script>
   <script type="text/javascript" src="js/plugins/sweetalert2.js"></script>
 	<script type="text/javascript" src="js/plugins/chance.min.js"/> </script>
+	<script type="text/javascript" src="js/plugins/materialPreloader.min.js"></script>
   <script type="text/javascript" src="js/register.js"/> </script>
   <script type="text/javascript" src="js/login.js"/> </script>
+
+	<script type="text/javascript">
+
+	 preloader = new $.materialPreloader({
+					position: 'top',
+					height: '5px',
+					col_1: '#159756',
+					col_2: '#da4733',
+					col_3: '#3b78e7',
+					col_4: '#fdba2c',
+					fadeIn: 200,
+					fadeOut: 200
+			});
+
+	preloader.on();
+
+	</script>
 
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">VTS Rent-A-Car</a>
@@ -157,6 +176,7 @@ if(isset($_SESSION["id_user"])){
 	        <input id="login_password" name="login_password" type="password" class="validate">
 	        <label for="login_password">Password</label>
 	      </div>
+			<label style="margin-left: 12px"><a class="modal-trigger" href="#forgot" >Forgot Password?</a></label>
 	    </div>
 	</div>
 	  <div class="modal-footer">
@@ -167,6 +187,33 @@ if(isset($_SESSION["id_user"])){
 	  </div>
 	</form>
 </div> <!-- End Login Modal -->
+
+<div id="forgot" class="modal"> <!-- Start Forgot Password Modal -->
+  <div class="modal-content">
+	    <h4>Noob</h4>
+	    <p>Username and Email please.</p>
+  	<form action="forgot.php" method="post" class="col s12">
+	    <div class="row">
+	      <div class="input-field col s12">
+	        <input id="forgot_username" name="forgot_username" type="text" class="validate">
+	        <label for="forgot_username">Username</label>
+	      </div>
+	    </div>
+	    <div class="row">
+				<div class="input-field col s12">
+	        <input id="email" name="email" type="text" class="validate">
+	        <label for="email">Email</label>
+	      </div>
+	    </div>
+	</div>
+	  <div class="modal-footer">
+	    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+	    <button class="btn waves-effect waves-light" type="submit">Request New Password
+	    <i class="material-icons right">send</i>
+	  	</button>
+	  </div>
+	</form>
+</div> <!-- End Forgot Password Modal -->
 
 <div class="container"> <!-- Start Banner Container -->
    <div class="row center">
@@ -326,6 +373,7 @@ if(isset($_SESSION["id_user"])){
 	//onload listener
 	window.onload = function loadall(){
 		ajaxmaterialize(); //loads the scrips needed for materialize to run correctly; trying to force the DRY programming rule; located inside init.js
+		preloader.off();
 	};
 
 	</script>

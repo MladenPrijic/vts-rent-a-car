@@ -15,11 +15,26 @@ function _(x){
 }
 
 function getData(){
+
+		preloader = new $.materialPreloader({
+					 position: 'top',
+					 height: '5px',
+					 col_1: '#159756',
+					 col_2: '#da4733',
+					 col_3: '#3b78e7',
+					 col_4: '#fdba2c',
+					 fadeIn: 200,
+					 fadeOut: 200
+			 });
+
+	 preloader.on();
+
 	_("staggered-test").innerHTML="";
 	var selekt=_("city_pickup").value;
 	var ajax=ajaxObj("POST","php_includes/getJson.php");
 	ajax.onreadystatechange=function(){
 		if(ajaxReturn(ajax) === true){
+				 preloader.off();
 			//console.log(ajax.responseText);
 			var jason=JSON.parse(ajax.responseText);
 			//console.log(jason);

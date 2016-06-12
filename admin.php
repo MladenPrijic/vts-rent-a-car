@@ -261,7 +261,7 @@ if(isset($_SESSION["id_user"])){
                 <!-- Car Select Section -->
 
       <div id="users_tab" class="col l12 m12 s12" >
-            <br /><br />
+        <br /><br />
         <div class="collection">
           <a href="#profile" class="collection-item modal-trigger">Alvin<span class="badge">click me</span></a>
           <a href="#!" class="collection-item">Alvin<span class="badge">renting</span></a>
