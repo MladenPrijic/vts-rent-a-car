@@ -263,7 +263,7 @@ if(isset($_SESSION["id_user"])){
       <div id="users_tab" class="col l12 m12 s12" >
             <br /><br />
         <div class="collection">
-          <a href="#profile" class="collection-item modal-trigger">Alvin</a>
+          <a href="#profile" class="collection-item modal-trigger">Alvin<span class="badge">click me</span></a>
           <a href="#!" class="collection-item">Alvin<span class="badge">renting</span></a>
           <a href="#!" class="collection-item">Alvin</a>
           <a href="#!" class="collection-item">Alvin</a>
