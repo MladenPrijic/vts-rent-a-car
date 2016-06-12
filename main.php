@@ -57,6 +57,7 @@ if(isset($_SESSION["id_user"])){
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Dashboard</a>
       <!-- Desktop Navigation -->
       <ul class="right hide-on-med-and-down">
+        <li><a class="waves-effect waves-light btn modal-trigger" href="#cars">Cars</a></li>
         <li><a class="waves-effect waves-light btn modal-trigger" href="#profile" id="bprofile">Profile</a></li>
         <li><a class="waves-effect waves-light btn" href="logout.php">Logout</a></li>  <!--force logout -->
       </ul>
@@ -139,6 +140,60 @@ if(isset($_SESSION["id_user"])){
   </button>
   </div>
 </div> <!-- END OF PROFILE -->
+
+<!-- MODAL CAR STRUCTURE -->
+<div id="cars" class="modal">
+  <div class="modal-content">
+  <h4>Cars</h4>
+  <div class="row">
+    <ul class="collapsible" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">filter_drama</i>Currently Renting</div>
+      <div class="collapsible-body">
+          <ul>
+            <li>
+    <div class='col s12'>
+     <div class='card small hoverable'>
+       <div class='card-image waves-effect waves-block waves-light'>
+        <img class='activator tooltipped' data-position='top' data-delay='50' data-tooltip='Click For More Info' src='img/cars/ford.png'>
+       </div>
+       <div class='card-content'>
+        <span class='card-title activator grey-text text-darken-4'>Ford Focus<i class='material-icons right'>more_vert</i></span>
+        <br />
+        <span>Comfortabale Family Car</span>
+       </div>
+       <div class='card-reveal'>
+        <span class='card-title grey-text text-darken-4'>Ford Focus<i class='material-icons right'>close</i></span>
+        <div id="fixed_border">
+        <ul class='collection with-header' id="car_rented">
+         <li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Seats'>perm_identity</i><a class='secondary-content'>4</a></div></li>
+         <li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Doors'>tab</i><a class='secondary-content'>5</a></div></li>
+         <li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Air Conditioning'>invert_colors</i><a class='secondary-content'>Yes</a></div></li>
+         <li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Transmission'>settings</i><a class='secondary-content'>Manual</a></div></li>
+         <li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Navigation'>navigation</i><a class='secondary-content'>Yes</a></div></li>
+         <li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Luggage'>work</i><a class='secondary-content'>4</a></div></li>
+        </ul>
+      </div>
+        <button class='btn waves-effect waves-light' onclick='replace()' type='submit' name='action'>Cancel
+         <i class='material-icons left'>done</i></button>
+       </div>
+     </div>
+  </div>
+  </li>
+          </ul>
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">place</i>History</div>
+      <div class="collapsible-body"><p>History of rented cars.</p></div>
+    </li>
+  </ul>
+  </div>
+  <div class="modal-footer">
+    <a class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+  </div>
+</div>
+</div> <!-- END OF RENTING -->
 
 
 

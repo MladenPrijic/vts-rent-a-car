@@ -105,7 +105,7 @@ function adminLoadAll(){
            "<li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Navigation'>navigation</i><a class='secondary-content'>Yes</a></div></li>"+
            "<li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Luggage'>work</i><a class='secondary-content'>"+ jason[j]['luggage']+"</a></div></li>"+
           "</ul>"+
-           "<button class='btn waves-effect waves-light' onclick=\"del( '"+ jason[j]['id_car']+"' )\" type='submit' name='action' id='"+jason[j]['id_car'] +" ' >Delete"+
+           "<button style='margin-right: 5px' class='btn waves-effect waves-light' onclick=\"del( '"+ jason[j]['id_car']+"' )\" type='submit' name='action' id='"+jason[j]['id_car'] +" ' >Delete"+
             "<i class='material-icons left'>done</i></button>"+
             "<button class='btn waves-effect waves-light' onclick=\"free( '"+ jason[j]['id_car']+"' )\" type='submit' name='action' id='"+jason[j]['id_car'] +" ' >Free"+
             "<i class='material-icons left'>done</i></button>"+

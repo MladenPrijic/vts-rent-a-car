@@ -16,11 +16,38 @@
 
 #departure_pickup, #departure_return, #alarm_pickup, #alarm_return { border-bottom: 0px; }
 
+
 #staggered-test li {
   display:inline-block;
   float: Left;
   width: 50%;
   padding-left: 10px; }
+
+@media (max-width: 700px) {
+  #staggered-test li {
+    display:inline-block;
+    float: Left;
+    width: 100%;
+    padding-left: 10px; }
+  }
+
+#car_rented li {
+  display:inline-block;
+  float: Left;
+  width: 50%;
+  padding-left: 10px; }
+
+#fixed_border {
+    margin: 0.5rem 0 1rem 0;
+    border: 1px solid #e0e0e0; }
+
+@media (max-width: 700px) {
+  #car_rented li {
+    display:inline-block;
+    float: Left;
+    width: 100%;
+    padding-left: 10px; }
+  }
 
 .swal2-confirm {
   margin-bottom: 10px

@@ -27,15 +27,15 @@ function init(){
 	        console.log(i);
 	        for(var j=0; j<i; j++){
 	        	_("staggered-test").innerHTML+=
-	        		"<li>"+
-	        		"<div class='col s12 m6'>"+
+	    "<li>"+
+	    "<div class='col s12 m6'>"+
        "<div class='card small hoverable'>"+
          "<div class='card-image waves-effect waves-block waves-light'>"+
          "<input type='hidden' id='"+j+"' value='"+jason[j]['id_car']+" '> "+
           " <img class='activator tooltipped' data-position='top' data-delay='50' data-tooltip='Click For More Info' src='img/cars/"+jason[j]["image"]+"'>"+
          "</div>"+
          "<div class='card-content'>"+
-           "<span class='card-title activator grey-text text-darken-4'>"+ jason[j]['brand'] +' ' +jason[j]['model']+"<i class='material-icons right'><!--more_vert --></i></span>"+
+           "<span class='card-title activator grey-text text-darken-4'>"+ jason[j]['brand'] +' ' +jason[j]['model']+"<i class='material-icons right'>more_vert</i></span>"+
            "<p>"+ jason[j]['description']+"</p>"+
          "</div>"+
          "<div class='card-reveal'>"+
