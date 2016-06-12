@@ -264,7 +264,7 @@ if(isset($_SESSION["id_user"])){
         <br /><br />
         <div class="collection">
           <a href="#user_modal" class="collection-item modal-trigger">Alvin<span class="badge">click me</span></a>
-          <a href="#!" class="collection-item">Alvin<span class="badge">renting</span></a>
+          <a href="#!" class="collection-item">Alvin<span class="badge">renting (car name)</span></a>
           <a href="#!" class="collection-item">Alvin</a>
           <a href="#!" class="collection-item">Alvin</a>
           <a href="#!" class="collection-item">Alvin</a>
@@ -333,7 +333,7 @@ if(isset($_SESSION["id_user"])){
   </div>
   <div class="modal-footer">
     <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-    <button class="btn waves-effect waves-light" type="submit" name="action" onclick="update()">Update
+    <button class="btn waves-effect waves-light" type="submit" name="action" onclick="user_update()">Update
     <i class="material-icons right">send</i>
     </button>
   </div>
