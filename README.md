@@ -28,3 +28,4 @@ Korisćeni Open Source Projekti:
 - http://felicegattuso.com/projects/timedropper;
 - https://limonte.github.io/sweetalert2;
 - http://chancejs.com;
+- https://github.com/aarondo/Material-Preloader;
