@@ -24,10 +24,10 @@ if(isset($_POST["login_username"]) && isset($_POST["login_password"])){
 	$username=mysqli_real_escape_string($connect,$_POST["login_username"]);
 	$password=$_POST["login_password"];
 	$salt1="oug}|{05=>";
-  $salt2="y5-7|}h('{";
-	$pass=md5(md5($salt1) .md5($password) .md5($salt2));
+    $salt2="y5-7|}h('{";
+		$pass=md5(md5($salt1) .md5($password) .md5($salt2));
 
-	$sql="SELECT * FROM user WHERE username='$username' LIMIT 1";
+	$sql="SELECT * FROM user WHERE username='$username' AND password='$pass' LIMIT 1";
 
 	$result=mysqli_query($connect,$sql);
 	$row=mysqli_fetch_array($result);
@@ -43,3 +43,4 @@ if(isset($_POST["login_username"]) && isset($_POST["login_password"])){
 	}
 
 }
+// 

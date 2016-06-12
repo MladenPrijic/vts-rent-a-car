@@ -20,12 +20,15 @@ function getData(){
 	var ajax=ajaxObj("POST","php_includes/getJson.php");
 	ajax.onreadystatechange=function(){
 		if(ajaxReturn(ajax) === true){
-			console.log(ajax.responseText);
+			//console.log(ajax.responseText);
 			var jason=JSON.parse(ajax.responseText);
-			console.log(jason);
+			//console.log(jason);
 			var i=jason.length;
-	        console.log(i);
+	        //console.log(i);
+
 	        for(var j=0; j<i; j++){
+	        	
+	        
 	        	_("staggered-test").innerHTML+=
 	        		"<li>"+
 	        		"<div class='col s12 m6'>"+

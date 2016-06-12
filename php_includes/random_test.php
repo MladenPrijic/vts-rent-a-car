@@ -6,6 +6,24 @@ $sql="SELECT * FROM car WHERE rented=0 ORDER BY rand() LIMIT 6";
 $data=[];
 $result=mysqli_query($connect,$sql);
 while($row=mysqli_fetch_array($result)){
+	if($row["automatic"] == 1){
+			$row["automatic"]= "Automatic";
+		}
+		else{
+			$row["automatic"]= "Manual";
+		}
+		if($row["navigation"] == 1){
+			$row["navigation"]= "Yes";
+		}
+		else{
+			$row["navigation"]= "No";
+		}
+		if($row["air_conditioning"] == 1){
+			$row["air_conditioning"]= "Yes";
+		}
+		else{
+			$row["air_conditioning"]= "No";
+		}
 	array_push ($data, array('id_car'=>$row["id_car"],
 						  'brand'=>$row["brand"],
 						  'model'=>$row["model"],

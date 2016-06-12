@@ -28,6 +28,7 @@ function getData(){
 	var ajax=ajaxObj("get","getJson.php");
 	ajax.onreadystatechange=function(){
 		if(ajaxReturn(ajax)== true){
+			  
 			var jason=JSON.parse(ajax.responseText);
 			console.log(jason);
 			var i=jason.length;

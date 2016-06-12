@@ -12,6 +12,25 @@ $dat=array();
 $i=0;
 if(mysqli_num_rows($result) > 0){
 	while($row=mysqli_fetch_array($result)){
+		  if($row["automatic"] == 1){
+			$row["automatic"]= "Automatic";
+		}
+		else{
+			$row["automatic"]= "Manual";
+		}
+		if($row["navigation"] == 1){
+			$row["navigation"]= "Yes";
+		}
+		else{
+			$row["navigation"]= "No";
+		}
+		if($row["air_conditioning"] == 1){
+			$row["air_conditioning"]= "Yes";
+		}
+		else{
+			$row["air_conditioning"]= "No";
+		}
+		
 		$data[]=array('id_car'=>$row["id_car"],
 					  'brand'=>$row["brand"],
 					  'model'=>$row["model"],

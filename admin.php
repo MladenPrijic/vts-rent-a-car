@@ -53,7 +53,7 @@ if(isset($_SESSION["id_user"])){
 
 </head>
 
-<body onload="info()">
+<body onload="adminLoadAll()">
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Admin Dashboard</a>
 		  <!-- Desktop Navigation -->
@@ -232,34 +232,54 @@ if(isset($_SESSION["id_user"])){
 
 
 <div class="container">
-  <div class="section">
-  <!-- Car Select Section -->
-  <div class="row">
-      <div class="col l12 m12 s12">
-       <div class="center">
-          <h5 class="center">Cars</h5><br />
-        <div class="center">
-          <div class="input-field col l12 m12 s12">
-            <select id="cars">
-              <option value="all">All</option>
-              <option value="rented">Rented</option>
-              <option value="free">Free</option>
-            </select>
-          </div>
-       </div>
-      </div>
-    </div>
-  </div>
-  </div>
-
-
 <div class="section"> <!-- Opening Car Section -->
 
   <!-- Cars Load With This -->
-  <ul class="staggered-list" id="staggered-test"></ul>
+  <div class="row">
+    <div class="col s12">
+      <ul class="tabs z-depth-2">
+        <li class="tab col s3"><a href="#cars_tab">Cars</a></li>
+        <li class="tab col s3"><a class="#test2" href="#users_tab">Users</a></li>
+      </ul>
+    </div>
+        <!-- Car Select Section -->
+            <div id="cars_tab" class="col l12 m12 s12">
+             <div class="center">
+                <div class="input-field col l12 m12 s12">
+                      <br /><br />
+                  <select id="cars" onchange="adminShow()">
+                    <option value="all">All Cars</option>
+                    <option value="rented">Rented</option>
+                    <option value="free">Free</option>
+                  </select>
+                </div>
+             </div>
+             <ul class="staggered-list" id="staggered-test"></ul>
+          </div>
 
-</div> <!-- Closing Car Section -->
-</div> <!-- Closing Main Container -->
+
+                <!-- Car Select Section -->
+
+      <div id="users_tab" class="col l12 m12 s12" >
+            <br /><br />
+        <div class="collection">
+          <a href="#profile" class="collection-item modal-trigger">Alvin</a>
+          <a href="#!" class="collection-item">Alvin<span class="badge">renting</span></a>
+          <a href="#!" class="collection-item">Alvin</a>
+          <a href="#!" class="collection-item">Alvin</a>
+          <a href="#!" class="collection-item">Alvin</a>
+          <a href="#!" class="collection-item">Alvin</a>
+          <a href="#!" class="collection-item">Alvin</a>
+        </div>
+      </div>
+
+  </div>
+
+</div>
+</div>
+
+
+
 
 
 <footer class="page-footer orange" id="footer">
@@ -281,11 +301,6 @@ if(isset($_SESSION["id_user"])){
   <script src="js/getData.js"></script>
   <script src="js/init.js"></script>
 
-  <!-- Datedropper and Timedropper Scripts -->
-  <script>$( "#departure_pickup" ).dateDropper();</script>
-  <script>$( "#departure_return" ).dateDropper();</script>
-  <script>$( "#alarm_pickup" ).timeDropper();</script>
-  <script>$( "#alarm_return" ).timeDropper();</script>
 
   <!-- material-scrolltop button -->
   <button class="material-scrolltop" type="button"></button>
@@ -293,8 +308,11 @@ if(isset($_SESSION["id_user"])){
   <!-- material-scrolltop plugin -->
   <script src="js/plugins/material-scrolltop.js"></script>
 
-  <!-- onload random cars -->
-  <script src="js/random_onload.js"></script>
+  <!-- onload all cars -->
+  <script src="js/all_onload.js"></script>
+
+  <!-- select id="cars" for looking at all, rented and free cars -->
+  <script src="js/admin.js"></script>
 
   <!-- Initialize material-scrolltop -->
   <script>$('body').materialScrollTop();</script>
@@ -352,7 +370,7 @@ if(isset($_SESSION["id_user"])){
   <script>
   //onload listener
   window.onload = function loadall(){
-    init();
+    adminLoadAll();
     Materialize.toast("Welcome Admin", 2000 );
   //  Materialize.showStaggeredList("#staggered-test"); //not needed, loaded with each ajax instead
   };
