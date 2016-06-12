@@ -73,7 +73,7 @@ if(isset($_SESSION["id_user"])){
     </div>
   </nav>
 
-<div id="profile" class="modal"> <!-- Profile Modal -->
+<div id="profile" class="modal"> <!-- START PROFILE MODAL -->
   <div class="modal-content">
   <h4>Profile</h4>
   <span id="error"></span>
@@ -239,7 +239,7 @@ if(isset($_SESSION["id_user"])){
     <div class="col s12">
       <ul class="tabs z-depth-2">
         <li class="tab col s3"><a href="#cars_tab">Cars</a></li>
-        <li class="tab col s3"><a class="#test2" href="#users_tab">Users</a></li>
+        <li class="tab col s3"><a href="#users_tab">Users</a></li>
       </ul>
     </div>
         <!-- Car Select Section -->
@@ -263,7 +263,7 @@ if(isset($_SESSION["id_user"])){
       <div id="users_tab" class="col l12 m12 s12" >
         <br /><br />
         <div class="collection">
-          <a href="#profile" class="collection-item modal-trigger">Alvin<span class="badge">click me</span></a>
+          <a href="#user_modal" class="collection-item modal-trigger">Alvin<span class="badge">click me</span></a>
           <a href="#!" class="collection-item">Alvin<span class="badge">renting</span></a>
           <a href="#!" class="collection-item">Alvin</a>
           <a href="#!" class="collection-item">Alvin</a>
@@ -277,6 +277,67 @@ if(isset($_SESSION["id_user"])){
 
 </div>
 </div>
+
+<div id="user_modal" class="modal"> <!-- START USER MODAL -->
+  <div class="modal-content">
+  <h4>(name of user)'s' Profile</h4>
+  <span id="error"></span>
+  <p>You can change (name of user) info here.</p>
+  <div class="row">
+    <form name="register" onclick="return false;" class="col s12">
+      <div class="row">
+        <div class="input-field col l4 m4 s6">
+          <input id="user_fName" name="user_fName" type="text" class="validate">
+          <label for="user_fName">First Name</label>
+        </div>
+        <div class="input-field col l4 m4 s6">
+          <input id="user_lName" name="user_lName"  type="text" class="validate">
+          <label for="user_lName">Last Name</label>
+        </div>
+        <div class="input-field col l4 m4 s12">
+          <input id="user_username" name="user_username" type="text" class="validate" >
+          <span id="check_name" ></span> <!--change to popup -->
+          <label for="user_username">Username</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="user_phone" name="user_phone" type="number" class="validate">
+          <label for="user_phone">Phone</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="user_email" name="user_email" type="text" class="validate" onkeyup="limit('email')">
+          <label for="last_name">Email</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col l3 m3 s6">
+          <input id="user_street" name="user_street" type="text" class="validate">
+          <label for="user_street">Address</label>
+        </div>
+        <div class="input-field col l3 m3 s6">
+          <input id="user_city" name="user_city" type="text" class="validate">
+          <label for="user_city">City</label>
+        </div>
+        <div class="input-field col l3 m3 s6">
+          <input id="user_zip" name="user_zip" type="number" class="validate">
+          <label for="user_zip">Zip</label>
+        </div>
+        <div class="input-field col l3 m3 s6">
+          <input id="user_country" name="user_country" type="text" class="validate">
+          <label for="user_country">Country</label>
+        </div>
+      </div>
+    </form>
+  </div>
+  </div>
+  <div class="modal-footer">
+    <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+    <button class="btn waves-effect waves-light" type="submit" name="action" onclick="update()">Update
+    <i class="material-icons right">send</i>
+    </button>
+  </div>
+</div> <!-- END OF USER -->
 
 
 
