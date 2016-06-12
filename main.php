@@ -108,16 +108,6 @@ if(isset($_SESSION["id_user"])){
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s6">
-          <input id="password" name="password" type="password" class="validate">
-          <label for="password">Password</label>
-        </div>
-        <div class="input-field col s6">
-          <input id="confirm_password" name="confirm_password" type="password" class="validate">
-          <label for="password">Repeat Password</label>
-        </div>
-      </div>
-      <div class="row">
         <div class="input-field col l3 m3 s6">
           <input id="street" name="street" type="text" class="validate">
           <label for="street">Address</label>
@@ -135,6 +125,13 @@ if(isset($_SESSION["id_user"])){
           <label for="country">Country</label>
         </div>
       </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password" name="password" type="password" class="validate">
+          <label for="password">Password</label>
+        </div>
+        <label style="margin-left: 12px"><a class="modal-trigger" href="#change_password_modal" >Change Password</a></label>
+      </div>
     </form>
   </div>
   </div>
@@ -146,6 +143,42 @@ if(isset($_SESSION["id_user"])){
   </div>
 </div> <!-- END OF PROFILE -->
 
+<!-- PASSWORD MODAL STRUCTURE -->
+<div id="change_password_modal" class="modal">
+  <div class="modal-content">
+  <h4>Change Password</h4>
+  <span id="error"></span>
+  <div class="row">
+    <form name="change_password" onclick="return false;" class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="current_password" name="current_password" type="password" class="validate">
+          <label for="current_password">Password</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="change_password" name="change_password" type="password" class="validate">
+          <label for="change_password">Password</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="confirm_password" name="confirm_password" type="password" class="validate">
+          <label for="confirm_password">Repeat Password</label>
+        </div>
+      </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+    <button class="btn waves-effect waves-light" type="submit" name="action" onclick="changepass()">Change Password
+    <i class="material-icons right">send</i>
+  </button>
+  </div>
+</div> <!-- CHANGE PASSWORD -->
+
 <!-- MODAL CAR STRUCTURE -->
 <div id="cars" class="modal">
   <div class="modal-content">
@@ -156,7 +189,7 @@ if(isset($_SESSION["id_user"])){
       <div class="collapsible-header"><i class="material-icons">info_outline</i>Currently Renting</div>
       <div class="collapsible-body">
         <ul>
-        <li>
+         <li>
           <div class='col s12'>
             <div class='card small hoverable'>
                <div class='card-image waves-effect waves-block waves-light'>
@@ -169,7 +202,7 @@ if(isset($_SESSION["id_user"])){
                </div>
                <div class='card-reveal'>
                 <span class='card-title grey-text text-darken-4'>Ford Focus<i class='material-icons right'>close</i></span>
-                <div id="fixed_border">
+                <div class="fixed_border">
                   <ul class='collection with-header' id="car_rented">
                    <li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Seats'>perm_identity</i><a class='secondary-content'>4</a></div></li>
                    <li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Doors'>tab</i><a class='secondary-content'>5</a></div></li>
@@ -185,6 +218,7 @@ if(isset($_SESSION["id_user"])){
              </div>
           </div>
         </li>
+        <!-- <li><img id="image-test" class="responsive-img hoverable" src="img/error404.png"></li> --> <!-- CAR NOT FOUND ERROR -->
         </ul>
       </div>
     </li>
@@ -284,11 +318,14 @@ if(isset($_SESSION["id_user"])){
 <footer class="page-footer orange" id="footer">
   <div class="container">
     <div class="row">
-      <div class="col s10">
+      <div class="col s8">
         <p class="grey-text text-lighten-4">We are just 2 students doing a project.</p>
       </div>
-      <div class="col s2">
-        <a class="waves-effect waves-light btn modal-trigger" href="#contact">Contact Us</a>
+      <div class="col s4">
+      <div class="right">
+        <a style="margin-bottom: 5px" class="waves-effect waves-light btn modal-trigger" href="#faq">F.A.Q.</a>
+        <a style="margin-bottom: 5px" class="waves-effect waves-light btn modal-trigger" href="#contact">Contact Us</a>
+      </div>
       </div>
     </div>
   </div>
@@ -299,7 +336,7 @@ if(isset($_SESSION["id_user"])){
   </div>
 </footer>
 
-  <div id="contact" class="modal">
+  <div id="contact" class="modal"> <!-- START CONTACT MODAL -->
     <div class="modal-content">
       <h4>Contact</h4>
       <p>Please fill out the contact form.</p>
@@ -338,7 +375,34 @@ if(isset($_SESSION["id_user"])){
             </div>
           </form>
     </div>
-  </div>
+  </div> <!-- END CONTACT MODAL -->
+
+  <div id="faq" class="modal"> <!-- START F.A.Q. MODAL -->
+    <div class="modal-content">
+      <h4>Frequently Asked Questions.</h4>
+        <ul class="collapsible popout" data-collapsible="expandable">
+          <li>
+            <div class="collapsible-header">What cities do you offer?</div>
+            <div class="collapsible-body">
+              <p>Currently we offer our services in the following cities below and more are on the way.</p>
+                <ul style="padding-left: 20px" class="collection">
+                  <li class="collection-item"> - Subotica</li>
+                  <li class="collection-item"> - Novi Sad</li>
+                  <li class="collection-item"> - Beograd</li>
+                </ul>
+            </div>
+          </li>
+          <li>
+            <div class="collapsible-header">How long did it take to make this?</div>
+            <div class="collapsible-body"><p>Around 80+ combined hours.</p></div>
+          </li>
+          <li>
+            <div class="collapsible-header">I don't even know.</div>
+            <div class="collapsible-body"><p>Yes.</p></div>
+          </li>
+        </ul>
+    </div>
+  </div> <!-- END F.A.Q. MODAL -->
 
   <!-- JavaScript After -->
   <script src="js/getData.js"></script>

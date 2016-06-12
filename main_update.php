@@ -43,7 +43,6 @@ if(isset($_POST["u"])){
 	$first_name=mysqli_real_escape_string($connect,$_POST["fn"]);
 	$last_name=mysqli_real_escape_string($connect,$_POST["ln"]);
 	$password=$_POST["p"];
-	$confirm_password=$_POST["cp"];
 	$email=$_POST["e"];
 	$phone=$_POST["phone"];
 	$street=mysqli_real_escape_string($connect,$_POST["s"]);
@@ -61,18 +60,16 @@ if(isset($_POST["u"])){
 	$user_id=$row["id_user"];
 
 
-	if(empty($username) || empty($first_name) || empty($last_name) || empty($password) || empty($confirm_password) || empty($email) || empty($phone) || empty($street) || empty($city) || empty($zip) || empty($country) ){
-		echo "You did not fill in all the data!";
+	if(empty($username) || empty($first_name) || empty($last_name) || empty($password) || empty($email) || empty($phone) || empty($street) || empty($city) || empty($zip) || empty($country) ){
+		if(empty($password)){ echo "<br />Please confirm your password!"; }
+		else { echo "You did not fill in all the data!"; }
 		exit();
 	}
 	elseif(strlen($username) < 4 || strlen($username) > 16){
 		echo "Username has to be between 4 and 16 characters!";
 		exit();
 	}
-	elseif($password != $confirm_password){
-		echo "Passwords have to match!";
-		exit();
-	}
+
 	// elseif(mysqli_num_rows($result1)){
 	// 	echo "Username already taken!";
 	// 	exit();
