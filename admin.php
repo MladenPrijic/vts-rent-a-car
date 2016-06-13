@@ -244,10 +244,13 @@ if(isset($_SESSION["id_user"])){
       </ul>
     </div>
         <!-- Car Select Section -->
-            <div id="cars_tab" class="col l12 m12 s12">
+            <div id="cars_tab" class="col l12 m12 s12"><br />
              <div class="center">
+               <div class="input-field"> <!-- SEARCH -->
+                 <input id="search" type="search" data-toggle="hideseek" required data-list=".list">
+                 <label for="search">Search</label>
+               </div>
                 <div class="input-field col l12 m12 s12">
-                      <br /><br />
                   <select id="cars" onchange="adminShow()">
                     <option value="all">All Cars</option>
                     <option value="rented">Rented</option>
@@ -255,24 +258,19 @@ if(isset($_SESSION["id_user"])){
                   </select>
                 </div>
              </div>
-             <ul class="staggered-list" id="staggered-test"></ul>
+             <ul class="staggered-list list" id="staggered-test"></ul>
           </div>
 
 
-                <!-- Car Select Section -->
-
-      <div id="users_tab" class="col l12 m12 s12" >
-        <br />
-
-  <div class="nav-wrapper">
-    <form>
-      <div center class="input-field">
-        <i class="material-icons prefix">search</i>
-        <input id="search" type="search" data-toggle="hideseek" required data-list=".list">
-        <label for="search">Search</label>
+      <!-- USER Select Section -->
+      <div id="users_tab" class="col l12 m12 s12" > <br />
+      <div class="center">
+        <div class="input-field"> <!-- SEARCH -->
+          <input id="search" type="search" data-toggle="hideseek" required data-list=".list">
+          <label for="search">Search</label><br />
+        </div>
       </div>
-    </form>
-  </div>
+
         <div class="collection list">
           <a href="#user_modal" class="collection-item modal-trigger">Alvin<span class="badge">click me</span></a>
           <a href="#!" class="collection-item">Alvin<span class="badge">renting (car name)</span></a>
@@ -282,7 +280,7 @@ if(isset($_SESSION["id_user"])){
           <a href="#!" class="collection-item">Alvin</a>
           <a href="#!" class="collection-item">Alvin</a>
         </div>
-      </div>
+    </div>
 
   </div>
 
