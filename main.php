@@ -250,7 +250,7 @@ if(isset($_SESSION["id_user"])){
 </div>
 </div> <!-- END OF CAR -->
 
-
+<main>
 
 <div class="container">
   <div class="section">
@@ -314,6 +314,7 @@ if(isset($_SESSION["id_user"])){
 </div> <!-- Closing Car Section -->
 </div> <!-- Closing Main Container -->
 
+</main>
 
 <footer class="page-footer orange" id="footer">
   <div class="container">

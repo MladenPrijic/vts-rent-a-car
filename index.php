@@ -242,8 +242,7 @@ if(isset($_SESSION["id_user"])){
 	</div>
 </div> <!-- End Banner Container -->
 
-
-
+<main>
   <div class="container">
     <div class="section">
 
@@ -281,6 +280,7 @@ if(isset($_SESSION["id_user"])){
     <br>
 
   </div> <!-- End Info Container -->
+</main>
 
 	<footer class="page-footer orange" id="footer">
 	  <div class="container">
@@ -302,6 +302,33 @@ if(isset($_SESSION["id_user"])){
 	    </div>
 	  </div>
 	</footer>
+
+	<div id="faq" class="modal"> <!-- START F.A.Q. MODAL -->
+		<div class="modal-content">
+			<h4>Frequently Asked Questions.</h4>
+				<ul class="collapsible popout" data-collapsible="expandable">
+					<li>
+						<div class="collapsible-header">What cities do you offer?</div>
+						<div class="collapsible-body">
+							<p>Currently we offer our services in the following cities below and more are on the way.</p>
+								<ul style="padding-left: 20px" class="collection">
+									<li class="collection-item"> - Subotica</li>
+									<li class="collection-item"> - Novi Sad</li>
+									<li class="collection-item"> - Beograd</li>
+								</ul>
+						</div>
+					</li>
+					<li>
+						<div class="collapsible-header">How long did it take to make this?</div>
+						<div class="collapsible-body"><p>Around 80+ combined hours.</p></div>
+					</li>
+					<li>
+						<div class="collapsible-header">I don't even know.</div>
+						<div class="collapsible-body"><p>Yes.</p></div>
+					</li>
+				</ul>
+		</div>
+	</div> <!-- END F.A.Q. MODAL -->
 
 	<div id="contact" class="modal"> <!-- Contact Form Modal -->
 	  <div class="modal-content">

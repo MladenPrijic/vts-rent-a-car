@@ -57,6 +57,7 @@ if(isset($_SESSION["id_user"])){
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Admin Dashboard</a>
 		  <!-- Desktop Navigation -->
+
       <ul class="right hide-on-med-and-down">
         <li><a class="waves-effect waves-light btn modal-trigger" href="#insert_car">Insert Car</a></li>
         <li><a class="waves-effect waves-light btn modal-trigger" href="#profile" id="bprofile" onclick="Materialize.toast('Press UPDATE to update your profile.', 4000)">Profile</a></li>
@@ -230,7 +231,7 @@ if(isset($_SESSION["id_user"])){
 </div> <!-- END OF INSER-CARS -->
 
 
-
+<main>
 <div class="container">
 <div class="section"> <!-- Opening Car Section -->
 
@@ -261,13 +262,23 @@ if(isset($_SESSION["id_user"])){
                 <!-- Car Select Section -->
 
       <div id="users_tab" class="col l12 m12 s12" >
-        <br /><br />
-        <div class="collection">
+        <br />
+
+  <div class="nav-wrapper">
+    <form>
+      <div center class="input-field">
+        <i class="material-icons prefix">search</i>
+        <input id="search" type="search" data-toggle="hideseek" required data-list=".list">
+        <label for="search">Search</label>
+      </div>
+    </form>
+  </div>
+        <div class="collection list">
           <a href="#user_modal" class="collection-item modal-trigger">Alvin<span class="badge">click me</span></a>
           <a href="#!" class="collection-item">Alvin<span class="badge">renting (car name)</span></a>
           <a href="#!" class="collection-item">Alvin</a>
           <a href="#!" class="collection-item">Alvin</a>
-          <a href="#!" class="collection-item">Alvin</a>
+          <a href="#user_modal" class="collection-item modal-trigger">Damir<span class="badge">click me</span></a>
           <a href="#!" class="collection-item">Alvin</a>
           <a href="#!" class="collection-item">Alvin</a>
         </div>
@@ -340,7 +351,7 @@ if(isset($_SESSION["id_user"])){
 </div> <!-- END OF USER -->
 
 
-
+</main>
 
 
 <footer class="page-footer orange" id="footer">
@@ -361,6 +372,7 @@ if(isset($_SESSION["id_user"])){
   <!-- JavaScript After -->
   <script src="js/getData.js"></script>
   <script src="js/init.js"></script>
+  <script src="js/plugins/jquery.hideseek.min.js"></script>
 
 
   <!-- material-scrolltop button -->
@@ -382,6 +394,7 @@ if(isset($_SESSION["id_user"])){
 </html>
 
   <script type="text/javascript">
+
   // AJAX for Profile Update
   document.getElementById("bprofile").addEventListener('click',myFunction); //event listener for the profile button
 
