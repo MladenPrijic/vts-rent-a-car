@@ -285,11 +285,14 @@ if(isset($_SESSION["id_user"])){
 	<footer class="page-footer orange" id="footer">
 	  <div class="container">
 	    <div class="row">
-	      <div class="col s10">
+	      <div class="col s8">
 	        <p class="grey-text text-lighten-4">We are just 2 students doing a project.</p>
 	      </div>
-	      <div class="col s2">
-	        <a class="waves-effect waves-light btn modal-trigger" href="#contact">Contact Us</a>
+	      <div class="col s4">
+	      <div class="right">
+	        <a style="margin-bottom: 5px" class="waves-effect waves-light btn modal-trigger" href="#faq">F.A.Q.</a>
+	        <a style="margin-bottom: 5px" class="waves-effect waves-light btn modal-trigger" href="#contact">Contact Us</a>
+	      </div>
 	      </div>
 	    </div>
 	  </div>
@@ -304,7 +307,7 @@ if(isset($_SESSION["id_user"])){
 	  <div class="modal-content">
 	    <h4>Contact</h4>
 	    <p>Please fill out the contact form.</p>
-				  <form class="col s12">
+				  <form class="col s12" name="contactform" method="post" action="php_includes/email.php">
 				    <div class="row">
 				      <div class="input-field col s6">
 				        <i class="material-icons prefix">account_circle</i>
@@ -332,13 +335,13 @@ if(isset($_SESSION["id_user"])){
 				    <div class="row">
 				      <div class="input-field col s12">
 				        <i class="material-icons prefix">mode_edit</i>
-				        <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-				        <label for="icon_prefix2">Message</label>
+				        <textarea id="contact_message" class="materialize-textarea" length="600"></textarea>
+				        <label for="contact_message">Message</label>
 				      </div>
 				    </div>
 						<div class="modal-footer">
 							<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-							<button class="btn waves-effect waves-light disabled" id="send_form" type="submit" onclick="sendform()" disabled>Submit
+							<button class="btn waves-effect waves-light disabled" id="send_form" type="submit" disabled>Submit
 							<i class="material-icons right">send</i>
 						</button>
 						</div>
@@ -364,7 +367,6 @@ if(isset($_SESSION["id_user"])){
 	 document.getElementById("send_form").className = "btn waves-effect waves-light modal-action modal-close";
 	}
 	function sendform(){
-	 event.preventDefault();
 	 Materialize.toast("Contact Form Successfully Sent!", 3000 );
 	}
 	</script>
