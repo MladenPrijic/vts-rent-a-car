@@ -7,6 +7,7 @@ $city=$_POST["select"];
 $sql="SELECT * FROM car WHERE location='$city' AND rented=0";
 
 $result=mysqli_query($connect,$sql);
+
 $data=array();
 $dat=array();
 $i=0;

@@ -59,14 +59,14 @@ if(isset($_SESSION["id_user"])){
 		  <!-- Desktop Navigation -->
 
       <ul class="right hide-on-med-and-down">
-        <li><a class="waves-effect waves-light btn modal-trigger" href="#insert_car">Insert Car</a></li>
+        <li><a class="waves-effect waves-light btn modal-trigger" href="#insert_car"  >Insert Car</a></li>
         <li><a class="waves-effect waves-light btn modal-trigger" href="#profile" id="bprofile" onclick="Materialize.toast('Press UPDATE to update your profile.', 4000)">Profile</a></li>
         <li><a class="waves-effect waves-light btn" href="logout.php">Logout</a></li>  <!--force logout -->
       </ul>
 
       <!-- Mobile Navigation -->
       <ul id="nav-mobile" class="side-nav">
-        <li><a class="waves-effect waves-light btn modal-trigger" href="#insert_car">Insert Car</a></li>
+        <li><a class="waves-effect waves-light btn modal-trigger" href="#insert_car" >Insert Car</a></li>
         <li><a class="waves-effect waves-light btn modal-trigger" href="#profile">Profile</a></li>
         <li><a class="waves-effect waves-light btn" href="logout.php">Logout</a></li>  <!--force logout -->
       </ul>
@@ -174,9 +174,9 @@ if(isset($_SESSION["id_user"])){
         <div class="input-field col l6 m6 s6">
           <select id="location">
             <option value="choose" disabled selected>Choose a Location</option>
-            <option value="subotica">Subotica</option>
-            <option value="novi_sad">Novi Sad</option>
-            <option value="beograd">Beograd</option>
+            <option value="Subotica">Subotica</option>
+            <option value="Novi Sad">Novi Sad</option>
+            <option value="Beograd">Beograd</option>
           </select>
         </div>
       </div>
@@ -218,13 +218,22 @@ if(isset($_SESSION["id_user"])){
           <textarea id="description" class="materialize-textarea"></textarea>
           <label for="description">Description</label>
         </div>
+        <div class="input-field col l4 m4 s6">
+          <input id="pricef" name="pricef"  type="text" class="validate">
+          <label for="model">Price Flat</label>
+        </div>
+        <div class="input-field col l4 m4 s6">
+          <input id="priced" name="priced"  type="text" class="validate">
+          <label for="model">Price Day</label>
+        </div>
+
       </div>
     </form>
 </div>
 </div>
   <div class="modal-footer">
     <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-    <button class="btn waves-effect waves-light" type="submit" name="action" onclick="insert_car()">Insert
+    <button class="btn waves-effect waves-light" type="submit" name="action" onclick="insertCar()">Insert
     <i class="material-icons right">send</i>
     </button>
   </div>
@@ -270,17 +279,16 @@ if(isset($_SESSION["id_user"])){
           <label for="search">Search</label><br />
         </div>
       </div>
-
-        <div class="collection list">
-          <a href="#user_modal" class="collection-item modal-trigger">Alvin<span class="badge">click me</span></a>
+        <div class="collection list" id="userDisplay">
+          <!-- <a href="#user_modal" class="collection-item modal-trigger">Alvin<span class="badge">click me</span></a>
           <a href="#!" class="collection-item">Alvin<span class="badge">renting (car name)</span></a>
           <a href="#!" class="collection-item">Alvin</a>
           <a href="#!" class="collection-item">Alvin</a>
           <a href="#user_modal" class="collection-item modal-trigger">Damir<span class="badge">click me</span></a>
           <a href="#!" class="collection-item">Alvin</a>
-          <a href="#!" class="collection-item">Alvin</a>
+          <a href="#!" class="collection-item">Alvin</a> -->
         </div>
-    </div>
+      </div>
 
   </div>
 
@@ -310,31 +318,50 @@ if(isset($_SESSION["id_user"])){
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s6">
-          <input id="user_phone" name="user_phone" type="number" class="validate">
-          <label for="user_phone">Phone</label>
-        </div>
-        <div class="input-field col s6">
-          <input id="user_email" name="user_email" type="text" class="validate" onkeyup="limit('email')">
-          <label for="last_name">Email</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col l3 m3 s6">
-          <input id="user_street" name="user_street" type="text" class="validate">
-          <label for="user_street">Address</label>
-        </div>
-        <div class="input-field col l3 m3 s6">
-          <input id="user_city" name="user_city" type="text" class="validate">
-          <label for="user_city">City</label>
-        </div>
-        <div class="input-field col l3 m3 s6">
-          <input id="user_zip" name="user_zip" type="number" class="validate">
-          <label for="user_zip">Zip</label>
-        </div>
-        <div class="input-field col l3 m3 s6">
-          <input id="user_country" name="user_country" type="text" class="validate">
-          <label for="user_country">Country</label>
+        <div class="input-field col l12 m12 s12">
+          <ul class="collapsible" data-collapsible="accordion">
+            <li>
+              <div class="collapsible-header"><i class="material-icons">info</i>Currently Renting</div>
+              <div class="collapsible-body">
+                <p>Neka bude isto kao i kod currently renting kod usera</p>
+              </div>
+            </li>
+            <li>
+              <div class="collapsible-header"><i class="material-icons">receipt</i>History</div>
+              <div class="collapsible-body">
+                <div class="row">
+                  <div class="input-field col l12 m12 s12">
+
+                <ul class="collapsible" data-collapsible="accordion">
+                  <li>
+                    <div class="collapsible-header"><i class="material-icons">info</i>Ford Focus</div>
+                    <div class="collapsible-body">
+                      <p>
+                        Rented from: (date) to (date)
+                      </p>
+                      <p>
+                        Message They left if they left a message
+                      </p>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="collapsible-header"><i class="material-icons">info</i>Mercedes</div>
+                    <div class="collapsible-body">
+                      <p>
+                        Rented from: (date) to (date)
+                      </p>
+                      <p>
+                        Message They left if they left a message
+                      </p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </form>
@@ -342,7 +369,10 @@ if(isset($_SESSION["id_user"])){
   </div>
   <div class="modal-footer">
     <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-    <button class="btn waves-effect waves-light" type="submit" name="action" onclick="user_update()">Update
+    <button style="margin-right: 5px" class="btn waves-effect waves-light" type="submit" name="action" onclick="user_update()">Update
+    <i class="material-icons right">send</i>
+    </button>
+    <button style="margin-right: 5px" class="btn waves-effect waves-light" type="submit" name="action" onclick="user_update()">Delete
     <i class="material-icons right">send</i>
     </button>
   </div>

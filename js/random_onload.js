@@ -50,11 +50,11 @@ function init(){
           " <img class='activator tooltipped' data-position='top' data-delay='50' data-tooltip='Click For More Info' src='img/cars/"+jason[j]["image"]+"'>"+
          "</div>"+
          "<div class='card-content'>"+
-           "<span class='card-title activator grey-text text-darken-4'>"+ jason[j]['brand'] +' ' +jason[j]['model']+"<i class='material-icons right'>more_vert</i></span>"+
+           "<span class='card-title activator grey-text text-darken-4'>"+ jason[j]['brand'] +' ' +jason[j]['model']+' | <span style="color: #29b6f6; weight: bold">$' +jason[j]['price_flat']+' rent + $' +jason[j]['price_day']+' per day'+"</span><i class='material-icons right'>more_vert</i></span>"+
            "<p>"+ jason[j]['description']+"</p>"+
          "</div>"+
          "<div class='card-reveal'>"+
-          "<span class='card-title grey-text text-darken-4'>"+ jason[j]['brand'] +' ' +jason[j]['model']+"<i class='material-icons right'>close</i></span>"+
+          "<span class='card-title grey-text text-darken-4'>"+ jason[j]['brand'] +' ' +jason[j]['model']+' | <span style="color: #29b6f6; weight: bold">$' +jason[j]['price_flat']+' rent + $' +jason[j]['price_day']+' per day'+"</span><i class='material-icons right'>close</i></span>"+
           "<ul class='collection with-header'>"+
            "<li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Seats'>perm_identity</i><a class='secondary-content'>"+ jason[j]['seats']+"</a></div></li>"+
            "<li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Doors'>tab</i><a class='secondary-content'>"+ jason[j]['doors']+"</a></div></li>"+
@@ -78,6 +78,52 @@ function init(){
 
 	}
 	ajax.send("some");
+
+
+}
+
+
+function showUserData(id_user){
+	var id_user=id_user;
+	_("userData").innerHTML="";
+	var ajax=ajaxObj("POST","php_includes/getUserData.php");
+	ajax.onreadystatechange=function(){
+		if(ajaxReturn(ajax) == true){
+			console.log(ajax.responseText);
+			var jason=JSON.parse(ajax.responseText);
+			console.log(jason);
+			var i=jason.length;
+	        console.log(i);
+	        _("userData").innerHTML+=
+	    "<li>"+
+	    "<div class='col s12 '>"+
+       "<div class='card small hoverable'>"+
+         "<div class='card-image waves-effect waves-block waves-light'>"+
+         "<input type='hidden' id='"+"' value='"+jason[0]['id_car']+" '> "+
+          " <img class='activator tooltipped' data-position='top' data-delay='50' data-tooltip='Click For More Info' src='img/cars/"+jason[0]["image"]+"'>"+
+         "</div>"+
+         "<div class='card-content'>"+
+           "<span class='card-title activator grey-text text-darken-4'>"+ jason[0]['brand'] +' ' +jason[0]['model']+' | <span style="color: #29b6f6; weight: bold">$' +jason[0]['price_flat']+' rent + $' +jason[0]['price_day']+' per day'+"</span><i class='material-icons right'>more_vert</i></span>"+
+           "<p>"+ jason[0]['price_flat']+"</p>"+
+         "</div>"+
+         "<div class='card-reveal'>"+
+          "<span class='card-title grey-text text-darken-4'>"+ jason[0]['brand'] +' ' +jason[0]['model']+' | <span style="color: #29b6f6; weight: bold">$' +jason[0]['price_flat']+' rent + $' +jason[0]['price_day']+' per day'+"</span><i class='material-icons right'>close</i></span>"+
+          "<ul class='collection with-header'>"+
+           "<li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Seats'>perm_identity</i><a class='secondary-content'>"+ jason[0]['citytaken']+"</a></div></li>"+
+           "<li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Doors'>tab</i><a class='secondary-content'>"+ jason[0]['datetaken']+"</a></div></li>"+
+           "<li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Air Conditioning'>invert_colors</i><a class='secondary-content'>"+ jason[0]['cityreturn']+"</a></div></li>"+
+           "<li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Transmission'>settings</i><a class='secondary-content'>"+ jason[0]['datereturn']+"</a></div></li>"+
+           "<li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Navigation'>navigation</i><a class='secondary-content'>"+ jason[0]['price_day']+"</a></div></li>"+
+           "<li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Luggage'>work</i><a class='secondary-content'>"+ jason[0]['year']+"</a></div></li>"+
+          "</ul>"+
+           
+         "</div>"+
+       "</div>"+
+    "</div>"+
+    "</li>";
+		}
+	}
+	ajax.send("id_user="+id_user);
 
 
 }

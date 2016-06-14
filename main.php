@@ -61,7 +61,7 @@ if(isset($_SESSION["id_user"])){
     <div class="nav-wrapper container"><a id="logo-container" onclick="init()" class="brand-logo" style="cursor: pointer;">Dashboard</a>
       <!-- Desktop Navigation -->
       <ul class="right hide-on-med-and-down">
-        <li><a class="waves-effect waves-light btn modal-trigger" href="#cars">Cars</a></li>
+        <li><a class="waves-effect waves-light btn modal-trigger" href="#cars" onclick="showUserData(<?php echo $sess_name; ?> )">Cars</a></li>
         <li><a class="waves-effect waves-light btn modal-trigger" href="#profile" id="bprofile">Profile</a></li>
         <li><a class="waves-effect waves-light btn" href="logout.php">Logout</a></li>  <!--force logout -->
       </ul>
@@ -75,7 +75,7 @@ if(isset($_SESSION["id_user"])){
     </div>
   </nav>
 <!-- MODAL STRUCTURE -->
-<div id="profile" class="modal">
+<div id="profile" class="modal modal-fixed-footer">
   <div class="modal-content">
   <h4>Profile</h4>
   <span id="error"></span>
@@ -144,22 +144,21 @@ if(isset($_SESSION["id_user"])){
 </div> <!-- END OF PROFILE -->
 
 <!-- PASSWORD MODAL STRUCTURE -->
-<div id="change_password_modal" class="modal">
+<div id="change_password_modal" class="modal bottom-sheet modal-fixed-footer">
   <div class="modal-content">
-  <h4>Change Password</h4>
   <span id="error"></span>
   <div class="row">
     <form name="change_password" onclick="return false;" class="col s12">
       <div class="row">
         <div class="input-field col s12">
           <input id="current_password" name="current_password" type="password" class="validate">
-          <label for="current_password">Password</label>
+          <label for="current_password">Current Password</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
           <input id="change_password" name="change_password" type="password" class="validate">
-          <label for="change_password">Password</label>
+          <label for="change_password">New Password</label>
         </div>
       </div>
       <div class="row">
@@ -173,7 +172,7 @@ if(isset($_SESSION["id_user"])){
   </div>
   <div class="modal-footer">
     <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-    <button class="btn waves-effect waves-light" type="submit" name="action" onclick="changepass()">Change Password
+    <button style="margin-right: 5px" class="btn waves-effect waves-light" type="submit" name="action" onclick="changepass()">Change Password
     <i class="material-icons right">send</i>
   </button>
   </div>
@@ -188,36 +187,8 @@ if(isset($_SESSION["id_user"])){
     <li>
       <div class="collapsible-header"><i class="material-icons">info_outline</i>Currently Renting</div>
       <div class="collapsible-body">
-        <ul>
-         <li>
-          <div class='col s12'>
-            <div class='card small hoverable'>
-               <div class='card-image waves-effect waves-block waves-light'>
-                <img class='activator tooltipped' data-position='top' data-delay='50' data-tooltip='Click For More Info' src='img/cars/ford.png'>
-               </div>
-               <div class='card-content'>
-                <span class='card-title activator grey-text text-darken-4'>Ford Focus<i class='material-icons right'>more_vert</i></span>
-                <br />
-                <span>Comfortabale Family Car</span>
-               </div>
-               <div class='card-reveal'>
-                <span class='card-title grey-text text-darken-4'>Ford Focus<i class='material-icons right'>close</i></span>
-                <div class="fixed_border">
-                  <ul class='collection with-header' id="car_rented">
-                   <li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Seats'>perm_identity</i><a class='secondary-content'>4</a></div></li>
-                   <li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Doors'>tab</i><a class='secondary-content'>5</a></div></li>
-                   <li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Air Conditioning'>invert_colors</i><a class='secondary-content'>Yes</a></div></li>
-                   <li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Transmission'>settings</i><a class='secondary-content'>Manual</a></div></li>
-                   <li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Navigation'>navigation</i><a class='secondary-content'>Yes</a></div></li>
-                   <li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Luggage'>work</i><a class='secondary-content'>4</a></div></li>
-                  </ul>
-               </div>
-                <button class='btn waves-effect waves-light' onclick='replace()' type='submit' name='action'>Cancel
-                 <i class='material-icons left'>done</i></button>
-               </div>
-             </div>
-          </div>
-        </li>
+        <ul id="userData">
+
         <!-- <li><img id="image-test" class="responsive-img hoverable" src="img/error404.png"></li> --> <!-- CAR NOT FOUND ERROR -->
         </ul>
       </div>
@@ -241,6 +212,8 @@ if(isset($_SESSION["id_user"])){
         </form>
       </div>
     </div>
+
+
   </li>
   </ul>
   </div>

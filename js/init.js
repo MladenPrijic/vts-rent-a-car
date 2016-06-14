@@ -9,13 +9,12 @@
 // Material Design OnLoad stuff
 $(document).ready(function(){
   // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-$('.modal-trigger').leanModal();
+  $('.modal-trigger').leanModal();
 });
 
 $(document).ready(function() {
 $('select').material_select();
 });
-
 
 
 function ajaxmaterialize() {
@@ -25,6 +24,10 @@ function ajaxmaterialize() {
   });
   document.getElementById("footer").style.display = "block";
   //preloader.off();
+  $(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal-trigger').leanModal();
+  });
 }
 
 function info(car_num) {
@@ -52,10 +55,11 @@ function info(car_num) {
     var city_return=document.getElementById('city_return').value;
 
 
-    if (pdate == '--' || rdate == '--' || city_pickup == 'choose' || city_return=='choose' || pdate > rdate) {
-    if (pdate == '--') { Materialize.toast("Please Select a Departure Date", 3000 ); }
-    if (rdate == '--') { Materialize.toast("Please Select a Return Date", 3000 ); }
-    if (pdate > rdate) { Materialize.toast("Return Date can't be before Departure Date", 3000 ); }
+    if (pdate == '--' || rdate == '--' || city_pickup == 'choose' || city_return=='choose' || pdate > rdate || (ptime > "20:00" || ptime < "08:00") || (rtime > "20:00" || rtime < "08:00")) {
+    if (pdate == '--') { Materialize.toast("Please Select a Departure Date", 3000 ); } else if (ptime > "20:00" || ptime < "08:00") { Materialize.toast("Please select a time between 08:00 and 20:00", 3000 ); }
+    if (rdate == '--') { Materialize.toast("Please Select a Return Date", 3000 ); } else if (rtime > "20:00" || rtime < "08:00") { Materialize.toast("Please select a time between 08:00 and 20:00", 3000 ); }
+    else if (pdate > rdate) { Materialize.toast("Return Date can't be before Departure Date", 3000 ); }
+    //else if ((pdate == ptime) && rtime - ptime !> 4)
     if(city_pickup == 'choose' || city_return=='choose'){
     if(city_pickup=='choose'){Materialize.toast("Please Select a city for pickup", 3000 );}
     if(city_return=='choose'){Materialize.toast("Please Select a city for return", 3000 );} } }
@@ -66,6 +70,19 @@ function info(car_num) {
     console.log("City for return: " +city_return );
     console.log("Pickup Date: "+pdate);
     console.log("Return Date: "+rdate);
+    //console.log(rtime > ptime);
+    /////////////////////////////////////////////////////////
+    // var ajaxx=ajaxObj("POST","php_includes/rent.php");
+    //     ajaxx.onreadystatechange=function(){
+    //       if (ajaxReturn(ajaxx) === true) {
+    //         //console.log(ajax.returnText);
+    //         Materialize.toast(ajaxx.responseText, 3000 );
+
+    //       }
+    //     }
+    //     ajaxx.send("id_car="+id_car+"&pickupCity="+city_pickup+"&returnCity="+city_return+"&pickupDate="+pdate+"&returnDate="+rdate);
+
+    ///////////////////////////////
     swal({
       title: 'Are you sure?',
       text: "Your order will be captured!",
@@ -81,29 +98,32 @@ function info(car_num) {
       allowOutsideClick: false,
       allowEscapeKey: false
     }).then(function(isConfirm) {
-      if (isConfirm === true) {
+
         var ajax=ajaxObj("POST","php_includes/rent.php");
         ajax.onreadystatechange=function(){
           if (ajaxReturn(ajax) === true) {
-            console.log(ajax.returnText);
-          }
-        }
-        ajax.send("id_car="+id_car+"&pickupCity="+city_pickup+"&returnCity="+city_return+"&pickupDate="+pdate+"&returnDate="+rdate);
-        swal(
+            if(ajax.responseText == 2){
+              swal(
           'Confirmed!',
           'Your order has been accepted ＼（＾ ＾）／',
           'success'
         );
-      } else if (isConfirm === false) {
-        swal(
+            }
+            else if(ajax.responseText == 1){
+              swal(
           'Cancelled',
-          'Your order has been Cancelled .·´¯`(>▂<)´¯`·.',
+          'You are already renting a car! Check the Car section to see more. .·´¯`(>▂<)´¯`·.',
           'error'
         );
-      } else {
-        // Esc, close button or outside click
-        // isConfirm is undefined
-      }
+            }
+
+            }
+
+          }
+
+        ajax.send("id_car="+id_car+"&pickupCity="+city_pickup+"&returnCity="+city_return+"&pickupDate="+pdate+"&returnDate="+rdate);
+
+
     });
 
   }

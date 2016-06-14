@@ -29,3 +29,4 @@ Korisćeni Open Source Projekti:
 - https://limonte.github.io/sweetalert2;
 - http://chancejs.com;
 - https://github.com/aarondo/Material-Preloader;
+- http://vdw.github.io/HideSeek;
