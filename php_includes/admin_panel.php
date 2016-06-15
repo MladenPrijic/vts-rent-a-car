@@ -294,12 +294,19 @@ if(isset($_POST["user"]))
 
 
 					}
+					if(!empty($data[0])){
 					array_push($users,array('rented'=>$data));
-					
+				}
+				else{
+					array_push($users,array('rented'=>"Empty!"));
+
+				}
+				
 
 			}
 
 			$data=[];
+				
 		
 		$result=mysqli_query($connect,$sql2);
 		
@@ -323,6 +330,7 @@ if(isset($_POST["user"]))
 
 					}
 					array_push($users,array('free'=>$data));
+					
 					
 
 			
@@ -366,8 +374,163 @@ if(isset($_POST["b"])){
 		}
 	}
 }
-					
 
+if(isset($_POST["id_carr"])){
+	$id_car=$_POST["id_carr"];
+	$firstname=$_POST["userr"];
+	$sql="SELECT * FROM user WHERE id_car='$id_car' AND firstname='$firstname' LIMIT 1";
+	
+	$result=mysqli_query($connect,$sql);
+	$row=mysqli_fetch_array($result);
+	$id_user=$row["id_user"];
+	
+	////////////////////////////////////////////////////////////////
+	$sql1="SELECT * FROM car WHERE id_car='$id_car' LIMIT 1";
+	$res=mysqli_query($connect,$sql1);
+	$rows=mysqli_fetch_array($res);
+	/////////////////////////////////////////////////////////////////
+    $sql3="SELECT * FROM rentedcars WHERE id_user='$id_user' AND id_car='$id_car' LIMIT 1";
+    $ress=mysqli_query($connect,$sql3);
+    $rowss=mysqli_fetch_array($ress);
+	/////////////////////////////////////////////////////////////////
+	$data=[];
+	$dat=[];
+	                              $dt = new DateTime($rowss["dateTaken"]);
+		                          $date = $dt->format('m/d/Y');
+			                      
+			                      $dr= new DateTime($rowss["dateReturn"]);
+		                          
+		                          $dater= $dr->format('m/d/Y');
+		                      	  
+		                      
+		                          
+		                      
+	array_push ($data, array(
+	                        	
+						        'firstname'=>$row["firstname"],
+						        'lastname'=>$row["lastname"],
+						        'username'=>$row["username"],
+						        'email'=>$row["email"],
+						        'phone'=>$row["phone"],
+						        'brand'=>$rows["brand"],
+						        'model'=>$rows["model"],
+						        'image'=>$rows["image"],
+						        'year'=>$rows["year"],
+						        'price_flat'=>$rows["price_flat"],
+						        'price_day'=>$rows["price_day"],
+						        'citytaken'=>$rowss["cityPickup"],
+						        'datetaken'=>$date,
+						        'cityreturn'=>$rowss["cityReturn"],
+						        'datereturn'=>$dater
+
+						       
+						        
+						        
+				        ));
+	$dat["rented"]=$data;
+
+	$sql3="SELECT * FROM rentedcars WHERE id_user='$id_user'";
+    $resss=mysqli_query($connect,$sql3);
+    
+    $dataa=[];
+    while($rowsss=mysqli_fetch_array($resss)){
+    	$car_id=$rowsss["id_car"];
+    	$sqls="SELECT * FROM car WHERE id_car='$car_id'";
+    	$r=mysqli_query($connect,$sqls);
+    	$rr=mysqli_fetch_array($r);
+    	$dt = new DateTime($rowsss["dateTaken"]);
+	    $date = $dt->format('m/d/Y');
+	    $dr= new DateTime($rowsss["dateReturn"]);
+	    $dater= $dr->format('m/d/Y');
+	      
+	    
+	  	  
+
+
+    array_push ($dataa, array(
+	                        	
+						        'brand'=>$rr["brand"],
+						        'model'=>$rr["model"],
+						        'datetaken'=>$date,
+						        'datereturn'=>$dater
+
+						       
+						        
+						        
+				        ));
+}
+$dat["history"]=$dataa;
+
+
+	
+header('Content-Type:application/json;charset=utf-8');
+	                echo json_encode($dat);
+
+
+
+}
+
+
+					
+if(isset($_POST["id_userr"])){
+	$id_user=$_POST["id_userr"];
+	$firstname=$_POST["userr"];
+	$sql="SELECT * FROM user WHERE id_user='$id_user' AND firstname='$firstname' LIMIT 1";
+	
+	$result=mysqli_query($connect,$sql);
+	$row=mysqli_fetch_array($result);
+	/////////////////////////////////////////////////////////////////////
+	$data=[];
+	$dat=[];
+	array_push ($data, array(
+	                        	
+						        'firstname'=>$row["firstname"],
+						        'lastname'=>$row["lastname"],
+						        'username'=>$row["username"],
+						        'email'=>$row["email"],
+						        'phone'=>$row["phone"],
+						        
+
+						       
+						        
+						        
+				        ));
+	$dat["userData"]=$data;
+	$data=[];
+	$sql1="SELECT * FROM rentedcars WHERE id_user='$id_user'";
+	$res=mysqli_query($connect,$sql1);
+	while($rows=mysqli_fetch_array($res)){
+		$car_id=$rows["id_car"];
+    	$sqls="SELECT * FROM car WHERE id_car='$car_id'";
+    	$ress=mysqli_query($connect,$sqls);
+    	$rowss=mysqli_fetch_array($ress);
+    	$dt = new DateTime($rows["dateTaken"]);
+	    $date = $dt->format('m/d/Y');
+	    $dr= new DateTime($rows["dateReturn"]);
+	    $dater= $dr->format('m/d/Y');
+
+		array_push ($data, array(
+	                        	
+						        'brand'=>$rowss["brand"],
+						        'model'=>$rowss["model"],
+						        'datetaken'=>$date,
+						        'datereturn'=>$dater
+						        
+
+						       
+						        
+						        
+				        ));
+
+	}
+	$dat["history"]=$data;
+	header('Content-Type:application/json;charset=utf-8');
+	                echo json_encode($dat);
+
+
+
+
+}
 			
 
     

@@ -188,7 +188,7 @@ if(isset($_SESSION["id_user"])){
 	</form>
 </div> <!-- End Login Modal -->
 
-<div id="forgot" class="modal"> <!-- Start Forgot Password Modal -->
+<div id="forgot" class="modal modal-fixed-footer bottom-sheet"> <!-- Start Forgot Password Modal -->
   <div class="modal-content">
 	    <h4>Noob</h4>
 	    <p>Username and Email please.</p>

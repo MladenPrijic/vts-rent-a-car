@@ -1,8 +1,15 @@
 <?php
 session_start();
-
+include ("php_includes/db_config.php");
 if(isset($_SESSION["id_user"])){
   $sess_name = $_SESSION["id_user"];
+  $sql="SELECT * FROM user WHERE id_user='$sess_name' LIMIT 1";
+  $result=mysqli_query($connect,$sql);
+  $row=mysqli_fetch_array($result);
+  if($row['admin']!=1){
+    header("Location: main.php");
+    exit();
+  }
 }  ?>
 
 <!DOCTYPE html>
@@ -213,20 +220,21 @@ if(isset($_SESSION["id_user"])){
         </div>
       </div>
       <div class="row">
+      <div class="input-field col l6 m6 s6">
+        <input id="pricef" name="pricef"  type="number" class="validate">
+        <label for="model">Price Flat</label>
+      </div>
+      <div class="input-field col l6 m6 s6">
+        <input id="priced" name="priced"  type="number" class="validate">
+        <label for="model">Price Day</label>
+      </div>
+    </div>
+      <div class="row">
         <div class="input-field col l12 m12 s12">
           <i class="material-icons prefix">mode_edit</i>
           <textarea id="description" class="materialize-textarea"></textarea>
           <label for="description">Description</label>
         </div>
-        <div class="input-field col l4 m4 s6">
-          <input id="pricef" name="pricef"  type="text" class="validate">
-          <label for="model">Price Flat</label>
-        </div>
-        <div class="input-field col l4 m4 s6">
-          <input id="priced" name="priced"  type="text" class="validate">
-          <label for="model">Price Day</label>
-        </div>
-
       </div>
     </form>
 </div>
@@ -295,66 +303,48 @@ if(isset($_SESSION["id_user"])){
 </div>
 </div>
 
-<div id="user_modal" class="modal"> <!-- START USER MODAL -->
+<div id="user_modal" class="modal modal-fixed-footer"> <!-- START USER MODAL -->
   <div class="modal-content">
-  <h4>(name of user)'s' Profile</h4>
+  <h4>(name of user)'s Profile</h4>
   <span id="error"></span>
-  <p>You can change (name of user) info here.</p>
   <div class="row">
     <form name="register" onclick="return false;" class="col s12">
       <div class="row">
         <div class="input-field col l4 m4 s6">
-          <input id="user_fName" name="user_fName" type="text" class="validate">
+          <input id="user_fName" disabled name="user_fName" type="text" class="validate">
           <label for="user_fName">First Name</label>
         </div>
         <div class="input-field col l4 m4 s6">
-          <input id="user_lName" name="user_lName"  type="text" class="validate">
+          <input id="user_lName" disabled name="user_lName"  type="text" class="validate">
           <label for="user_lName">Last Name</label>
         </div>
         <div class="input-field col l4 m4 s12">
-          <input id="user_username" name="user_username" type="text" class="validate" >
+          <input id="user_username" disabled name="user_username" type="text" class="validate" >
           <span id="check_name" ></span> <!--change to popup -->
           <label for="user_username">Username</label>
         </div>
       </div>
+      <button style="margin-right: 5px" class="btn waves-effect waves-light modal-trigger" href="#more_info" type="submit" name="action">More Info
+      <i class="material-icons right">send</i>
+      </button>
       <div class="row">
         <div class="input-field col l12 m12 s12">
           <ul class="collapsible" data-collapsible="accordion">
             <li>
               <div class="collapsible-header"><i class="material-icons">info</i>Currently Renting</div>
-              <div class="collapsible-body">
-                <p>Neka bude isto kao i kod currently renting kod usera</p>
+              <div class="collapsible-body" id="currentRent">
+
               </div>
             </li>
             <li>
               <div class="collapsible-header"><i class="material-icons">receipt</i>History</div>
-              <div class="collapsible-body">
+              <div class="collapsible-body" >
                 <div class="row">
                   <div class="input-field col l12 m12 s12">
 
-                <ul class="collapsible" data-collapsible="accordion">
-                  <li>
-                    <div class="collapsible-header"><i class="material-icons">info</i>Ford Focus</div>
-                    <div class="collapsible-body">
-                      <p>
-                        Rented from: (date) to (date)
-                      </p>
-                      <p>
-                        Message They left if they left a message
-                      </p>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="collapsible-header"><i class="material-icons">info</i>Mercedes</div>
-                    <div class="collapsible-body">
-                      <p>
-                        Rented from: (date) to (date)
-                      </p>
-                      <p>
-                        Message They left if they left a message
-                      </p>
-                    </div>
-                  </li>
+                <ul class="collapsible" data-collapsible="accordion" id="userHistory">
+
+
                 </ul>
               </div>
             </div>
@@ -377,6 +367,65 @@ if(isset($_SESSION["id_user"])){
     </button>
   </div>
 </div> <!-- END OF USER -->
+
+<div id="more_info" class="modal bottom-sheet modal-fixed-footer"> <!-- START PROFILE MODAL -->
+  <div class="modal-content">
+  <span id="error"></span>
+  <div class="row">
+    <form name="register" onclick="return false;" class="col s12">
+      <div class="row">
+        <div class="input-field col l4 m4 s6">
+          <input id="user_fName" name="user_fName" type="text" class="validate">
+          <label for="user_fName">First Name</label>
+        </div>
+        <div class="input-field col l4 m4 s6">
+          <input id="user_lName" name="user_lName"  type="text" class="validate">
+          <label for="user_lName">Last Name</label>
+        </div>
+        <div class="input-field col l4 m4 s12">
+          <input id="user_username" name="user_username" type="text" class="validate" >
+          <span id="check_name" ></span> <!--change to popup -->
+          <label for="user_username">Username</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="user_phone" name="user_phone" type="number" class="validate">
+          <label for="phone">Phone</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="user_email" name="user_email" type="text" class="validate" onkeyup="limit('email')">
+          <label for="user_email">Email</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col l3 m3 s6">
+          <input id="user_street" name="user_street" type="text" class="validate">
+          <label for="user_street">Address</label>
+        </div>
+        <div class="input-field col l3 m3 s6">
+          <input id="user_city" name="user_city" type="text" class="validate">
+          <label for="user_city">City</label>
+        </div>
+        <div class="input-field col l3 m3 s6">
+          <input id="user_zip" name="user_zip" type="number" class="validate">
+          <label for="user_zip">Zip</label>
+        </div>
+        <div class="input-field col l3 m3 s6">
+          <input id="user_country" name="user_country" type="text" class="validate">
+          <label for="user_country">Country</label>
+        </div>
+      </div>
+    </form>
+  </div>
+  </div>
+  <div class="modal-footer">
+    <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+    <button class="btn waves-effect waves-light" type="submit" name="action" onclick="update()">Update
+    <i class="material-icons right">send</i>
+    </button>
+  </div>
+</div> <!-- END OF PROFILE -->
 
 
 </main>

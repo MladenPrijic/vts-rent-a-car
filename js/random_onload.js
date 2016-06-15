@@ -91,39 +91,85 @@ function showUserData(id_user){
 		if(ajaxReturn(ajax) == true){
 			console.log(ajax.responseText);
 			var jason=JSON.parse(ajax.responseText);
-			console.log(jason);
+			var obj=typeof jason['current'];
+			//console.log(obj);
 			var i=jason.length;
-	        console.log(i);
-	        _("userData").innerHTML+=
+	        //console.log(i);
+	        if(obj != 'undefined'){
+	        _("userData").innerHTML=
 	    "<li>"+
 	    "<div class='col s12 '>"+
        "<div class='card small hoverable'>"+
          "<div class='card-image waves-effect waves-block waves-light'>"+
-         "<input type='hidden' id='"+"' value='"+jason[0]['id_car']+" '> "+
-          " <img class='activator tooltipped' data-position='top' data-delay='50' data-tooltip='Click For More Info' src='img/cars/"+jason[0]["image"]+"'>"+
+         "<input type='hidden' id='"+"' value='"+jason['current'][0]['id_car']+" '> "+
+          " <img class='activator tooltipped' data-position='top' data-delay='50' data-tooltip='Click For More Info' src='img/cars/"+jason['current'][0]["image"]+"'>"+
          "</div>"+
          "<div class='card-content'>"+
-           "<span class='card-title activator grey-text text-darken-4'>"+ jason[0]['brand'] +' ' +jason[0]['model']+' | <span style="color: #29b6f6; weight: bold">$' +jason[0]['price_flat']+' rent + $' +jason[0]['price_day']+' per day'+"</span><i class='material-icons right'>more_vert</i></span>"+
-           "<p>"+ jason[0]['price_flat']+"</p>"+
+           "<span class='card-title activator grey-text text-darken-4'>"+ jason['current'][0]['brand'] +' ' +jason['current'][0]['model']+' | <span style="color: #29b6f6; weight: bold">$' +jason['current'][0]['price_flat']+' rent + $' +jason['current'][0]['price_day']+' per day'+"</span><i class='material-icons right'>more_vert</i></span>"+
+           "<p>"+ jason['current'][0]['price_flat']+"</p>"+
          "</div>"+
          "<div class='card-reveal'>"+
-          "<span class='card-title grey-text text-darken-4'>"+ jason[0]['brand'] +' ' +jason[0]['model']+' | <span style="color: #29b6f6; weight: bold">$' +jason[0]['price_flat']+' rent + $' +jason[0]['price_day']+' per day'+"</span><i class='material-icons right'>close</i></span>"+
+          "<span class='card-title grey-text text-darken-4'>"+ jason['current'][0]['brand'] +' ' +jason['current'][0]['model']+' | <span style="color: #29b6f6; weight: bold">$' +jason['current'][0]['price_flat']+' rent + $' +jason['current'][0]['price_day']+' per day'+"</span><i class='material-icons right'>close</i></span>"+
           "<ul class='collection with-header'>"+
-           "<li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Seats'>perm_identity</i><a class='secondary-content'>"+ jason[0]['citytaken']+"</a></div></li>"+
-           "<li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Doors'>tab</i><a class='secondary-content'>"+ jason[0]['datetaken']+"</a></div></li>"+
-           "<li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Air Conditioning'>invert_colors</i><a class='secondary-content'>"+ jason[0]['cityreturn']+"</a></div></li>"+
-           "<li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Transmission'>settings</i><a class='secondary-content'>"+ jason[0]['datereturn']+"</a></div></li>"+
-           "<li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Navigation'>navigation</i><a class='secondary-content'>"+ jason[0]['price_day']+"</a></div></li>"+
-           "<li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Luggage'>work</i><a class='secondary-content'>"+ jason[0]['year']+"</a></div></li>"+
+           "<li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Seats'>perm_identity</i><a class='secondary-content'>"+ jason['current'][0]['citytaken']+"</a></div></li>"+
+           "<li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Doors'>tab</i><a class='secondary-content'>"+ jason['current'][0]['datetaken']+"</a></div></li>"+
+           "<li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Air Conditioning'>invert_colors</i><a class='secondary-content'>"+ jason['current'][0]['cityreturn']+"</a></div></li>"+
+           "<li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Transmission'>settings</i><a class='secondary-content'>"+ jason['current'][0]['datereturn']+"</a></div></li>"+
+           "<li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Navigation'>navigation</i><a class='secondary-content'>"+ jason['current'][0]['price_day']+"</a></div></li>"+
+           "<li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Luggage'>work</i><a class='secondary-content'>"+ jason['current'][0]['year']+"</a></div></li>"+
           "</ul>"+
            
          "</div>"+
        "</div>"+
     "</div>"+
     "</li>";
+    _("userFeedback").innerHTML=
+	 "<p>Your previous car was the "+jason['history'][0]['brand'] + " "+ jason['history'][0]['model']+", how did you enjoy it?</p>"+
+            "<div class="+ "input-field col s12" +">"+
+              "<i class="+"material-icons prefix"+">mode_edit</i>"+
+              "<textarea id="+"icon_prefix2"+" class="+"materialize-textarea"+"></textarea>"+
+              "<label for="+"icon_prefix2"+">Message</label>"+
+              "<button class="+"btn waves-effect waves-light"+"onclick=message()"+ ">Send"+
+              "<i class="+"material-icons right"+">send</i>"+
+            "</button>"+
+            "</div>";
+} else if(obj=='undefined'){
+	 _("userData").innerHTML="<p>You are currently not renting! </p>";
+	 _("userFeedback").innerHTML=
+	 "<p>Your previous car was the "+jason['history'][0]['brand'] + " "+ jason['history'][0]['model']+", how did you enjoy it?</p>"+
+            "<div class="+ "input-field col s12" +">"+
+              "<i class="+"material-icons prefix"+">mode_edit</i>"+
+              "<textarea id="+"icon_prefix2"+" class="+"materialize-textarea"+"></textarea>"+
+              "<label for="+"icon_prefix2"+">Message</label>"+
+              "<button class="+"'btn waves-effect waves-light'"+"onclick=\"mess('"+ jason['history'][0]['id_car']  +"','"+  jason['history'][0]['id_user']+"')\""+ ">Send"+
+              "<i class="+"material-icons right"+">send</i>"+
+            "</button>"+
+            "</div>";
+
+
+}
 		}
 	}
 	ajax.send("id_user="+id_user);
 
 
+}
+
+function mess(car,user){
+	id_user=user;
+	id_car=car;
+	var message=_("icon_prefix2").value;
+	if(message == ""){
+		Materialize.toast("Write a message for us!", 3000 );
+	}
+	else{
+	var ajax=ajaxObj("POST","php_includes/getUserData.php");
+	ajax.onreadystatechange=function(){
+		if(ajaxReturn(ajax)== true){
+			Materialize.toast(ajax.responseText, 3000 );
+		}
+	}
+	ajax.send("user_id="+id_user+"&id_car="+id_car+"&message="+message);
+
+	}
 }

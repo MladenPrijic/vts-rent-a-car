@@ -6,6 +6,7 @@ if(isset($_POST["id_user"])){
 	$result=mysqli_query($connect,$sql);
 	$row=mysqli_fetch_array($result);
 	$data=[];
+	$dat=[];
 	if(!empty($row["id_car"])){
 		$id_car=$row["id_car"];
 		$sql1="SELECT * FROM rentedcars WHERE id_car='$id_car' AND id_user='$id_user' LIMIT 1 ";
@@ -45,16 +46,93 @@ if(isset($_POST["id_user"])){
 						        'datereturn'=>$dater
 		                      
 				));
-	    header('Content-Type:application/json;charset=utf-8');
-	        echo json_encode($data);
+	    $dat["current"]=$data;
+	    $data=[];
+	$sqls1="SELECT * FROM rentedcars WHERE id_user='$id_user' ORDER BY dateTaken DESC LIMIT 1";
+	$result1=mysqli_query($connect,$sqls1);
+	while($rows1=mysqli_fetch_array($result1)){
+		$car_id=$rows1["id_car"];
+    	$sqls2="SELECT * FROM car WHERE id_car='$car_id'";
+    	$result2=mysqli_query($connect,$sqls2);
+    	$rows2=mysqli_fetch_array($result2);
+		$dt = new DateTime($rows1["dateTaken"]);
+	    $date = $dt->format('m/d/Y');
+	    $dr= new DateTime($rows1["dateReturn"]);
+	    $dater= $dr->format('m/d/Y');
+
+		array_push ($data, array(
+	                        	'brand'=>$rows2["brand"],
+						        'model'=>$rows2["model"],
+						        'datetaken'=>$date,
+						        'datereturn'=>$dater,
+						        'id_car'=>$car_id,
+						        'id_user'=>$id_user
+		                      
+				));
+
+
+	}
+	$dat["history"]=$data;
+	header('Content-Type:application/json;charset=utf-8');
+	echo json_encode($dat);
+	    
 
 
 
 
 	}
 	else{
-		echo "You are currently not renting!";
+		$data=[];
+	$sqls1="SELECT * FROM rentedcars WHERE id_user='$id_user' ORDER BY dateTaken DESC LIMIT 1";
+	$result1=mysqli_query($connect,$sqls1);
+	while($rows1=mysqli_fetch_array($result1)){
+		$car_id=$rows1["id_car"];
+    	$sqls2="SELECT * FROM car WHERE id_car='$car_id'";
+    	$result2=mysqli_query($connect,$sqls2);
+    	$rows2=mysqli_fetch_array($result2);
+		$dt = new DateTime($rows1["dateTaken"]);
+	    $date = $dt->format('m/d/Y');
+	    $dr= new DateTime($rows1["dateReturn"]);
+	    $dater= $dr->format('m/d/Y');
+
+		array_push ($data, array(
+	                        	'brand'=>$rows2["brand"],
+						        'model'=>$rows2["model"],
+						        'datetaken'=>$date,
+						        'datereturn'=>$dater,
+						        'id_car'=>$car_id,
+						        'id_user'=>$id_user
+
+		                      
+				));
+
+
+	}
+	$dat["history"]=$data;
+	header('Content-Type:application/json;charset=utf-8');
+	echo json_encode($dat);
+
+
+		
+		
+	}
+	
+}
+
+if(isset($_POST["user_id"])){
+	$id_user=$_POST["user_id"];
+	$id_car=$_POST["id_car"];
+	$message=mysqli_real_escape_string($connect,$_POST["message"]);
+	if($message==""){
+		echo "Write a message for us!";
 		exit();
+	}
+	$sql="INSERT INTO messages(id_user,id_car,message,dateLeft) VALUES ('$id_user','$id_car','$message',now())";
+	if($connect->query($sql)){
+		echo "Thank you for leaving us feedback!";
+	}
+	else{
+		echo mysqli_error($connect);
 	}
 
 }

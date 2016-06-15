@@ -197,9 +197,9 @@ if(isset($_SESSION["id_user"])){
       <div class="collapsible-header"><i class="material-icons">receipt</i>History</div>
       <div class="collapsible-body">
       <div class="row">
-        <form class="col s12">
-          <div class="row">
-            <p>Your previous car was the "Ford Focus", how did you enjoy it?</p>
+        <form class="col s12" onclick="return false;">
+          <div class="row" id="userFeedback">
+           <!--  <p>Your previous car was the "Ford Focus", how did you enjoy it?</p>
             <div class="input-field col s12">
               <i class="material-icons prefix">mode_edit</i>
               <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
@@ -207,7 +207,7 @@ if(isset($_SESSION["id_user"])){
               <button class="btn waves-effect waves-light" type="submit" name="action">Send
               <i class="material-icons right">send</i>
             </button>
-            </div>
+            </div> -->
           </div>
         </form>
       </div>
