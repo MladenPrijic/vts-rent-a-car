@@ -20,8 +20,7 @@ include("db_config.php");
 
 // 	}
 
-echo "asdasd";
-exit();
+if(isset($_POST["username"]) && isset($_POST["password"])){
 	$username=mysqli_real_escape_string($connect,$_POST["username"]);
 	$password=$_POST["password"];
 	$salt1="oug}|{05=>";
@@ -43,5 +42,5 @@ exit();
 		echo 2;
 	}
 
-
+}
 // 

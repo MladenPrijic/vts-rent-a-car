@@ -33,7 +33,15 @@ function ajaxmaterialize() {
 function info(car_num) {
 
     var id_car = car_num;
-    var pdate = document.getElementById('departure_pickup').value;
+
+    var ajaxx=ajaxObj("POST","php_includes/rent.php");
+    ajaxx.onreadystatechange=function(){
+      if(ajaxReturn(ajaxx)){
+        var jason=JSON.parse(ajaxx.responseText);
+
+         var priceDay=jason[0]['price_day'];
+         var priceFlat=jason[0]['price_flat'];
+          var pdate = document.getElementById('departure_pickup').value;
 
     var pdate_year = pdate.slice(6, 10);
     var pdate_month = pdate.slice(3, 5);
@@ -51,21 +59,21 @@ function info(car_num) {
 
     var rtime = document.getElementById('alarm_return').value;
 
-    function calculate() {
+    function calculate(pricef,priced) {
       calc = 0;
       diff = 0;
       if (rdate_month == pdate_month) {
-        diff = rdate_day - pdate_day + 1;
-        justdoit()
+        diff = rdate_day - parseInt(pdate_day) + 1;
+        justdoit(pricef,priced)
       } else if ( rdate_month == parseInt(pdate_month) + 1 ) {
-        diff = parseInt(rdate_day) + 30 - pdate_day + 1;
-        justdoit()
+        diff = parseInt(rdate_day) + 30 - parseInt(pdate_day) + 1;
+        justdoit(pricef,priced)
       } else {
         Materialize.toast("You CAN'T Rent a car for more then a month at a time.", 3000 );
       }
 
-      function justdoit() {
-        calc = 70 + 10 * diff; //treba staviti da ovde bude cena auta flat + po danu
+      function justdoit(flat,day) {
+        calc = parseInt(flat) + (parseInt(day) * diff);
         console.log(calc);
         Materialize.toast("Your order is $"+calc, 6000 ); }
       }
@@ -90,7 +98,7 @@ function info(car_num) {
     console.log("City for return: " +city_return );
     console.log("Pickup Date: "+pdate);
     console.log("Return Date: "+rdate);
-    calculate();
+    calculate(priceFlat,priceDay);
     /////////////////////////////////////////////////////////
     // var ajaxx=ajaxObj("POST","php_includes/rent.php");
     //     ajaxx.onreadystatechange=function(){
@@ -118,10 +126,11 @@ function info(car_num) {
       allowOutsideClick: false,
       allowEscapeKey: false
     }).then(function(isConfirm) {
+      if(isConfirm === true){
 
         var ajax=ajaxObj("POST","php_includes/rent.php");
         ajax.onreadystatechange=function(){
-          if (ajaxReturn(ajax) === true) {
+          console.log(ajax.responseText);
             if(ajax.responseText == 2){
               swal(
           'Confirmed!',
@@ -137,16 +146,33 @@ function info(car_num) {
         );
             }
 
-            }
+
 
           }
+          ajax.send("id_car="+id_car+"&pickupCity="+city_pickup+"&returnCity="+city_return+"&pickupDate="+pdate+"&returnDate="+rdate+"&price="+calc);
 
-        ajax.send("id_car="+id_car+"&pickupCity="+city_pickup+"&returnCity="+city_return+"&pickupDate="+pdate+"&returnDate="+rdate);
+        }
+        else if (isConfirm === false) {
+        swal(
+          'Cancelled',
+          'Your order has been Cancelled .·´¯`(>▂<)´¯`·.',
+          'error'
+        );
+      }
+
 
 
     });
 
   }
+
+
+      }
+    }
+    ajaxx.send("getprice="+id_car);
+
+
+
 
 }
 

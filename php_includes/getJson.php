@@ -1,5 +1,5 @@
 <?php
-
+//Loads cars depending on the city
 include("db_config.php");
 //$s=$_POST["select"];
 $city=$_POST["select"];

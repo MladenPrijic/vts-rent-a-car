@@ -10,7 +10,10 @@ if(isset($_SESSION["id_user"])){
     header("Location: main.php");
     exit();
   }
-}  ?>
+}
+elseif(!isset($_SESSION["id_user"])){
+  header("Location: index.php");
+  }  ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -155,9 +158,8 @@ if(isset($_SESSION["id_user"])){
 </div> <!-- END OF PROFILE -->
 
 
-<div id="insert_car" class="modal"> <!-- Insert Car Modal -->
+<div id="insert_car" class="modal modal-fixed-footer"> <!-- Insert Car Modal -->
 <div class="modal-content">
-  <h4>Add a car</h4>
   <span id="error"></span>
   <div class="row">
     <form name="register" onclick="return false;" class="col s12">
@@ -356,7 +358,7 @@ if(isset($_SESSION["id_user"])){
     <button style="margin-right: 5px" class="deep-orange lighten-1 btn waves-effect waves-light" type="submit" name="action" onclick="user_update()">Update
     <i class="material-icons right">send</i>
     </button>
-    <button style="margin-right: 5px" class="deep-orange lighten-1 btn waves-effect waves-light" type="submit" name="action" onclick="user_update()">Delete
+    <button style="margin-right: 5px" class="red darken-2 btn waves-effect waves-light" type="submit" name="action" onclick="user_update()">Delete
     <i class="material-icons right">send</i>
     </button>
   </div>
@@ -413,12 +415,22 @@ if(isset($_SESSION["id_user"])){
   </div>
   </div>
   <div class="modal-footer">
-    <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-    <button class="deep-orange lighten-1 btn waves-effect waves-light" type="submit" name="action" onclick="update()">Update
-    <i class="material-icons right">send</i>
-    </button>
+    <a class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
   </div>
 </div> <!-- END OF PROFILE -->
+
+<div id="car_comments" class="modal modal-fixed-footer"> <!-- START MESSAGE MODAL -->
+  <div class="modal-content">
+  <div class="row">
+    <form name="register" onclick="return false;" class="col s12">
+      <ul class="collapsible" data-collapsible="accordion" id="userResponse">
+      </ul>
+  </div>
+  </div>
+  <div class="modal-footer">
+    <a class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+  </div>
+</div> <!-- END OF MESSAGE -->
 
 
 </main>

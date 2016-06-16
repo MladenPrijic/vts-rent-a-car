@@ -4,6 +4,7 @@ session_start();
 if(isset($_SESSION["id_user"])){
 	header("Location: main.php");
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -163,8 +164,8 @@ if(isset($_SESSION["id_user"])){
   <div class="modal-content">
 	    <h4>Login</h4>
 	    <p>Fill in your login info.</p>
-			<p><?php if(isset($_GET["error"])){ echo "Wrong username or password!"; } ?></p> <!-- Display Error -->
-  	<form action="login.php" method="post" class="col s12">
+			
+  	<div  class="col s12">
 	    <div class="row">
 	      <div class="input-field col s12">
 	        <input id="login_username" name="login_username" type="text" class="validate" onblur="check_name()">
@@ -181,18 +182,18 @@ if(isset($_SESSION["id_user"])){
 	</div>
 	  <div class="modal-footer">
 	    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-	    <button class="deep-orange lighten-1 btn waves-effect waves-light" type="submit">Login
+	    <button class="deep-orange lighten-1 btn waves-effect waves-light" onclick="login()">Login
 	    <i class="material-icons right">send</i>
 	  	</button>
 	  </div>
-	</form>
+	</div>
 </div> <!-- End Login Modal -->
 
 <div id="forgot" class="modal modal-fixed-footer bottom-sheet"> <!-- Start Forgot Password Modal -->
   <div class="modal-content">
 	    <h4>Noob</h4>
 	    <p>Username and Email please.</p>
-  	<form action="forgot.php" method="post" class="col s12">
+  	<form   class="col s12" onclick="return false;">
 	    <div class="row">
 	      <div class="input-field col s12">
 	        <input id="forgot_username" name="forgot_username" type="text" class="validate">
@@ -208,7 +209,7 @@ if(isset($_SESSION["id_user"])){
 	</div>
 	  <div class="modal-footer">
 	    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-	    <button class="deep-orange lighten-1 btn waves-effect waves-light" type="submit">Request New Password
+	    <button class="deep-orange lighten-1 btn waves-effect waves-light" type="submit" onclick="forgotpass()">Request New Password
 	    <i class="material-icons right">send</i>
 	  	</button>
 	  </div>
@@ -328,7 +329,7 @@ if(isset($_SESSION["id_user"])){
 	  <div class="modal-content">
 	    <h4>Contact</h4>
 	    <p>Please fill out the contact form.</p>
-				  <form class="col s12" name="contactform" method="post" action="php_includes/email.php">
+				  <form class="col s12" name="contactform" onclick="return false;">
 				    <div class="row">
 				      <div class="input-field col s6">
 				        <i class="material-icons prefix">account_circle</i>
@@ -362,7 +363,7 @@ if(isset($_SESSION["id_user"])){
 				    </div>
 						<div class="modal-footer">
 							<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-							<button class="deep-orange lighten-1 btn waves-effect waves-light disabled" id="send_form" type="submit" disabled>Submit
+							<button class="deep-orange lighten-1 btn waves-effect waves-light " id="send_form" type="submit" onclick="sendform()" >Submit
 							<i class="material-icons right">send</i>
 						</button>
 						</div>

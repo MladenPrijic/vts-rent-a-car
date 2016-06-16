@@ -12,7 +12,7 @@ function ajaxReturn(x){
 function _(x){
   return document.getElementById(x);
 }
-
+//shows all,rented and free cars
 function adminShow(){
   var cars=_("cars").value;
 
@@ -67,13 +67,13 @@ function adminShow(){
            "<li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Return Date'>today</i><a class='secondary-content'>"+ jason[j]['datereturn']+"</a></div></li>"+
            "<li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Return City'>location_off</i><a class='secondary-content'>"+ jason[j]['cityreturn']+"</a></div></li>"+
           "</ul>"+
-          "<button style='margin-right: 10px; margin-bottom: 5px' class='deep-orange lighten-1 btn waves-effect waves-light' onclick=\"del( '"+ jason[j]['id_car']+"' )\" type='submit' name='action' id='"+jason[j]['id_car'] +" ' >Delete"+
+          "<button style='margin-right: 10px; margin-bottom: 5px' class='red darken-2 btn waves-effect waves-light' onclick=\"del( '"+ jason[j]['id_car']+"' )\" type='submit' name='action' id='"+jason[j]['id_car'] +" ' >Delete"+
            "<i class='material-icons left'>warning</i></button>"+
            "<button style='margin-right: 5px; margin-bottom: 5px'  class='deep-orange lighten-1 btn waves-effect waves-light' onclick=\"free( '"+ jason[j]['id_car']+"' )\" type='submit' name='action' id='"+jason[j]['id_car'] +" ' >Free"+
            "<i class='material-icons left'>done</i></button>"+
            "<button style='margin-right: 40px; margin-bottom: 5px' class='deep-orange lighten-1 btn waves-effect waves-light' onclick=\"ren( '"+ jason[j]['id_car']+"' )\" type='submit' name='action' id='"+jason[j]['id_car'] +" ' >Reserve"+
            "<i class='material-icons left'>lock</i></button>"+
-           "<button style='padding-left: 10px; padding-right: 0px; margin-bottom: 5px' class='deep-orange lighten-1 btn waves-effect waves-light' onclick=\"ren( '"+ jason[j]['id_car']+"' )\" type='submit' name='action' id='"+jason[j]['id_car'] +" ' >"+
+           "<button style='padding-left: 10px; padding-right: 0px; margin-bottom: 5px' class='deep-orange lighten-1 btn waves-effect waves-light modal-trigger' href='#car_comments' onclick=\"showMessages( '"+ jason[j]['id_car']+"' )\" type='submit' name='action' id='"+jason[j]['id_car'] +" ' >"+
            "<i class='material-icons left'>chat_bubble_outline</i></button>"+
          "</div>"+
        "</div>"+
@@ -92,7 +92,7 @@ function adminShow(){
 
 
 }
-
+//Loads all users and cars
 function adminLoadAll(){
 
   var ajax=ajaxObj("POST","php_includes/admin_panel.php");
@@ -145,13 +145,13 @@ function adminLoadAll(){
            "<li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Return Date'>today</i><a class='secondary-content'>"+ jason[j]['datereturn']+"</a></div></li>"+
            "<li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Return City'>location_off</i><a class='secondary-content'>"+ jason[j]['cityreturn']+"</a></div></li>"+
           "</ul>"+
-           "<button style='margin-right: 10px; margin-bottom: 5px' class='deep-orange lighten-1 btn waves-effect waves-light' onclick=\"del( '"+ jason[j]['id_car']+"' )\" type='submit' name='action' id='"+jason[j]['id_car'] +" ' >Delete"+
+           "<button style='margin-right: 10px; margin-bottom: 5px' class='red darken-2 btn waves-effect waves-light' onclick=\"del( '"+ jason[j]['id_car']+"' )\" type='submit' name='action' id='"+jason[j]['id_car'] +" ' >Delete"+
             "<i class='material-icons left'>warning</i></button>"+
             "<button style='margin-right: 5px; margin-bottom: 5px'  class='deep-orange lighten-1 btn waves-effect waves-light' onclick=\"free( '"+ jason[j]['id_car']+"' )\" type='submit' name='action' id='"+jason[j]['id_car'] +" ' >Free"+
             "<i class='material-icons left'>done</i></button>"+
             "<button style='margin-right: 40px; margin-bottom: 5px' class='deep-orange lighten-1 btn waves-effect waves-light' onclick=\"ren( '"+ jason[j]['id_car']+"' )\" type='submit' name='action' id='"+jason[j]['id_car'] +" ' >Reserve"+
             "<i class='material-icons left'>lock</i></button>"+
-            "<button style='padding-left: 10px; padding-right: 0px; margin-bottom: 5px' class='deep-orange lighten-1 btn waves-effect waves-light' onclick=\"ren( '"+ jason[j]['id_car']+"' )\" type='submit' name='action' id='"+jason[j]['id_car'] +" ' >"+
+            "<button style='padding-left: 10px; padding-right: 0px; margin-bottom: 5px' class='deep-orange lighten-1 btn waves-effect waves-light modal-trigger' href='#car_comments' onclick=\"showMessages( '"+ jason[j]['id_car']+"' )\" type='submit' name='action' id='"+jason[j]['id_car'] +" ' >"+
             "<i class='material-icons left'>chat_bubble_outline</i></button>"+
          "</div>"+
        "</div>"+
@@ -222,7 +222,7 @@ function adminLoadAll(){
 
 }
 
-
+//Function for deleting cars
 function del(id){
   var id_car=id;
 
@@ -240,7 +240,7 @@ function del(id){
 }
 ajax.send("id_car_del="+id_car);
 }
-
+//For making car free rented=0
 function free(id,name){
    var id_car=id;
    var username=name;
@@ -261,7 +261,7 @@ function free(id,name){
 ajax.send("id_car_free="+id_car);
 
 }
-
+//Shows user data in the modal
 function show(id,name){
   _("userHistory").innerHTML="";
   var id_car=id;
@@ -276,8 +276,25 @@ function show(id,name){
       });
         //console.log("USERI"+ajax.responseText);
         var jason=JSON.parse(ajax.responseText);
-        //console.log(jason);
-        //var i=jason["rented"].length;
+        console.log(jason);
+        var i=jason["rented"].length;
+        _("profName").value=jason["userData"][0]["username"];
+        _("firstname").value=jason["userData"][0]["firstname"];
+         _("lastname").value=jason["userData"][0]["lastname"];
+         _("usernamee").value=jason["userData"][0]["username"];
+         _("firstnamee").value=jason["userData"][0]["firstname"];
+         _("lastnamee").value=jason["userData"][0]["lastname"];
+         _("usernam").value=jason["userData"][0]["username"];
+         _("phonee").value=0+jason["userData"][0]["phone"];
+         _("emaill").value=jason["userData"][0]["email"];
+         _("addresss").value=jason["userData"][0]["street"];
+         _("cityy").value=jason["userData"][0]["city"];
+         _("zipp").value=jason["userData"][0]["zip"];
+         _("countryy").value=jason["userData"][0]["country"];
+         $(document).ready(function() {
+             Materialize.updateTextFields();
+             });
+
 
         _("currentRent").innerHTML=
          "<ul><li>"+
@@ -355,19 +372,21 @@ function showFree(id,name){
         var obj=typeof jason["history"][0];
         if(obj !='undefined'){
         var i=jason["history"].length;
+        console.log(jason["userData"][0]["firstname"]);
 
         _("profName").value=jason["userData"][0]["username"];
-        _("firstnamee").value=jason["userData"][0]["firstname"];
+        _("firstname").value=jason["userData"][0]["firstname"];
          _("lastname").value=jason["userData"][0]["lastname"];
          _("usernamee").value=jason["userData"][0]["username"];
-          _("firstnamee").value=jason["userData"][0]["firstname"];
+         _("firstnamee").value=jason["userData"][0]["firstname"];
          _("lastnamee").value=jason["userData"][0]["lastname"];
          _("usernam").value=jason["userData"][0]["username"];
-          _("phonee").value=0+jason["userData"][0]["phone"];
-           _("emaill").value=jason["userData"][0]["email"];
-            _("addresss").value=jason["userData"][0]["street"];
-             _("cityy").value=jason["userData"][0]["city"];
-             _("countryy").value=jason["userData"][0]["country"];
+         _("phonee").value=0+jason["userData"][0]["phone"];
+         _("emaill").value=jason["userData"][0]["email"];
+         _("addresss").value=jason["userData"][0]["street"];
+         _("cityy").value=jason["userData"][0]["city"];
+         _("zipp").value=jason["userData"][0]["zip"];
+         _("countryy").value=jason["userData"][0]["country"];
 
              $(document).ready(function() {
              Materialize.updateTextFields();
@@ -409,6 +428,7 @@ function showFree(id,name){
          _("addresss").value=jason["userData"][0]["street"];
          _("cityy").value=jason["userData"][0]["city"];
          _("zipp").value=jason["userData"][0]["zip"];
+         _("countryy").value=jason["userData"][0]["country"];
 
          $(document).ready(function() {
          Materialize.updateTextFields();
@@ -473,7 +493,7 @@ function insertCar(){
 
   }
 }
-
+//Makes car rented, rented=1
 function ren(id){
   var id_car=id;
   var ajax=ajaxObj("POST","php_includes/admin_panel.php");
@@ -484,5 +504,31 @@ function ren(id){
       }
     }
     ajax.send("id_car_rentt="+id_car);
+
+}
+//Shows the messages for every car
+function showMessages(car_id){
+  var car=car_id;
+   _("userResponse").innerHTML="";
+  var ajax=ajaxObj("POST","php_includes/admin_panel.php");
+  ajax.onreadystatechange=function(){
+      if(ajaxReturn(ajax)== true){
+
+        var jason=JSON.parse(ajax.responseText);
+
+        var i=jason.length;
+
+        for(var j=0;j<i;j++){
+        _("userResponse").innerHTML+=
+        "<li>"+
+    "<div class=collapsible-header><i class=material-icons>chat_bubble_outline</i>"+jason[j]['firstname'] +" "+jason[j]['lastname'] +" left a message on: "+ jason[j]['dateleft'] +" </div>"+
+    "<div class=collapsible-body><p>"+jason[j]['message']+"</p></div>"+
+  "</li>";
+
+}
+
+      }
+    }
+    ajax.send("showMessage="+car);
 
 }

@@ -13,7 +13,7 @@ function _(x){
 	return document.getElementById(x);
 }
 // document.body.addEventListener("load",init);
-
+//Loads random cars onload
 function init(){
 
 	preloader = new $.materialPreloader({
@@ -84,19 +84,19 @@ function init(){
 
 }
 
-
+//Shows the current car of the user and history, so he/she can make a comment
 function showUserData(id_user){
 	var id_user=id_user;
 	_("userData").innerHTML="";
 	var ajax=ajaxObj("POST","php_includes/getUserData.php");
 	ajax.onreadystatechange=function(){
 		if(ajaxReturn(ajax) == true){
-			//console.log(ajax.responseText);
+			
 			var jason=JSON.parse(ajax.responseText);
 			var obj=typeof jason['current'];
-			//console.log(obj);
+			
 			var i=jason.length;
-	        //console.log(i);
+	        
 	        if(obj != 'undefined'){
 	        _("userData").innerHTML=
 	    "<li>"+
@@ -131,12 +131,13 @@ function showUserData(id_user){
               "<i class="+"'material-icons prefix'"+">mode_edit</i>"+
               "<textarea id="+"icon_prefix2"+" class="+"materialize-textarea"+"></textarea>"+
               "<label for="+"icon_prefix2"+">Message</label>"+
-              "<button class="+"'btn waves-effect waves-light'"+"onclick=message()"+ ">Send"+
+              "<button class="+"'btn waves-effect waves-light'"+"onclick=\"message('"+ jason['history'][0]['id_car']  +"','"+  jason['history'][0]['id_user']+"')\""+ ">Send"+
               "<i class="+"'material-icons right'"+">send</i>"+
             "</button>"+
             "</div>";
 						  ajaxmaterialize(); //loads the scrips needed for materialize to run correctly; trying to force the DRY programming rule; located inside init.js
 } else if(obj=='undefined'){
+
 	 _("userData").innerHTML="<li><img id="+"image-test"+" class="+"'responsive-img hoverable'"+" src="+"img/error404.png"+"></li>";
 	 _("userFeedback").innerHTML=
 	 "<p>Your previous car was the "+jason['history'][0]['brand'] + " "+ jason['history'][0]['model']+", how did you enjoy it?</p>"+
@@ -144,7 +145,7 @@ function showUserData(id_user){
               "<i class="+"'material-icons prefix'"+">mode_edit</i>"+
               "<textarea id="+"icon_prefix2"+" class="+"materialize-textarea"+"></textarea>"+
               "<label for="+"icon_prefix2"+">Message</label>"+
-              "<button class="+"'btn waves-effect waves-light'"+"onclick=\"mess('"+ jason['history'][0]['id_car']  +"','"+  jason['history'][0]['id_user']+"')\""+ ">Send"+
+              "<button class="+"'btn waves-effect waves-light'"+"onclick=\"message('"+ jason['history'][0]['id_car']  +"','"+  jason['history'][0]['id_user']+"')\""+ ">Send"+
               "<i class="+"'material-icons right'"+">send</i>"+
             "</button>"+
             "</div>";
@@ -157,8 +158,8 @@ function showUserData(id_user){
 
 
 }
-
-function mess(car,user){
+//sends a message into the db
+function message(car,user){
 	id_user=user;
 	id_car=car;
 	var message=_("icon_prefix2").value;
@@ -192,10 +193,30 @@ function passChange(id){
 	var aja=ajaxObj("POST","php_includes/getUserData.php");
 	aja.onreadystatechange=function(){
 		if(ajaxReturn(aja)== true){
-			console.log(aja.responseText);
+			
 			Materialize.toast(aja.responseText, 3000 );
 		}
 	}
 	aja.send("current="+current+"&newpass="+newpass+"&newconfirm="+newconfirm+"&id_user="+id_user);
+
+	}
+//sends the contact form
+	function sendform(){
+		var firstname=_("contact_firstname").value;
+		var lastname=_("contact_lastname").value;
+		var email=_("contact_email").value;
+		var message=_("contact_message").value;
+		if(firstname== "" || lastname== "" || email == "" || message== ""){
+			Materialize.toast("Please fill in all the fields!", 3000 );
+		}
+		var ajax=ajaxObj("POST","php_includes/getUserData.php");
+	    ajax.onreadystatechange=function(){
+		if(ajaxReturn(ajax)== true){
+			console.log(ajax.responseText);
+			Materialize.toast(ajax.responseText, 3000 );
+		}
+	}
+	ajax.send("mess="+message+"&firstname="+firstname+"&lastname="+lastname+"&email="+email);
+
 
 	}

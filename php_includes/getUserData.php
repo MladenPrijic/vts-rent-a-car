@@ -1,4 +1,5 @@
 <?php
+//Loads the user data in the main.php
 include ("db_config.php");
 if(isset($_POST["id_user"])){
 	$id_user=$_POST["id_user"];
@@ -85,7 +86,7 @@ if(isset($_POST["id_user"])){
 		$data=[];
 	$sqls1="SELECT * FROM rentedcars WHERE id_user='$id_user' ORDER BY dateTaken DESC LIMIT 1";
 	$result1=mysqli_query($connect,$sqls1);
-	while($rows1=mysqli_fetch_array($result1)){
+	$rows1=mysqli_fetch_array($result1);
 		$car_id=$rows1["id_car"];
     	$sqls2="SELECT * FROM car WHERE id_car='$car_id'";
     	$result2=mysqli_query($connect,$sqls2);
@@ -107,7 +108,7 @@ if(isset($_POST["id_user"])){
 				));
 
 
-	}
+	
 	$dat["history"]=$data;
 	header('Content-Type:application/json;charset=utf-8');
 	echo json_encode($dat);
@@ -118,7 +119,7 @@ if(isset($_POST["id_user"])){
 	}
 
 }
-
+//inserts the message in the db
 if(isset($_POST["user_id"])){
 	$id_user=$_POST["user_id"];
 	$id_car=$_POST["id_car"];
@@ -136,7 +137,7 @@ if(isset($_POST["user_id"])){
 	}
 
 }
-
+//requests new password
 if(isset($_POST["newpass"])){
 	$current=$_POST["current"];
 	$new=$_POST["newpass"];
@@ -168,5 +169,23 @@ if(isset($_POST["newpass"])){
 	else{
 		echo "You entered the wrong password!";
 	}
+
+}
+//Sends a message through the contact form
+if(isset($_POST["mess"])){
+	$message=$_POST["mess"];
+	$firstname=$_POST["firstname"];
+	$lastname=$_POST["lastname"];
+	$email=$_POST["email"];
+	    $to = "me@damir.tech";							 
+		$from = $email;
+		$subject = $firstname ." " .$lastname ." has contacted you!";
+		$mess = $message;
+		$headers = "From: $email\n";
+        $headers .= "MIME-Version: 1.0\n";
+        $headers .= "Content-type: text/html; charset=iso-8859-1\n";
+		mail($to, $subject, $mess, $headers);
+		echo "You successefully sent a message! We will respond shortly.";
+		exit();
 
 }

@@ -13,7 +13,7 @@ function ajaxReturn(x){
 function _(x){
 	return document.getElementById(x);
 }
-
+//Loads cars depending on the city
 function getData(){
 
 		preloader = new $.materialPreloader({

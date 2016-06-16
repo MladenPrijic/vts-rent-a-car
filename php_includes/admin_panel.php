@@ -1,7 +1,7 @@
 <?php
 
 include("db_config.php");
-
+//Car delete
 if(isset($_POST["id_car_del"]))
      {
      	$id_car=$_POST["id_car_del"];
@@ -16,7 +16,7 @@ if(isset($_POST["id_car_del"]))
      	    }
 
      }
-
+//Make car free again
 if(isset($_POST["id_car_free"]))
      {
      	$id_car=$_POST["id_car_free"];
@@ -51,7 +51,7 @@ if(isset($_POST["id_car_free"]))
      	    }
 
      }
-
+//Loads all cars and their data
 if(isset($_POST["some"]))
 	 {
 	 	$sql="SELECT * FROM car";
@@ -140,7 +140,7 @@ if(isset($_POST["some"]))
 
 
 
-
+//get all, rented or free cars
 if(isset($_POST["cars"]))
 	 {
         $cars=$_POST["cars"];
@@ -243,7 +243,7 @@ if(isset($_POST["cars"]))
 
         
      }
-
+//Loads users from the db
 if(isset($_POST["user"]))
 	{
 		
@@ -343,7 +343,7 @@ if(isset($_POST["user"]))
 					header('Content-Type:application/json;charset=utf-8');
 	                echo json_encode($users);
 }
-
+//Inserts a new car in the db
 if(isset($_POST["b"])){
 	
 	$brand=mysqli_real_escape_string($connect,$_POST["b"]);
@@ -374,7 +374,7 @@ if(isset($_POST["b"])){
 		}
 	}
 }
-
+//gets the user data from the database, rent history, current rent
 if(isset($_POST["id_carr"])){
 	$id_car=$_POST["id_carr"];
 	$firstname=$_POST["userr"];
@@ -429,6 +429,29 @@ if(isset($_POST["id_carr"])){
 				        ));
 	$dat["rented"]=$data;
 
+	$data=[];
+	array_push ($data, array(
+	                        	
+						        'firstname'=>$row["firstname"],
+						        'lastname'=>$row["lastname"],
+						        'username'=>$row["username"],
+						        'email'=>$row["email"],
+						        'phone'=>$row["phone"],
+						        'street'=>$row["street"],
+						        'city'=>$row["city"],
+						        'zip'=>$row["zip"],
+						        'country'=>$row["country"],
+						        
+						        
+
+						       
+						        
+						        
+				        ));
+	$dat["userData"]=$data;
+	
+
+
 	$sql3="SELECT * FROM rentedcars WHERE id_user='$id_user'";
     $resss=mysqli_query($connect,$sql3);
     
@@ -462,6 +485,7 @@ if(isset($_POST["id_carr"])){
 $dat["history"]=$dataa;
 
 
+
 	
 header('Content-Type:application/json;charset=utf-8');
 	                echo json_encode($dat);
@@ -471,7 +495,7 @@ header('Content-Type:application/json;charset=utf-8');
 }
 
 
-					
+//	Loads user data				
 if(isset($_POST["id_userr"])){
 	$id_user=$_POST["id_userr"];
 	$firstname=$_POST["userr"];
@@ -530,13 +554,13 @@ if(isset($_POST["id_userr"])){
 	}
 	$dat["history"]=$data;
 	header('Content-Type:application/json;charset=utf-8');
-	                echo json_encode($dat);
+	echo json_encode($dat);
 
 
 
 
 }
-
+//Checks if the car is already rented
 if(isset($_POST["id_car_rentt"])){
 	$id_car=$_POST["id_car_rentt"];
 	$sqls="SELECT * FROM car WHERE id_car='$id_car' LIMIT 1";
@@ -550,6 +574,38 @@ if(isset($_POST["id_car_rentt"])){
 	if($connect->query($sql)){
 		echo "Car successefully rented!";
 	}
+}
+//loads messages from the database
+if(isset($_POST["showMessage"])){
+	$id_car=$_POST["showMessage"];
+	$sql="SELECT * FROM messages WHERE id_car='$id_car'";
+	$result=mysqli_query($connect,$sql);
+	$data=[];
+	while($row=mysqli_fetch_array($result)){
+		$id_user=$row["id_user"];
+		$sql1="SELECT * FROM user WHERE id_user='$id_user' LIMIT 1";
+		$result1=mysqli_query($connect,$sql1);
+		$row1=mysqli_fetch_array($result1);
+		$dt = new DateTime($row["dateLeft"]);
+	    $date = $dt->format('m/d/Y');
+		array_push ($data, array(
+	                        	
+						        'message'=>$row["message"],
+						        'dateleft'=>$date,
+						        'firstname'=>$row1["firstname"],
+						        'lastname'=>$row1["lastname"]
+						        
+
+						       
+						        
+						        
+				        ));
+
+
+	}
+	header('Content-Type:application/json;charset=utf-8');
+	echo json_encode($data);
+
 }
 
     

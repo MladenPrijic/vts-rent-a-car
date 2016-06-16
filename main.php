@@ -1,9 +1,16 @@
 <?php
 session_start();
-
+include("php_includes/db_config.php");
 if(isset($_SESSION["id_user"])){
   $sess_name = $_SESSION["id_user"];
-} ?>
+}
+elseif(!isset($_SESSION["id_user"])){
+  header("Location: index.php");
+  } 
+  $sql="SELECT * FROM user WHERE id_user='$sess_name' LIMIT 1";
+  $result=mysqli_query($connect,$sql);
+  $row=mysqli_fetch_array($result);
+  ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -61,7 +68,9 @@ if(isset($_SESSION["id_user"])){
     <div class="nav-wrapper container"><a id="logo-container" onclick="init()" class="brand-logo" style="cursor: pointer;">Dashboard</a>
       <!-- Desktop Navigation -->
       <ul class="right hide-on-med-and-down">
-        <li><a class="deep-orange lighten-1 waves-effect waves-light btn" href="admin.php" >ADMIN</a></li> <!-- HIDDEN IF THE USER ISN'T AN ADMIN -->
+      <?php if($row["admin"] ==1 ){ ?>
+        <li><a class="deep-orange lighten-1 waves-effect waves-light btn" href="admin.php" >ADMIN</a></li> 
+        <?php } ?>
         <li><a class="deep-orange lighten-1 waves-effect waves-light btn modal-trigger" href="#cars" onclick="showUserData(<?php echo $sess_name; ?> )">Cars</a></li>
         <li><a class="deep-orange lighten-1 waves-effect waves-light btn modal-trigger" href="#profile" id="bprofile">Profile</a></li>
         <li><a class="deep-orange lighten-1 waves-effect waves-light btn" href="logout.php">Logout</a></li>  <!--force logout -->
@@ -307,7 +316,7 @@ if(isset($_SESSION["id_user"])){
     <div class="modal-content">
       <h4>Contact</h4>
       <p>Please fill out the contact form.</p>
-          <form class="col s12">
+          <form class="col s12" onclick="return false;">
             <div class="row">
               <div class="input-field col s6">
                 <i class="material-icons prefix">account_circle</i>
@@ -330,13 +339,13 @@ if(isset($_SESSION["id_user"])){
             <div class="row">
               <div class="input-field col s12">
                 <i class="material-icons prefix">mode_edit</i>
-                <textarea id="icon_prefix2" class="materialize-textarea" length="600"></textarea>
+                <textarea id="contact_message" class="materialize-textarea" length="600"></textarea>
                 <label for="icon_prefix2">Message</label>
               </div>
             </div>
             <div class="modal-footer">
               <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-              <button class="btn waves-effect waves-light disabled" id="send_form" type="submit" onclick="sendform()" disabled>Submit
+              <button class="btn waves-effect waves-light " id="send_form" type="submit" onclick="sendform()" >Submit
               <i class="material-icons right">send</i>
             </button>
             </div>
