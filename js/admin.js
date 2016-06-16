@@ -67,10 +67,12 @@ function adminShow(){
            "<li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Return Date'>today</i><a class='secondary-content'>"+ jason[j]['datereturn']+"</a></div></li>"+
            "<li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Return City'>location_off</i><a class='secondary-content'>"+ jason[j]['cityreturn']+"</a></div></li>"+
           "</ul>"+
-           "<button class='btn waves-effect waves-light' onclick=\"del( '"+ jason[j]['id_car']+"' )\" type='submit' name='action' id='"+jason[j]['id_car'] +" ' >Delete"+
+           "<button style='margin-right: 10px; margin-bottom: 5px' class='btn waves-effect waves-light' onclick=\"del( '"+ jason[j]['id_car']+"' )\" type='submit' name='action' id='"+jason[j]['id_car'] +" ' >Delete"+
+            "<i class='material-icons left'>warning</i></button>"+
+            "<button style='margin-right: 5px; margin-bottom: 5px' class='btn waves-effect waves-light' onclick=\"free( '"+ jason[j]['id_car']+"' )\" type='submit' name='action' id='"+jason[j]['id_car'] +" ' >Free"+
             "<i class='material-icons left'>done</i></button>"+
-            "<button class='btn waves-effect waves-light' onclick=\"free( '"+ jason[j]['id_car']+"' )\" type='submit' name='action' id='"+jason[j]['id_car'] +" ' >Free"+
-            "<i class='material-icons left'>done</i></button>"+
+            "<button style='margin-bottom: 5px' class='btn waves-effect waves-light' onclick=\"ren( '"+ jason[j]['id_car']+"' )\" type='submit' name='action' id='"+jason[j]['id_car'] +" ' >Reserve"+
+             "<i class='material-icons left'>lock</i></button>"+
          "</div>"+
        "</div>"+
 
@@ -145,7 +147,7 @@ function adminLoadAll(){
             "<i class='material-icons left'>warning</i></button>"+
             "<button style='margin-right: 5px; margin-bottom: 5px'  class='btn waves-effect waves-light' onclick=\"free( '"+ jason[j]['id_car']+"' )\" type='submit' name='action' id='"+jason[j]['id_car'] +" ' >Free"+
             "<i class='material-icons left'>done</i></button>"+
-            "<button style='margin-bottom: 5px' class='btn waves-effect waves-light' onclick=\"del( '"+ jason[j]['id_car']+"' )\" type='submit' name='action' id='"+jason[j]['id_car'] +" ' >Reserve"+
+            "<button style='margin-bottom: 5px' class='btn waves-effect waves-light' onclick=\"ren( '"+ jason[j]['id_car']+"' )\" type='submit' name='action' id='"+jason[j]['id_car'] +" ' >Reserve"+
              "<i class='material-icons left'>lock</i></button>"+
          "</div>"+
        "</div>"+
@@ -170,7 +172,7 @@ function adminLoadAll(){
     // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
     $('.modal-trigger').leanModal();
   });
-      console.log( "Userssss"+ ajaxx.responseText);
+      //console.log( "Userssss"+ ajaxx.responseText);
       var jasonn=JSON.parse(ajaxx.responseText);
       //console.log(jasonn);
       var obj=typeof jasonn[0]["rented"];
@@ -196,9 +198,7 @@ function adminLoadAll(){
       }
       else if(obj=='undefined'){
         var e=jasonn[0]["free"].length;
-    //console.log(e);
     $(document).ready(function(){
-    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
     $('.modal-trigger').leanModal();
   });
     for(var w=0;w<e;w++){
@@ -270,10 +270,11 @@ function show(id,name){
         // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
         $('.modal-trigger').leanModal();
       });
-        console.log("USERI"+ajax.responseText);
+        //console.log("USERI"+ajax.responseText);
         var jason=JSON.parse(ajax.responseText);
-        console.log(jason);
+        //console.log(jason);
         //var i=jason["rented"].length;
+        
         _("currentRent").innerHTML=
          "<ul><li>"+
       "<div class='col s12 '>"+
@@ -350,6 +351,20 @@ function showFree(id,name){
         var obj=typeof jason["history"][0];
         if(obj !='undefined'){
         var i=jason["history"].length;
+
+        _("profName").innerHTML=jason["userData"][0]["username"];
+        _("firstname").innerHTML=jason["userData"][0]["firstname"];
+         _("lastname").innerHTML=jason["userData"][0]["lastname"];
+         _("usernamee").innerHTML=jason["userData"][0]["username"];
+          _("firstnamee").innerHTML=jason["userData"][0]["firstname"];
+         _("lastnamee").innerHTML=jason["userData"][0]["lastname"];
+         _("usernam").innerHTML=jason["userData"][0]["username"];
+          _("phonee").innerHTML=0+jason["userData"][0]["phone"];
+           _("emaill").innerHTML=jason["userData"][0]["email"];
+            _("addresss").innerHTML=jason["userData"][0]["street"];
+             _("cityy").innerHTML=jason["userData"][0]["city"];
+             _("countryy").innerHTML=jason["userData"][0]["country"];
+
          _("currentRent").innerHTML=
          "<ul><li>"+
       "<p> This user is currently not renting! </p>"+
@@ -374,6 +389,19 @@ function showFree(id,name){
 
       }
       else if(obj == 'undefined'){
+        _("profName").innerHTML=jason["userData"][0]["username"];
+        _("firstname").innerHTML=jason["userData"][0]["firstname"];
+         _("lastname").innerHTML=jason["userData"][0]["lastname"];
+         _("usernamee").innerHTML=jason["userData"][0]["username"];
+         _("firstnamee").innerHTML=jason["userData"][0]["firstname"];
+         _("lastnamee").innerHTML=jason["userData"][0]["lastname"];
+         _("usernam").innerHTML=jason["userData"][0]["username"];
+         _("phonee").innerHTML=0+jason["userData"][0]["phone"];
+         _("emaill").innerHTML=jason["userData"][0]["email"];
+         _("addresss").innerHTML=jason["userData"][0]["street"];
+         _("cityy").innerHTML=jason["userData"][0]["city"];
+         _("zipp").innerHTML=jason["userData"][0]["zip"];
+
          _("currentRent").innerHTML=
          "<ul><li>"+
       "<p> This user is currently not renting! </p>"+
@@ -432,4 +460,17 @@ function insertCar(){
 
 
   }
+}
+
+function ren(id){
+  var id_car=id;
+  var ajax=ajaxObj("POST","php_includes/admin_panel.php");
+  ajax.onreadystatechange=function(){
+      if(ajaxReturn(ajax)== true){
+        console.log(ajax.responseText);
+        Materialize.toast(ajax.responseText,3000);
+      }
+    }
+    ajax.send("id_car_rentt="+id_car);
+
 }

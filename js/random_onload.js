@@ -35,11 +35,11 @@ function init(){
 
 			if(ajaxReturn(ajax) === true){
 			preloader.off();
-			console.log(ajax.responseText);
+			//console.log(ajax.responseText);
 			var jason=JSON.parse(ajax.responseText);
-			console.log(jason);
+			//console.log(jason);
 			var i=jason.length;
-	        console.log(i);
+	        //console.log(i);
 	        for(var j=0; j<i; j++){
 	        	_("staggered-test").innerHTML+=
 	    "<li>"+
@@ -69,6 +69,8 @@ function init(){
        "</div>"+
     "</div>"+
     "</li>";
+
+
 }
 
 
@@ -89,7 +91,7 @@ function showUserData(id_user){
 	var ajax=ajaxObj("POST","php_includes/getUserData.php");
 	ajax.onreadystatechange=function(){
 		if(ajaxReturn(ajax) == true){
-			console.log(ajax.responseText);
+			//console.log(ajax.responseText);
 			var jason=JSON.parse(ajax.responseText);
 			var obj=typeof jason['current'];
 			//console.log(obj);
@@ -106,7 +108,7 @@ function showUserData(id_user){
          "</div>"+
          "<div class='card-content'>"+
            "<span class='card-title activator grey-text text-darken-4'>"+ jason['current'][0]['brand'] +' ' +jason['current'][0]['model']+' | <span style="color: #29b6f6; weight: bold">$' +jason['current'][0]['price_flat']+' rent + $' +jason['current'][0]['price_day']+' per day'+"</span><i class='material-icons right'>more_vert</i></span>"+
-           "<p>"+ jason['current'][0]['price_flat']+"</p>"+
+           "<p>"+"</p>"+
          "</div>"+
          "<div class='card-reveal'>"+
           "<span class='card-title grey-text text-darken-4'>"+ jason['current'][0]['brand'] +' ' +jason['current'][0]['model']+' | <span style="color: #29b6f6; weight: bold">$' +jason['current'][0]['price_flat']+' rent + $' +jason['current'][0]['price_day']+' per day'+"</span><i class='material-icons right'>close</i></span>"+
@@ -118,7 +120,7 @@ function showUserData(id_user){
            "<li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Navigation'>navigation</i><a class='secondary-content'>"+ jason['current'][0]['price_day']+"</a></div></li>"+
            "<li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Luggage'>work</i><a class='secondary-content'>"+ jason['current'][0]['year']+"</a></div></li>"+
           "</ul>"+
-           
+
          "</div>"+
        "</div>"+
     "</div>"+
@@ -126,23 +128,24 @@ function showUserData(id_user){
     _("userFeedback").innerHTML=
 	 "<p>Your previous car was the "+jason['history'][0]['brand'] + " "+ jason['history'][0]['model']+", how did you enjoy it?</p>"+
             "<div class="+ "input-field col s12" +">"+
-              "<i class="+"material-icons prefix"+">mode_edit</i>"+
+              "<i class="+"'material-icons prefix'"+">mode_edit</i>"+
               "<textarea id="+"icon_prefix2"+" class="+"materialize-textarea"+"></textarea>"+
               "<label for="+"icon_prefix2"+">Message</label>"+
-              "<button class="+"btn waves-effect waves-light"+"onclick=message()"+ ">Send"+
-              "<i class="+"material-icons right"+">send</i>"+
+              "<button class="+"'btn waves-effect waves-light'"+"onclick=message()"+ ">Send"+
+              "<i class="+"'material-icons right'"+">send</i>"+
             "</button>"+
             "</div>";
+						  ajaxmaterialize(); //loads the scrips needed for materialize to run correctly; trying to force the DRY programming rule; located inside init.js
 } else if(obj=='undefined'){
-	 _("userData").innerHTML="<p>You are currently not renting! </p>";
+	 _("userData").innerHTML="<li><img id="+"image-test"+" class="+"'responsive-img hoverable'"+" src="+"img/error404.png"+"></li>";
 	 _("userFeedback").innerHTML=
 	 "<p>Your previous car was the "+jason['history'][0]['brand'] + " "+ jason['history'][0]['model']+", how did you enjoy it?</p>"+
             "<div class="+ "input-field col s12" +">"+
-              "<i class="+"material-icons prefix"+">mode_edit</i>"+
+              "<i class="+"'material-icons prefix'"+">mode_edit</i>"+
               "<textarea id="+"icon_prefix2"+" class="+"materialize-textarea"+"></textarea>"+
               "<label for="+"icon_prefix2"+">Message</label>"+
               "<button class="+"'btn waves-effect waves-light'"+"onclick=\"mess('"+ jason['history'][0]['id_car']  +"','"+  jason['history'][0]['id_user']+"')\""+ ">Send"+
-              "<i class="+"material-icons right"+">send</i>"+
+              "<i class="+"'material-icons right'"+">send</i>"+
             "</button>"+
             "</div>";
 
@@ -173,3 +176,26 @@ function mess(car,user){
 
 	}
 }
+
+function passChange(id){
+	var id_user=id;
+	var current=_("current_password").value;
+	var newpass=_("change_password").value;
+	var newconfirm=_("confirm_password").value;
+	if(current=="" || newpass=="" || newconfirm==""){
+		Materialize.toast("You did not fill in all the fields!", 3000 );
+
+	}
+	if(newpass != newconfirm){
+		Materialize.toast("New password and confirm password fields have to match!", 3000 );
+	}
+	var aja=ajaxObj("POST","php_includes/getUserData.php");
+	aja.onreadystatechange=function(){
+		if(ajaxReturn(aja)== true){
+			console.log(aja.responseText);
+			Materialize.toast(aja.responseText, 3000 );
+		}
+	}
+	aja.send("current="+current+"&newpass="+newpass+"&newconfirm="+newconfirm+"&id_user="+id_user);
+
+	}

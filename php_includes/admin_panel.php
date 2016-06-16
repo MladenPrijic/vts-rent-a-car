@@ -489,6 +489,11 @@ if(isset($_POST["id_userr"])){
 						        'username'=>$row["username"],
 						        'email'=>$row["email"],
 						        'phone'=>$row["phone"],
+						        'street'=>$row["street"],
+						        'city'=>$row["city"],
+						        'zip'=>$row["zip"],
+						        'country'=>$row["country"],
+						        
 						        
 
 						       
@@ -531,6 +536,20 @@ if(isset($_POST["id_userr"])){
 
 
 }
-			
+
+if(isset($_POST["id_car_rentt"])){
+	$id_car=$_POST["id_car_rentt"];
+	$sqls="SELECT * FROM car WHERE id_car='$id_car' LIMIT 1";
+	$res=mysqli_query($connect,$sqls);
+	$row=mysqli_fetch_array($res);
+	if($row["rented"] == 1){
+		echo "This car is already rented!";
+		exit();
+	}
+	$sql="UPDATE car SET rented=1 WHERE id_car='$id_car'";
+	if($connect->query($sql)){
+		echo "Car successefully rented!";
+	}
+}
 
     

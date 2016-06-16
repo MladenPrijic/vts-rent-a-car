@@ -44,7 +44,7 @@ if(isset($_POST["id_user"])){
 						        'datetaken'=>$date,
 						        'cityreturn'=>$rows["cityReturn"],
 						        'datereturn'=>$dater
-		                      
+
 				));
 	    $dat["current"]=$data;
 	    $data=[];
@@ -67,7 +67,7 @@ if(isset($_POST["id_user"])){
 						        'datereturn'=>$dater,
 						        'id_car'=>$car_id,
 						        'id_user'=>$id_user
-		                      
+
 				));
 
 
@@ -75,7 +75,7 @@ if(isset($_POST["id_user"])){
 	$dat["history"]=$data;
 	header('Content-Type:application/json;charset=utf-8');
 	echo json_encode($dat);
-	    
+
 
 
 
@@ -103,7 +103,7 @@ if(isset($_POST["id_user"])){
 						        'id_car'=>$car_id,
 						        'id_user'=>$id_user
 
-		                      
+
 				));
 
 
@@ -113,10 +113,10 @@ if(isset($_POST["id_user"])){
 	echo json_encode($dat);
 
 
-		
-		
+
+
 	}
-	
+
 }
 
 if(isset($_POST["user_id"])){
@@ -133,6 +133,40 @@ if(isset($_POST["user_id"])){
 	}
 	else{
 		echo mysqli_error($connect);
+	}
+
+}
+
+if(isset($_POST["newpass"])){
+	$current=$_POST["current"];
+	$new=$_POST["newpass"];
+	$conf=$_POST["newconfirm"];
+	$id_user=$_POST["id_user"];
+	$salt1="oug}|{05=>";
+  $salt2="y5-7|}h('{";
+	$pass=md5(md5($salt1) .md5($current) .md5($salt2));
+	$passNew=md5(md5($salt1) .md5($conf) .md5($salt2));
+
+
+	if(empty($current) || empty($new) || empty($conf)){
+		echo "You did not fill in all the fields!";
+		exit();
+	}
+	if($new != $conf){
+		echo "New password and confirm password fields have to match!";
+		exit();
+	}
+	$sql="SELECT * FROM user WHERE id_user='$id_user' AND password='$pass'";
+	$result=mysqli_query($connect,$sql);
+	if($result->num_rows > 0){
+		$sqls="UPDATE user SET password='$passNew' WHERE id_user='$id_user'";
+		if($connect->query($sqls)){
+			echo "Your password has been changed!";
+		}
+
+	}
+	else{
+		echo "You entered the wrong password!";
 	}
 
 }

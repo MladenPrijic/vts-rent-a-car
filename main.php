@@ -172,7 +172,7 @@ if(isset($_SESSION["id_user"])){
   </div>
   <div class="modal-footer">
     <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-    <button style="margin-right: 5px" class="btn waves-effect waves-light" type="submit" name="action" onclick="changepass()">Change Password
+    <button style="margin-right: 5px" class="btn waves-effect waves-light"  name="action" onclick="passChange(<?php echo $sess_name; ?> )">Change Password
     <i class="material-icons right">send</i>
   </button>
   </div>
@@ -189,7 +189,6 @@ if(isset($_SESSION["id_user"])){
       <div class="collapsible-body">
         <ul id="userData">
 
-        <!-- <li><img id="image-test" class="responsive-img hoverable" src="img/error404.png"></li> --> <!-- CAR NOT FOUND ERROR -->
         </ul>
       </div>
     </li>
@@ -199,15 +198,7 @@ if(isset($_SESSION["id_user"])){
       <div class="row">
         <form class="col s12" onclick="return false;">
           <div class="row" id="userFeedback">
-           <!--  <p>Your previous car was the "Ford Focus", how did you enjoy it?</p>
-            <div class="input-field col s12">
-              <i class="material-icons prefix">mode_edit</i>
-              <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-              <label for="icon_prefix2">Message</label>
-              <button class="btn waves-effect waves-light" type="submit" name="action">Send
-              <i class="material-icons right">send</i>
-            </button>
-            </div> -->
+
           </div>
         </form>
       </div>
@@ -453,6 +444,7 @@ if(isset($_SESSION["id_user"])){
   <script>
   //onload listener
   window.onload = function loadall(){
+    $('alarm_pickup').innerHTML = +3;
     init();
     Materialize.toast("Welcome "+ arr[0], 2000 );
   };
