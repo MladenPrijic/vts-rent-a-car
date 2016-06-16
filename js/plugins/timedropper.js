@@ -20,7 +20,7 @@
                     mousewheel: false,
                     setCurrentTime: true,
                     init_animation: "fadein",
-                    primaryColor: "#1977CC",
+                    primaryColor: "#ff7043",
                     borderColor: "#1977CC",
                     backgroundColor: "#FFF",
                     textColor: '#555'
