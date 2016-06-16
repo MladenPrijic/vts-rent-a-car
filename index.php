@@ -70,17 +70,17 @@ if(isset($_SESSION["id_user"])){
 
 	</script>
 
-  <nav class="light-blue lighten-1" role="navigation">
+  <nav class="blue-grey" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">VTS Rent-A-Car</a>
 		  <!-- Desktop Navigation -->
       <ul class="right hide-on-med-and-down">
-        <li><a class="waves-effect waves-light btn modal-trigger" href="#signup">Sign Up</a></li>
-        <li><a class="waves-effect waves-light btn modal-trigger" href="#login">Login</a></li>
+        <li><a class="deep-orange lighten-1 waves-effect waves-light btn modal-trigger" href="#signup">Sign Up</a></li>
+        <li><a class="deep-orange lighten-1 waves-effect waves-light btn modal-trigger" href="#login">Login</a></li>
       </ul>
       <!-- Mobile Navigation -->
       <ul id="nav-mobile" class="side-nav">
-        <li><a class="waves-effect waves-light btn modal-trigger" href="#signup">Sign Up</a></li>
-        <li><a class="waves-effect waves-light btn modal-trigger" href="#login">Login</a></li>
+        <li><a class="deep-orange lighten-1 waves-effect waves-light btn modal-trigger" href="#signup">Sign Up</a></li>
+        <li><a class="deep-orange lighten-1 waves-effect waves-light btn modal-trigger" href="#login">Login</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -152,8 +152,8 @@ if(isset($_SESSION["id_user"])){
 	</div>
   <div class="modal-footer">
 	    <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-			<a class="waves-effect waves-light btn" style="margin-left: 5px; margin-right: 5px" onClick="random();">Populate Forms <i class="material-icons right">input</i></a>
-	    <button class="btn waves-effect waves-light" type="submit" name="action" onclick="signup()">Sign Up
+			<a class="deep-orange lighten-1 waves-effect waves-light btn" style="margin-left: 5px; margin-right: 5px" onClick="random();">Populate Forms <i class="material-icons right">input</i></a>
+	    <button class="deep-orange lighten-1 btn waves-effect waves-light" type="submit" name="action" onclick="signup()">Sign Up
 	    <i class="material-icons right">send</i>
 	  	</button>
   </div>
@@ -181,7 +181,7 @@ if(isset($_SESSION["id_user"])){
 	</div>
 	  <div class="modal-footer">
 	    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-	    <button class="btn waves-effect waves-light" type="submit">Login
+	    <button class="deep-orange lighten-1 btn waves-effect waves-light" type="submit">Login
 	    <i class="material-icons right">send</i>
 	  	</button>
 	  </div>
@@ -207,8 +207,8 @@ if(isset($_SESSION["id_user"])){
 	    </div>
 	</div>
 	  <div class="modal-footer">
-	    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-	    <button class="btn waves-effect waves-light" type="submit">Request New Password
+	    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+	    <button class="deep-orange lighten-1 btn waves-effect waves-light" type="submit">Request New Password
 	    <i class="material-icons right">send</i>
 	  	</button>
 	  </div>
@@ -251,28 +251,22 @@ if(isset($_SESSION["id_user"])){
         <div class="col s12 m4">
           <div class="icon-block">
             <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
-            <h5 class="center">Speeds up development</h5>
-
-            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
-          </div>
+            <h5 class="center">Clean Code</h5>
+					</div>
         </div>
 
         <div class="col s12 m4">
           <div class="icon-block">
             <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
-            <h5 class="center">User Experience Focused</h5>
-
-            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
-          </div>
+            <h5 class="center">Fast and Minimal</h5>
+					</div>
         </div>
 
         <div class="col s12 m4">
           <div class="icon-block">
             <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
-            <h5 class="center">Easy to work with</h5>
-
-            <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
-          </div>
+            <h5 class="center">Easy to Use</h5>
+					</div>
         </div>
       </div>
 
@@ -282,7 +276,7 @@ if(isset($_SESSION["id_user"])){
   </div> <!-- End Info Container -->
 </main>
 
-	<footer class="page-footer orange" id="footer">
+	<footer class="page-footer blue-grey" id="footer">
 	  <div class="container">
 	    <div class="row">
 	      <div class="col s8">
@@ -290,8 +284,8 @@ if(isset($_SESSION["id_user"])){
 	      </div>
 	      <div class="col s4">
 	      <div class="right">
-	        <a style="margin-bottom: 5px" class="waves-effect waves-light btn modal-trigger" href="#faq">F.A.Q.</a>
-	        <a style="margin-bottom: 5px" class="waves-effect waves-light btn modal-trigger" href="#contact">Contact Us</a>
+	        <a style="margin-bottom: 5px" class="deep-orange lighten-1 waves-effect waves-light btn modal-trigger" href="#faq">F.A.Q.</a>
+	        <a style="margin-bottom: 5px" class="deep-orange lighten-1 waves-effect waves-light btn modal-trigger" href="#contact">Contact Us</a>
 	      </div>
 	      </div>
 	    </div>
@@ -368,7 +362,7 @@ if(isset($_SESSION["id_user"])){
 				    </div>
 						<div class="modal-footer">
 							<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-							<button class="btn waves-effect waves-light disabled" id="send_form" type="submit" disabled>Submit
+							<button class="deep-orange lighten-1 btn waves-effect waves-light disabled" id="send_form" type="submit" disabled>Submit
 							<i class="material-icons right">send</i>
 						</button>
 						</div>
@@ -391,7 +385,7 @@ if(isset($_SESSION["id_user"])){
 	//contact form enable button
 	function enableBtn(){
 	 document.getElementById("send_form").disabled = false;
-	 document.getElementById("send_form").className = "btn waves-effect waves-light modal-action modal-close";
+	 document.getElementById("send_form").className = "deep-orange lighten-1 btn waves-effect waves-light modal-action modal-close";
 	}
 	function sendform(){
 	 Materialize.toast("Contact Form Successfully Sent!", 3000 );

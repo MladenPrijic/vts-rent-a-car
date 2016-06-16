@@ -61,21 +61,23 @@ if(isset($_SESSION["id_user"])){
 </head>
 
 <body onload="adminLoadAll()">
-  <nav class="light-blue lighten-1" role="navigation">
+  <nav class="blue-grey" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Admin Dashboard</a>
 		  <!-- Desktop Navigation -->
 
       <ul class="right hide-on-med-and-down">
-        <li><a class="waves-effect waves-light btn modal-trigger" href="#insert_car"  >Insert Car</a></li>
-        <li><a class="waves-effect waves-light btn modal-trigger" href="#profile" id="bprofile" onclick="Materialize.toast('Press UPDATE to update your profile.', 4000)">Profile</a></li>
-        <li><a class="waves-effect waves-light btn" href="logout.php">Logout</a></li>  <!--force logout -->
+        <li><a class="deep-orange lighten-1 waves-effect waves-light btn" href="main.php" >MAIN</a></li>
+        <li><a class="deep-orange lighten-1 waves-effect waves-light btn modal-trigger" href="#insert_car" >Insert Car</a></li>
+        <li><a class="deep-orange lighten-1 waves-effect waves-light btn modal-trigger" href="#profile" id="bprofile" onclick="Materialize.toast('Press UPDATE to update your profile.', 4000)">Profile</a></li>
+        <li><a class="deep-orange lighten-1 waves-effect waves-light btn" href="logout.php">Logout</a></li>  <!--force logout -->
       </ul>
 
       <!-- Mobile Navigation -->
       <ul id="nav-mobile" class="side-nav">
-        <li><a class="waves-effect waves-light btn modal-trigger" href="#insert_car" >Insert Car</a></li>
-        <li><a class="waves-effect waves-light btn modal-trigger" href="#profile">Profile</a></li>
-        <li><a class="waves-effect waves-light btn" href="logout.php">Logout</a></li>  <!--force logout -->
+        <li><a class="deep-orange lighten-1 waves-effect waves-light btn modal-trigger" href="main.php" >MAIN</a></li>
+        <li><a class="deep-orange lighten-1 waves-effect waves-light btn modal-trigger" href="#insert_car" >Insert Car</a></li>
+        <li><a class="deep-orange lighten-1 waves-effect waves-light btn modal-trigger" href="#profile">Profile</a></li>
+        <li><a class="deep-orange lighten-1 waves-effect waves-light btn" href="logout.php">Logout</a></li>  <!--force logout -->
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -146,7 +148,7 @@ if(isset($_SESSION["id_user"])){
   </div>
   <div class="modal-footer">
     <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-    <button class="btn waves-effect waves-light" type="submit" name="action" onclick="update()">Update
+    <button class="deep-orange lighten-1 btn waves-effect waves-light" type="submit" name="action" onclick="update()">Update
     <i class="material-icons right">send</i>
     </button>
   </div>
@@ -241,7 +243,7 @@ if(isset($_SESSION["id_user"])){
 </div>
   <div class="modal-footer">
     <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-    <button class="btn waves-effect waves-light" type="submit" name="action" onclick="insertCar()">Insert
+    <button class="deep-orange lighten-1 btn waves-effect waves-light" type="submit" name="action" onclick="insertCar()">Insert
     <i class="material-icons right">send</i>
     </button>
   </div>
@@ -288,13 +290,6 @@ if(isset($_SESSION["id_user"])){
         </div>
       </div>
         <div class="collection list" id="userDisplay">
-          <!-- <a href="#user_modal" class="collection-item modal-trigger">Alvin<span class="badge">click me</span></a>
-          <a href="#!" class="collection-item">Alvin<span class="badge">renting (car name)</span></a>
-          <a href="#!" class="collection-item">Alvin</a>
-          <a href="#!" class="collection-item">Alvin</a>
-          <a href="#user_modal" class="collection-item modal-trigger">Damir<span class="badge">click me</span></a>
-          <a href="#!" class="collection-item">Alvin</a>
-          <a href="#!" class="collection-item">Alvin</a> -->
         </div>
       </div>
 
@@ -310,17 +305,20 @@ if(isset($_SESSION["id_user"])){
   <div class="row">
     <form name="register" onclick="return false;" class="col s12">
       <div class="row">
-        <div class="input-field col l4 m4 s6">
-          <p id="firstname"> </p>
-        </div>
-        <div class="input-field col l4 m4 s6">
-           <p id="lastname"> </p>
+        <div class="input-field col l4 m4 s12">
+          <input disabled id="firstname" value="" type="text" class="light-blue-text validate">
+          <label for="firstname">First Name</label>
         </div>
         <div class="input-field col l4 m4 s12">
-           <p id="usernamee"> </p>
+          <input disabled id="lastname" value="" type="text" class="light-blue-text validate">
+          <label for="lastname">Last Name</label>
+        </div>
+        <div class="input-field col l4 m4 s12">
+          <input disabled id="usernamee" value="" type="text" class="light-blue-text validate">
+          <label for="usernamee">Username</label>
         </div>
       </div>
-      <button style="margin-right: 5px" class="btn waves-effect waves-light modal-trigger" href="#more_info" type="submit" name="action">More Info
+      <button style="margin-right: 5px" class="deep-orange lighten-1 btn waves-effect waves-light modal-trigger" href="#more_info" type="submit" name="action">More Info
       <i class="material-icons right">send</i>
       </button>
       <div class="row">
@@ -355,10 +353,10 @@ if(isset($_SESSION["id_user"])){
   </div>
   <div class="modal-footer">
     <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-    <button style="margin-right: 5px" class="btn waves-effect waves-light" type="submit" name="action" onclick="user_update()">Update
+    <button style="margin-right: 5px" class="deep-orange lighten-1 btn waves-effect waves-light" type="submit" name="action" onclick="user_update()">Update
     <i class="material-icons right">send</i>
     </button>
-    <button style="margin-right: 5px" class="btn waves-effect waves-light" type="submit" name="action" onclick="user_update()">Delete
+    <button style="margin-right: 5px" class="deep-orange lighten-1 btn waves-effect waves-light" type="submit" name="action" onclick="user_update()">Delete
     <i class="material-icons right">send</i>
     </button>
   </div>
@@ -371,36 +369,44 @@ if(isset($_SESSION["id_user"])){
     <form name="register" onclick="return false;" class="col s12">
       <div class="row">
         <div class="input-field col l4 m4 s6">
-        <!-- <label >Last Name</label> -->
-          <p id="firstnamee"> </p>
+          <input disabled id="firstnamee" value="" type="text" class="light-blue-text validate">
+          <label for="firstname">First Name</label>
         </div>
         <div class="input-field col l4 m4 s6">
-          <p id="lastnamee"> </p>
+          <input disabled id="lastnamee" value="" type="text" class="light-blue-text validate">
+          <label for="lastnamee">Last Name</label>
         </div>
         <div class="input-field col l4 m4 s12">
-          <p id="usernam"> </p>
+          <input disabled id="usernam" value="" type="text" class="light-blue-text validate">
+          <label for="usernam">Username</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s6">
-          <p id="phonee"> </p>
+          <input disabled id="phonee" value="" type="text" class="light-blue-text validate">
+          <label for="phonee">Phone</label>
         </div>
         <div class="input-field col s6">
-          <p id="emaill"> </p>
+          <input disabled id="emaill" value="" type="text" class="light-blue-text validate">
+          <label for="emaill">Email</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col l3 m3 s6">
-          <p id="addresss"> </p>
+          <input disabled id="addresss" value="" type="text" class="light-blue-text validate">
+          <label for="addresss">Address</label>
         </div>
         <div class="input-field col l3 m3 s6">
-         <p id="cityy"> </p>
+          <input disabled id="cityy" value="" type="text" class="light-blue-text validate">
+          <label for="cityy">City</label>
         </div>
         <div class="input-field col l3 m3 s6">
-          <p id="zipp"> </p>
+          <input disabled id="zipp" value="" type="text" class="light-blue-text validate">
+          <label for="zipp">Zip</label>
         </div>
         <div class="input-field col l3 m3 s6">
-          <p id="countryy"> </p>
+          <input disabled id="countryy" value="" type="text" class="light-blue-text validate">
+          <label for="countryy">Country</label>
         </div>
       </div>
     </form>
@@ -408,7 +414,7 @@ if(isset($_SESSION["id_user"])){
   </div>
   <div class="modal-footer">
     <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-    <button class="btn waves-effect waves-light" type="submit" name="action" onclick="update()">Update
+    <button class="deep-orange lighten-1 btn waves-effect waves-light" type="submit" name="action" onclick="update()">Update
     <i class="material-icons right">send</i>
     </button>
   </div>
@@ -418,7 +424,7 @@ if(isset($_SESSION["id_user"])){
 </main>
 
 
-<footer class="page-footer orange" id="footer">
+<footer class="page-footer blue-grey" id="footer">
   <div class="container">
     <div class="row">
       <div class="col s12">
@@ -444,9 +450,6 @@ if(isset($_SESSION["id_user"])){
 
   <!-- material-scrolltop plugin -->
   <script src="js/plugins/material-scrolltop.js"></script>
-
-  <!-- onload all cars -->
-  <script src="js/all_onload.js"></script>
 
   <!-- select id="cars" for looking at all, rented and free cars -->
   <script src="js/admin.js"></script>

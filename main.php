@@ -57,19 +57,21 @@ if(isset($_SESSION["id_user"])){
 
 <body onload="init()"> <!-- Loading the init function located inside init.js -->
 
-  <nav class="light-blue lighten-1" role="navigation">
+  <nav class="blue-grey" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" onclick="init()" class="brand-logo" style="cursor: pointer;">Dashboard</a>
       <!-- Desktop Navigation -->
       <ul class="right hide-on-med-and-down">
-        <li><a class="waves-effect waves-light btn modal-trigger" href="#cars" onclick="showUserData(<?php echo $sess_name; ?> )">Cars</a></li>
-        <li><a class="waves-effect waves-light btn modal-trigger" href="#profile" id="bprofile">Profile</a></li>
-        <li><a class="waves-effect waves-light btn" href="logout.php">Logout</a></li>  <!--force logout -->
+        <li><a class="deep-orange lighten-1 waves-effect waves-light btn" href="admin.php" >ADMIN</a></li> <!-- HIDDEN IF THE USER ISN'T AN ADMIN -->
+        <li><a class="deep-orange lighten-1 waves-effect waves-light btn modal-trigger" href="#cars" onclick="showUserData(<?php echo $sess_name; ?> )">Cars</a></li>
+        <li><a class="deep-orange lighten-1 waves-effect waves-light btn modal-trigger" href="#profile" id="bprofile">Profile</a></li>
+        <li><a class="deep-orange lighten-1 waves-effect waves-light btn" href="logout.php">Logout</a></li>  <!--force logout -->
       </ul>
       <!-- Mobile Navigation -->
       <ul id="nav-mobile" class="side-nav">
-        <li><a class="waves-effect waves-light btn modal-trigger" href="#cars">Cars</a></li>
-        <li><a class="waves-effect waves-light btn modal-trigger" href="#profile">Profile</a></li>
-        <li><a class="waves-effect waves-light btn" href="logout.php">Logout</a></li>  <!--force logout -->
+        <li><a class="deep-orange lighten-1 waves-effect waves-light btn" href="admin.php" >ADMIN</a></li> <!-- HIDDEN IF THE USER ISN'T AN ADMIN -->
+        <li><a class="deep-orange lighten-1 waves-effect waves-light btn modal-trigger" href="#cars">Cars</a></li>
+        <li><a class="deep-orange lighten-1 waves-effect waves-light btn modal-trigger" href="#profile">Profile</a></li>
+        <li><a class="deep-orange lighten-1 waves-effect waves-light btn" href="logout.php">Logout</a></li>  <!--force logout -->
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -137,7 +139,7 @@ if(isset($_SESSION["id_user"])){
   </div>
   <div class="modal-footer">
     <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-    <button class="btn waves-effect waves-light" type="submit" name="action" onclick="update()">Update
+    <button class="deep-orange lighten-1 btn waves-effect waves-light" type="submit" name="action" onclick="update()">Update
     <i class="material-icons right">send</i>
   </button>
   </div>
@@ -172,7 +174,7 @@ if(isset($_SESSION["id_user"])){
   </div>
   <div class="modal-footer">
     <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-    <button style="margin-right: 5px" class="btn waves-effect waves-light"  name="action" onclick="passChange(<?php echo $sess_name; ?> )">Change Password
+    <button style="margin-right: 5px" class="deep-orange lighten-1 btn waves-effect waves-light"  name="action" onclick="passChange(<?php echo $sess_name; ?> )">Change Password
     <i class="material-icons right">send</i>
   </button>
   </div>
@@ -237,8 +239,8 @@ if(isset($_SESSION["id_user"])){
         </div>
 
         <!-- Select the date and time, limited to current year + 4 -->
-        <input class="waves-effect waves-light btn-large" style="margin-top: 10px; width: 150px" placeholder="Select a date" type="text" id="departure_pickup" />
-        <input class="waves-effect waves-light btn-large" style="margin-top: 10px; width: 100px" type="text" id="alarm_pickup" />
+        <input class="deep-orange lighten-1 waves-effect waves-light btn-large" style="margin-top: 10px; width: 150px" placeholder="Select a date" type="text" id="departure_pickup" />
+        <input class="deep-orange lighten-1 waves-effect waves-light btn-large" style="margin-top: 10px; width: 100px" type="text" id="alarm_pickup" />
         </div>
       </div>
     </div>
@@ -259,8 +261,8 @@ if(isset($_SESSION["id_user"])){
           </div>
 
         <!-- Select the date and time, limited to current year + 4 -->
-        <input class="waves-effect waves-light btn-large" style="margin-top: 10px; width: 150px" placeholder="Select a date" type="text" id="departure_return" />
-        <input class="waves-effect waves-light btn-large" style="margin-top: 10px; width: 100px" type="text" id="alarm_return" />
+        <input class="deep-orange lighten-1 waves-effect waves-light btn-large" style="margin-top: 10px; width: 150px" placeholder="Select a date" type="text" id="departure_return" />
+        <input class="deep-orange lighten-1 waves-effect waves-light btn-large" style="margin-top: 10px; width: 100px" type="text" id="alarm_return" />
         </div>
      </div>
     </div>
@@ -280,7 +282,7 @@ if(isset($_SESSION["id_user"])){
 
 </main>
 
-<footer class="page-footer orange" id="footer">
+<footer class="page-footer blue-grey" id="footer">
   <div class="container">
     <div class="row">
       <div class="col s8">
@@ -288,8 +290,8 @@ if(isset($_SESSION["id_user"])){
       </div>
       <div class="col s4">
       <div class="right">
-        <a style="margin-bottom: 5px" class="waves-effect waves-light btn modal-trigger" href="#faq">F.A.Q.</a>
-        <a style="margin-bottom: 5px" class="waves-effect waves-light btn modal-trigger" href="#contact">Contact Us</a>
+        <a style="margin-bottom: 5px" class="deep-orange lighten-1 waves-effect waves-light btn modal-trigger" href="#faq">F.A.Q.</a>
+        <a style="margin-bottom: 5px" class="deep-orange lighten-1 waves-effect waves-light btn modal-trigger" href="#contact">Contact Us</a>
       </div>
       </div>
     </div>
@@ -328,7 +330,7 @@ if(isset($_SESSION["id_user"])){
             <div class="row">
               <div class="input-field col s12">
                 <i class="material-icons prefix">mode_edit</i>
-                <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+                <textarea id="icon_prefix2" class="materialize-textarea" length="600"></textarea>
                 <label for="icon_prefix2">Message</label>
               </div>
             </div>

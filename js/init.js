@@ -51,6 +51,26 @@ function info(car_num) {
 
     var rtime = document.getElementById('alarm_return').value;
 
+    function calculate() {
+      calc = 0;
+      diff = 0;
+      if (rdate_month == pdate_month) {
+        diff = rdate_day - pdate_day + 1;
+        justdoit()
+      } else if ( rdate_month == parseInt(pdate_month) + 1 ) {
+        diff = parseInt(rdate_day) + 30 - pdate_day + 1;
+        justdoit()
+      } else {
+        Materialize.toast("You CAN'T Rent a car for more then a month at a time.", 3000 );
+      }
+
+      function justdoit() {
+        calc = 70 + 10 * diff; //treba staviti da ovde bude cena auta flat + po danu
+        console.log(calc);
+        Materialize.toast("Your order is $"+calc, 6000 ); }
+      }
+
+
     var city_pickup=document.getElementById('city_pickup').value;
     var city_return=document.getElementById('city_return').value;
 
@@ -70,7 +90,7 @@ function info(car_num) {
     console.log("City for return: " +city_return );
     console.log("Pickup Date: "+pdate);
     console.log("Return Date: "+rdate);
-    //console.log(rtime > ptime);
+    calculate();
     /////////////////////////////////////////////////////////
     // var ajaxx=ajaxObj("POST","php_includes/rent.php");
     //     ajaxx.onreadystatechange=function(){
@@ -85,7 +105,7 @@ function info(car_num) {
     ///////////////////////////////
     swal({
       title: 'Are you sure?',
-      text: "Your order will be captured!",
+      text: "Your order of $"+ calc +" will be captured!",
       type: 'question',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
