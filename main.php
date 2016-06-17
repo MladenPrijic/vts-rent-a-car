@@ -43,6 +43,9 @@ elseif(!isset($_SESSION["id_user"])){
   <!-- iOS Safari -->
   <meta name="apple-mobile-web-app-status-bar-style" content="#607d8b">
 
+  <!-- EAGER  -->
+  <script src="//fast.eager.io/w1gPT0mhb2.js"></script>
+
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
   <!-- CSS  -->

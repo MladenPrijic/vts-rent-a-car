@@ -48,6 +48,9 @@ elseif(!isset($_SESSION["id_user"])){
 
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
+  <!-- EAGER  -->
+  <script src="//fast.eager.io/w1gPT0mhb2.js"></script>
+
   <!-- CSS  -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" type="text/css" href="css/materialize.min.css" media="screen,projection"/>
