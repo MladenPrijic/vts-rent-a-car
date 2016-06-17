@@ -39,6 +39,12 @@ elseif(!isset($_SESSION["id_user"])){
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-TileImage" content="img/favicon/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#607d8b">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#607d8b">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="#607d8b">
 
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 

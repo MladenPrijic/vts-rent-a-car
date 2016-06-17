@@ -6,7 +6,7 @@ if(isset($_SESSION["id_user"])){
 }
 elseif(!isset($_SESSION["id_user"])){
   header("Location: index.php");
-  } 
+  }
   $sql="SELECT * FROM user WHERE id_user='$sess_name' LIMIT 1";
   $result=mysqli_query($connect,$sql);
   $row=mysqli_fetch_array($result);
@@ -36,6 +36,12 @@ elseif(!isset($_SESSION["id_user"])){
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-TileImage" content="img/favicon/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#607d8b">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#607d8b">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="#607d8b">
 
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
@@ -69,7 +75,7 @@ elseif(!isset($_SESSION["id_user"])){
       <!-- Desktop Navigation -->
       <ul class="right hide-on-med-and-down">
       <?php if($row["admin"] ==1 ){ ?>
-        <li><a class="deep-orange lighten-1 waves-effect waves-light btn" href="admin.php" >ADMIN</a></li> 
+        <li><a class="deep-orange lighten-1 waves-effect waves-light btn" href="admin.php" >ADMIN</a></li>
         <?php } ?>
         <li><a class="deep-orange lighten-1 waves-effect waves-light btn modal-trigger" href="#cars" onclick="showUserData(<?php echo $sess_name; ?> )">Cars</a></li>
         <li><a class="deep-orange lighten-1 waves-effect waves-light btn modal-trigger" href="#profile" id="bprofile">Profile</a></li>
