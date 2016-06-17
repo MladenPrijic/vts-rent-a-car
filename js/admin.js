@@ -306,7 +306,6 @@ function show(id,name){
          "</div>"+
          "<div class='card-content'>"+
            "<span class='card-title activator grey-text text-darken-4'>"+ jason["rented"][0]['brand'] +' ' +jason["rented"][0]['model']+' | <span style="color: #29b6f6; weight: bold">$' +jason["rented"][0]['price_flat']+' rent + $' +jason["rented"][0]['price_day']+' per day'+"</span><i class='material-icons right'>more_vert</i></span>"+
-           "<p>"+ jason["rented"][0]['price_flat']+"</p>"+
          "</div>"+
          "<div class='card-reveal'>"+
           "<span class='card-title grey-text text-darken-4'>"+ jason["rented"][0]['brand'] +' ' +jason["rented"][0]['model']+' | <span style="color: #29b6f6; weight: bold">$' +jason["rented"][0]['price_flat']+' rent + $' +jason["rented"][0]['price_day']+' per day'+"</span><i class='material-icons right'>close</i></span>"+
@@ -318,6 +317,8 @@ function show(id,name){
            "<li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Price Per Day'>credit_card</i><a class='secondary-content'>"+ jason["rented"][0]['price_day']+"</a></div></li>"+
            "<li class='collection-item'><div><i class='material-icons tooltipped' data-position='right' data-delay='50' data-tooltip='Year'>today</i><a class='secondary-content'>"+ jason["rented"][0]['year']+"</a></div></li>"+
           "</ul>"+
+          "<button style='margin-right: 5px; margin-bottom: 5px'  class='deep-orange lighten-1 btn waves-effect waves-light' onclick=\"free( '"+ jason["rented"][0]['id_car']+"' )\" type='submit' name='action' id='"+jason["rented"][0]['id_car'] +" ' >Free"+
+          "<i class='material-icons left'>done</i></button>"+
 
          "</div>"+
        "</div>"+

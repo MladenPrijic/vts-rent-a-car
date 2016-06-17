@@ -30,7 +30,7 @@ if(isset($_POST["forgot_username"])){
         $headers .= "MIME-Version: 1.0\n";
         $headers .= "Content-type: text/html; charset=iso-8859-1\n";
 		mail($to, $subject, $mess, $headers);
-		header("Location: index.php?mess=1")
+		header("Location: index.php?mess=1");
 		exit();
 	}
 

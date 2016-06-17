@@ -5,6 +5,9 @@ if(isset($_SESSION["id_user"])){
 	header("Location: main.php");
 }
 
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -44,6 +47,7 @@ if(isset($_SESSION["id_user"])){
 
 </head>
 <body>
+
 
 	<!-- JavaScript Before -->
 	<script type="text/javascript" src='https://www.google.com/recaptcha/api.js'></script>
@@ -193,7 +197,7 @@ if(isset($_SESSION["id_user"])){
   <div class="modal-content">
 	    <h4>Noob</h4>
 	    <p>Username and Email please.</p>
-  	<form   class="col s12" onclick="return false;">
+  	<form   class="col s12" method="POST" action="forgot.php">
 	    <div class="row">
 	      <div class="input-field col s12">
 	        <input id="forgot_username" name="forgot_username" type="text" class="validate">
@@ -209,7 +213,7 @@ if(isset($_SESSION["id_user"])){
 	</div>
 	  <div class="modal-footer">
 	    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-	    <button class="deep-orange lighten-1 btn waves-effect waves-light" type="submit" onclick="forgotpass()">Request New Password
+	    <button class="deep-orange lighten-1 btn waves-effect waves-light" type="submit" >Request New Password
 	    <i class="material-icons right">send</i>
 	  	</button>
 	  </div>

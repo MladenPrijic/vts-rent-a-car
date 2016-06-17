@@ -194,7 +194,7 @@ function passChange(id){
 	aja.onreadystatechange=function(){
 		if(ajaxReturn(aja)== true){
 			
-			Materialize.toast(aja.responseText, 3000 );
+			Materialize.toast("Password successefully changed!", 3000 );
 		}
 	}
 	aja.send("current="+current+"&newpass="+newpass+"&newconfirm="+newconfirm+"&id_user="+id_user);

@@ -361,7 +361,7 @@ if(isset($_POST["b"])){
 	$navigation=$_POST["n"];
 	$description=mysqli_real_escape_string($connect,$_POST["de"]);
 
-	if(empty($brand) || empty($model) || empty($year) || empty($pricef) || empty($priced) || empty($location) || empty($seats) || empty($doors) || empty($automatic) ||  empty($air_conditioning) || empty($luggage) || empty($navigation) || empty($description) || empty($image) ){
+	if(empty($brand) || empty($model) || empty($year) || empty($pricef) || empty($priced) || empty($location) || empty($seats) || empty($doors) || empty($luggage) || empty($description) || empty($image) ){
 		echo "You did not fill in all the fields!";
 	}
 	else{
