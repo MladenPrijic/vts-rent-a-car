@@ -91,12 +91,12 @@ function showUserData(id_user){
 	var ajax=ajaxObj("POST","php_includes/getUserData.php");
 	ajax.onreadystatechange=function(){
 		if(ajaxReturn(ajax) == true){
-			
+
 			var jason=JSON.parse(ajax.responseText);
 			var obj=typeof jason['current'];
-			
+
 			var i=jason.length;
-	        
+
 	        if(obj != 'undefined'){
 	        _("userData").innerHTML=
 	    "<li>"+
@@ -135,7 +135,15 @@ function showUserData(id_user){
               "<i class="+"'material-icons right'"+">send</i>"+
             "</button>"+
             "</div>";
-						  ajaxmaterialize(); //loads the scrips needed for materialize to run correctly; trying to force the DRY programming rule; located inside init.js
+						$(document).ready(function(){
+						$('.tooltipped').tooltip({delay: 50});
+						});
+						document.getElementById("footer").style.display = "block";
+						//preloader.off();
+						$(document).ready(function(){
+							// the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+							$('.modal-trigger').leanModal();
+						});
 } else if(obj=='undefined'){
 
 	 _("userData").innerHTML="<li><img id="+"image-test"+" class="+"'responsive-img hoverable'"+" src="+"img/error404.png"+"></li>";
@@ -193,7 +201,7 @@ function passChange(id){
 	var aja=ajaxObj("POST","php_includes/getUserData.php");
 	aja.onreadystatechange=function(){
 		if(ajaxReturn(aja)== true){
-			
+
 			Materialize.toast("Password successefully changed!", 3000 );
 		}
 	}

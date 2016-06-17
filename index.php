@@ -5,9 +5,6 @@ if(isset($_SESSION["id_user"])){
 	header("Location: main.php");
 }
 
-
-
-
 ?>
 
 <!DOCTYPE html>
