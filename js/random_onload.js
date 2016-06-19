@@ -68,22 +68,16 @@ function random_cars(){
        "</div>"+
     "</div>"+
     "</li>";
-
-
-}
-
-
+			}
 		}
-
   ajaxmaterialize(); //loads the scrips needed for materialize to run correctly; trying to force the DRY programming rule; located inside init.js
 
 	}
 	ajax.send("some");
 
-
 }
 
-//Shows the current car of the user and history, so he/she can make a comment
+//Shows the current car of the user and history, so they can make a comment
 function showUserData(id_user){
 	var id_user=id_user;
 	_("userData").innerHTML="";

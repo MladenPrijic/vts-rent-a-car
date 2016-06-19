@@ -162,7 +162,6 @@ elseif(!isset($_SESSION["id_user"])){
 </footer>
 
   <!-- JavaScript After -->
-  <script src="js/getData.js"></script>
   <script src="js/init.js"></script>
   <script src="js/pages/admin.js"></script>
   <script src="js/plugins/jquery.hideseek.min.js"></script>

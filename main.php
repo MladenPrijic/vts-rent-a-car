@@ -112,7 +112,7 @@ elseif(!isset($_SESSION["id_user"])){
         <div class="center">
 
         <div class="input-field col l6 m12 s12">
-          <select id="city_pickup" onchange="getData()">
+          <select id="city_pickup" onchange="city_car()">
             <option value="choose" disabled selected>Choose your City</option>
             <option value="Subotica">Subotica</option>
             <option value="Novi Sad">Novi Sad</option>
@@ -186,7 +186,6 @@ elseif(!isset($_SESSION["id_user"])){
 </footer>
 
   <!-- JavaScript After -->
-  <script src="js/getData.js"></script>
   <script src="js/init.js"></script>
   <script src="js/pages/main.js"></script>
 
@@ -201,9 +200,6 @@ elseif(!isset($_SESSION["id_user"])){
 
   <!-- material-scrolltop plugin -->
   <script src="js/plugins/material-scrolltop.js"></script>
-
-  <!-- onload random cars -->
-  <script src="js/random_onload.js"></script>
 
   <!-- Initialize material-scrolltop -->
   <script>$('body').materialScrollTop();</script>
