@@ -3,9 +3,7 @@ session_start();
 
 if(isset($_SESSION["id_user"])){
 	header("Location: main.php");
-}
-
-?>
+} ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,6 +29,7 @@ if(isset($_SESSION["id_user"])){
 	<meta name="msapplication-TileColor" content="#ffffff">
 	<meta name="msapplication-TileImage" content="img/favicon/ms-icon-144x144.png">
 	<meta name="theme-color" content="#ffffff">
+
 	<!-- Chrome, Firefox OS and Opera -->
 	<meta name="theme-color" content="#607d8b">
 	<!-- Windows Phone -->
@@ -38,6 +37,10 @@ if(isset($_SESSION["id_user"])){
 	<!-- iOS Safari -->
 	<meta name="apple-mobile-web-app-status-bar-style" content="#607d8b">
 
+	<!-- EAGER  -->
+  <script src="//fast.eager.io/w1gPT0mhb2.js"></script>
+
+	<!-- jQuery -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
 	<!-- CSS  -->
@@ -45,17 +48,14 @@ if(isset($_SESSION["id_user"])){
   <link rel="stylesheet" type="text/css" href="css/materialize.min.css" media="screen,projection"/>
   <link rel="stylesheet" type="text/css" href="css/custom.css" media="screen,projection"/>
   <link rel="stylesheet" type="text/css" href="css/material-scrolltop.css">
-  <link rel="stylesheet" type="text/css" href="css/sweetalert2.css">
 	<link rel="stylesheet" type="text/css" href="css/materialPreloader.min.css">
 
 </head>
 <body>
 
-
 	<!-- JavaScript Before -->
 	<script type="text/javascript" src='https://www.google.com/recaptcha/api.js'></script>
   <script type="text/javascript" src="js/plugins/materialize.min.js"></script>
-  <script type="text/javascript" src="js/plugins/sweetalert2.js"></script>
 	<script type="text/javascript" src="js/plugins/chance.min.js"/> </script>
 	<script type="text/javascript" src="js/plugins/materialPreloader.min.js"></script>
   <script type="text/javascript" src="js/register.js"/> </script>
@@ -74,10 +74,11 @@ if(isset($_SESSION["id_user"])){
 					fadeOut: 200
 			});
 
-	preloader.on();
+		preloader.on();
 
 	</script>
 
+	<!-- Navigation -->
   <nav class="blue-grey" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">VTS Rent-A-Car</a>
 		  <!-- Desktop Navigation -->
@@ -94,143 +95,17 @@ if(isset($_SESSION["id_user"])){
     </div>
   </nav>
 
-<!-- Modal Structure -->
-<div id="signup" class="modal"> <!-- Start Signup Modal -->
-	  <div class="modal-content">
-	    <h4>Sign Up</h4>
-	    <span id="error"></span>
-	    <p>We need a lot of data for remarketing purposes, so please fill all of these in :) We sell your data to 3rd parties.</p>
-	    <div class="row">
-	  <form name="register" onclick="return false;" class="col s12">
-	    <div class="row">
-	      <div class="input-field col l4 m4 s6">
-	        <input id="fName" name="fName" type="text" class="validate">
-	        <label for="fName">First Name</label>
-	      </div>
-	      <div class="input-field col l4 m4 s6">
-	        <input id="lName" name="lName"  type="text" class="validate">
-	        <label for="lName">Last Name</label>
-	      </div>
-	      <div class="input-field col l4 m4 s12">
-	        <input id="username" name="username" type="text" class="validate" onkeyup="limit('username')" onblur="check_username()">
-	        <span id="check_name" ></span> <!--change to popup -->
-	        <label for="username">Username</label>
-	      </div>
-	    </div>
-	    <div class="row">
-	      <div class="input-field col s6">
-	        <input id="phone" name="phone" type="number" class="validate">
-	        <label for="phone">Phone</label>
-	      </div>
-	      <div class="input-field col s6">
-	        <input id="email" name="email" type="text" class="validate" onkeyup="limit('email')">
-	        <label for="email">Email</label>
-	      </div>
-	    </div>
-	    <div class="row">
-	      <div class="input-field col s6">
-	        <input id="password" name="password" type="password" class="validate">
-	        <label for="password">Password</label>
-	      </div>
-	      <div class="input-field col s6">
-	        <input id="confirm_password" name="confirm_password" type="password" class="validate">
-	        <label for="password">Repeat Password</label>
-	      </div>
-	    </div>
-	    <div class="row">
-	      <div class="input-field col l3 m3 s6">
-	        <input id="street" name="street" type="text" class="validate">
-	        <label for="street">Address</label>
-	      </div>
-	      <div class="input-field col l3 m3 s6">
-	        <input id="city" name="city" type="text" class="validate">
-	        <label for="city">City</label>
-	      </div>
-	      <div class="input-field col l3 m3 s6">
-	        <input id="zip" name="zip" type="number" class="validate">
-	        <label for="zip">Zip</label>
-	      </div>
-	      <div class="input-field col l3 m3 s6">
-	        <input id="country" name="country" type="text" class="validate">
-	        <label for="country">Country</label>
-	      </div>
-	    </div>
-	  </form>
-	</div>
-	</div>
-  <div class="modal-footer">
-	    <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-			<a class="deep-orange lighten-1 waves-effect waves-light btn" style="margin-left: 5px; margin-right: 5px" onClick="random();">Populate Forms <i class="material-icons right">input</i></a>
-	    <button class="deep-orange lighten-1 btn waves-effect waves-light" type="submit" name="action" onclick="signup()">Sign Up
-	    <i class="material-icons right">send</i>
-	  	</button>
-  </div>
-</div> <!-- End Signup Modal -->
+<!-- Include Modals -->
+<?php include("include/index_modals.html");?>
 
-<div id="login" class="modal"> <!-- Start Login Modal -->
-  <div class="modal-content">
-	    <h4>Login</h4>
-	    <p>Fill in your login info.</p>
 
-  	<div  class="col s12">
-	    <div class="row">
-	      <div class="input-field col s12">
-	        <input id="login_username" name="login_username" type="text" class="validate" onblur="check_name()">
-	        <label for="login_username">Username</label>
-	      </div>
-	    </div>
-	    <div class="row">
-	      <div class="input-field col s12">
-	        <input id="login_password" name="login_password" type="password" class="validate">
-	        <label for="login_password">Password</label>
-	      </div>
-			<label style="margin-left: 12px"><a class="modal-trigger" href="#forgot" >Forgot Password?</a></label>
-	    </div>
-	</div>
-	  <div class="modal-footer">
-	    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-	    <button class="deep-orange lighten-1 btn waves-effect waves-light" onclick="login()">Login
-	    <i class="material-icons right">send</i>
-	  	</button>
-	  </div>
-	</div>
-</div> <!-- End Login Modal -->
-
-<div id="forgot" class="modal modal-fixed-footer bottom-sheet"> <!-- Start Forgot Password Modal -->
-  <div class="modal-content">
-	    <h4>Noob</h4>
-	    <p>Username and Email please.</p>
-  	<form   class="col s12" method="POST" action="forgot.php">
-	    <div class="row">
-	      <div class="input-field col s12">
-	        <input id="forgot_username" name="forgot_username" type="text" class="validate">
-	        <label for="forgot_username">Username</label>
-	      </div>
-	    </div>
-	    <div class="row">
-				<div class="input-field col s12">
-	        <input id="email" name="email" type="text" class="validate">
-	        <label for="email">Email</label>
-	      </div>
-	    </div>
-	</div>
-	  <div class="modal-footer">
-	    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-	    <button class="deep-orange lighten-1 btn waves-effect waves-light" type="submit" >Request New Password
-	    <i class="material-icons right">send</i>
-	  	</button>
-	  </div>
-	</form>
-</div> <!-- End Forgot Password Modal -->
-
-<div class="container"> <!-- Start Banner Container -->
+<!-- Start Banner Container -->
+<div class="container">
    <div class="row center">
 	    <h1 class="header center orange-text">VTS Rent-a-Car</h1>
 	    <img id="image-test" class="responsive-img hoverable" src="img/intro.jpg">
    </div>
-
-
-	<div class="section no-pad-bot" id="index-banner">
+	 <div class="section no-pad-bot" id="index-banner">
 		<div class="row center">
 		 <ul class="collapsible popout" data-collapsible="accordion">
 		  <li>
@@ -248,7 +123,8 @@ if(isset($_SESSION["id_user"])){
 		</ul>
 	 </div>
 	</div>
-</div> <!-- End Banner Container -->
+</div>
+<!-- End Banner Container -->
 
 <main>
   <div class="container">
@@ -278,10 +154,12 @@ if(isset($_SESSION["id_user"])){
         </div>
       </div>
 
-    </div> <!-- End Info Section -->
+    </div>
+		<!-- End Info Section -->
     <br>
 
-  </div> <!-- End Info Container -->
+  </div>
+	<!-- End Info Container -->
 </main>
 
 	<footer class="page-footer blue-grey" id="footer">
@@ -305,80 +183,10 @@ if(isset($_SESSION["id_user"])){
 	  </div>
 	</footer>
 
-	<div id="faq" class="modal"> <!-- START F.A.Q. MODAL -->
-		<div class="modal-content">
-			<h4>Frequently Asked Questions.</h4>
-				<ul class="collapsible popout" data-collapsible="expandable">
-					<li>
-						<div class="collapsible-header">What cities do you offer?</div>
-						<div class="collapsible-body">
-							<p>Currently we offer our services in the following cities below and more are on the way.</p>
-								<ul style="padding-left: 20px" class="collection">
-									<li class="collection-item"> - Subotica</li>
-									<li class="collection-item"> - Novi Sad</li>
-									<li class="collection-item"> - Beograd</li>
-								</ul>
-						</div>
-					</li>
-					<li>
-						<div class="collapsible-header">How long did it take to make this?</div>
-						<div class="collapsible-body"><p>Around 80+ combined hours.</p></div>
-					</li>
-					<li>
-						<div class="collapsible-header">I don't even know.</div>
-						<div class="collapsible-body"><p>Yes.</p></div>
-					</li>
-				</ul>
-		</div>
-	</div> <!-- END F.A.Q. MODAL -->
 
-	<div id="contact" class="modal"> <!-- Contact Form Modal -->
-	  <div class="modal-content">
-	    <h4>Contact</h4>
-	    <p>Please fill out the contact form.</p>
-				  <form class="col s12" name="contactform" onclick="return false;">
-				    <div class="row">
-				      <div class="input-field col s6">
-				        <i class="material-icons prefix">account_circle</i>
-				        <input id="contact_firstname" type="text" class="validate">
-				        <label for="contact_firstname">First Name</label>
-				      </div>
-				      <div class="input-field col s6">
-				        <i class="material-icons prefix">account_circle</i>
-				        <input id="contact_lastname" type="text" class="validate">
-				        <label for="contact_lastname">Last Name</label>
-				      </div>
-				    </div>
-				    <div class="row">
-				      <div class="input-field col s12 m6 l6">
-								<i class="material-icons prefix">email</i>
-				        <input id="contact_email" type="email" class="validate">
-				        <label for="contact_email">Email</label>
-				      </div>
-							<div class="col s12 m6 l6">
-								<!-- Google ReCaptcha -->
-								<div class="g-recaptcha" data-callback="enableBtn" data-sitekey="6Ldnvh4TAAAAAH4pPWBOI6FxhLTDHC3e2fq8DH_n"></div>
-
-							</div>
-				    </div>
-				    <div class="row">
-				      <div class="input-field col s12">
-				        <i class="material-icons prefix">mode_edit</i>
-				        <textarea id="contact_message" class="materialize-textarea" length="600"></textarea>
-				        <label for="contact_message">Message</label>
-				      </div>
-				    </div>
-						<div class="modal-footer">
-							<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-							<button class="deep-orange lighten-1 btn waves-effect waves-light " id="send_form" type="submit" onclick="sendform()" >Submit
-							<i class="material-icons right">send</i>
-						</button>
-						</div>
-				  </form>
-		</div>
-	</div>
-
+  <!-- Load Some JS -->
   <script src="js/init.js"></script>
+	<script src="js/pages/index.js"></script>
 
 	<!-- material-scrolltop button -->
 	<button class="material-scrolltop" type="button"></button>
@@ -390,20 +198,23 @@ if(isset($_SESSION["id_user"])){
 	<script>$('body').materialScrollTop();</script>
 
 	<script>
+	function disableSend() {
 	//contact form enable button
 	function enableBtn(){
 	 document.getElementById("send_form").disabled = false;
 	 document.getElementById("send_form").className = "deep-orange lighten-1 btn waves-effect waves-light modal-action modal-close";
-	}
+		}
 	function sendform(){
 	 Materialize.toast("Contact Form Successfully Sent!", 3000 );
+		}
 	}
 	</script>
 
 	<script>
 	//onload listener
 	window.onload = function loadall(){
-		ajaxmaterialize(); //loads the scrips needed for materialize to run correctly; trying to force the DRY programming rule; located inside init.js
+		ajaxmaterialize();
+		disableSend();
 		preloader.off();
 	};
 

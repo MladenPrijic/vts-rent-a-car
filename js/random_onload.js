@@ -12,9 +12,8 @@ function ajaxReturn(x){
 function _(x){
 	return document.getElementById(x);
 }
-// document.body.addEventListener("load",init);
-//Loads random cars onload
-function init(){
+
+function random_cars(){
 
 	preloader = new $.materialPreloader({
 					 position: 'top',

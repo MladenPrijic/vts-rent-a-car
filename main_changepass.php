@@ -20,14 +20,6 @@ if(isset($_POST["us"])){
 		echo "Passwords have to match!";
 		exit();
 	}
-	// elseif(mysqli_num_rows($result1)){
-	// 	echo "Username already taken!";
-	// 	exit();
-	// }
-	// elseif(mysqli_num_rows(($result2))){
-	// 	echo "Email already taken!";
-	// 	exit();
-	// }
 	else{
 		$salt1="oug}|{05=>";
     $salt2="y5-7|}h('{";
