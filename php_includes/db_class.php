@@ -40,6 +40,19 @@ class DB extends mysqli{
 		return $sql;
 
 	}
+	public function delete($table,$where,$limit){
+		if(empty($table)){return false;}
+		if(empty($where)){return false;}
+		if(empty($limit)){$limit="";}
+		$where=$this->where($where);
+		$sql="DELETE FROM $table WHERE $where $limit";
+		return $sql;
+		echo "as";
+        $result=$this->q($sql);
+        return $result;
+
+
+	}
 	//POMOCNE FUNKCIJE
 
 	public function where($where){
@@ -112,8 +125,8 @@ class DB extends mysqli{
 	}
 
 
- $ar=['rented'=>0,'brand'=>'Zastava'];
- $base=new DB("localhost","vekki","","rent-a-car");
+ //$ar=['rented'=>0,'brand'=>'Zastava'];
+ //$base=new DB("localhost","vekki","","rent-a-car");
 //echo $base->where($ar);
 //$result=$base->select("*","car",$ar,"");
 //echo $result;
@@ -121,7 +134,7 @@ class DB extends mysqli{
 // 	echo $row["brand"] ."<br>";
 // 	echo $row["model"] ."<br>";
 // }
- echo $base->insert("car",$ar,$ar);
+ //echo $base->insert("car",$ar,$ar);
 
 
  
