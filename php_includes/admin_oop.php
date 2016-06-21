@@ -3,7 +3,7 @@ include ("db_class.php");
 
 
 class Car extends DB{
-	public $ar=['rented'=>0,'brand'=>'','id_car'=>0];
+	
 	public function __construct($host,$user,$pass,$db){
 		parent::__construct($host,$user,$pass,$db);
 		
@@ -16,24 +16,26 @@ class Car extends DB{
 
 	}
 	//UZIMA AUTO PO ID-U
-	public function getCarbyId($id,$limit){
+	public function getCarbyId($id){
 		
-		return $this->select("*","car")
+		return $this->select("*","car","id_car=$id",1);
 		
 	}
 	//UZIMA KORISNIKA PO ID-U
 	public function getUserById($id){
-		$sql="SELECT * FROM user WHERE id_user='$id' LIMIT 1";
+		return $this->select("*","user","id_user=$id",1);
 		
 	}
 	//UZIMA USERA PO ID-U AUTA
 	public function getUserCar($id){
-		$sql="SELECT * FROM user WHERE id_car='$id' LIMIT 1";
+		
+		return $this->select("*","user","id_car=$id",1);
 		
 	}
 	//UZIMA VREDNOSTI IZ RENTED CARS PO USERU I AUTU
 	public function getRentedData($id_car,$id_user,$limit){
-		$sql="SELECT * FROM rentedcars WHERE id_user='$id_user' AND id_car='$id_car' '$limit'";
+		
+		return $this->select("*","rentedcars","id_user=$id_user AND id_car=$id_car",$limit);
 		
 	}
 
@@ -137,9 +139,36 @@ class Car extends DB{
 
 
  $admin=new Car("localhost","vekki","","rent-a-car");
+
+ //DEO ZA DELETE,RADI
 // if( $admin->carDelete(2,$ar)){
 // 	echo "succes!";
 // }
 // else{
 // 	echo "error";
 // }
+
+ //DEO ZA SELECT ID AUTA, RADI
+// $res=$admin->getCarbyId(2);
+// $row=mysqli_fetch_array($res);
+// echo $row["brand"];
+
+ //DEO ZA SELECT ID USERA, RADI
+//  $res=$admin->getUserById(6);
+// $row=mysqli_fetch_array($res);
+// echo $row["firstname"];
+
+ //DEO ZA SELECT ID USERA U ZAVISNOSTI OD ID AUTA, RADI
+//   $res=$admin->getUserCar(2);
+// $row=mysqli_fetch_array($res);
+// echo $row["firstname"];
+
+//DEO ZA SELECT RENTED AUTA IZ RENTEDCARS U ZAVISNOSTI OD ID AUTA I ID USERA, RADI
+//    $res=$admin->getRentedData(2,17,1);
+// $row=mysqli_fetch_array($res);
+// echo $row["cityPickup"];
+
+
+
+
+

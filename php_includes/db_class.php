@@ -9,8 +9,9 @@ class DB extends mysqli{
 		return mysqli_query($this->db,$sql);
 	}
 
-	public function select($what,$table,$where,$limit){
+	public function select($what,$table,$where,$limit=""){
 		$where=$this->where($where);
+		if(!empty($limit)){$limit="LIMIT " .$limit;}
 		$sql="SELECT $what FROM $table WHERE $where $limit";
 		//return $sql;
 		 $result=$this->q($sql);
@@ -47,7 +48,7 @@ class DB extends mysqli{
 		$where=$this->where($where);
 		$sql="DELETE FROM $table WHERE $where $limit";
 		return $sql;
-		echo "as";
+
         $result=$this->q($sql);
         return $result;
 
